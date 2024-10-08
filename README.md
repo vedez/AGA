@@ -12,51 +12,13 @@ Please find information about the web application's project plan, code and docum
 - [Documentation]()
 - [Project Planning]()
 
-## Set Up Instructions
-
-### Installation
-
-0. Requires to have nodeJS(npm) and git to set up the project locally.
-1. Install Firebase SDK (Run Terminal as Admin)
-
-    ```
-        npm install firebase
-        npm install -g firebase-tools
-
-        Set-ExecutionPolicy RemoteSigned
-    ```
-2. Go to the Application Repo of Journie: 
-3. Clone the repository
-
-    ```
-        git clone <>
-        cd Application
-    ```
-3. Log into Firebase Account
-
-    ```
-        firebase login
-    ```
-
-**Request author to be added as a collaborator (viewer).**
-
-### Open Project Locally
-
-   ```
-        firebase serve
-   ```
-
-### Deployment
-
-Check the following link to try the website: 
-
-   ```
-        firebase deploy
-   ```
 
 ## Demonstration 
 
 Please find the demonstration video on YouTube via the following link:
+
+# Website
+Find out more about AGA on our official website! 
 
 
  
