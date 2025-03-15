@@ -11,12 +11,12 @@ export default function Logo() {
             <Image
                 src="/favicon.ico"
                 alt={translations.altText?.logo || "AGA Logo"}
-                width={40}
-                height={40}
+                width={30}
+                height={30}
                 priority
             />
 
-            <h1 className="text-[30px] font-bold">{translations.title || "AGA"}</h1>
+            <h1 className="text-[25px] font-bold">{translations.title || "AGA"}</h1>
         </div>
     );
 }

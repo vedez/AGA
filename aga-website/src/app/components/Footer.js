@@ -1,6 +1,6 @@
 import useTranslation from "@/hooks/useTranslation";
 import Media from "@/app/components/Media";
-import Logo from "@/app/components/Logo"
+import Logo from "@/app/components/Logo";
 
 export default function Footer() {
     const { language, setLanguage, translations } = useTranslation();
@@ -13,18 +13,18 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="center"> 
-                <button className="px-2">{translations.button?.home || "Home"}</button>
-                <button className="px-2">{translations.button?.about || "About"}</button>
-                <button className="px-2">{translations.button?.tools || "Tools"}</button>
-                <button className="px-2">{translations.button?.help || "Help"}</button>
+            <div className="flex space-x-10 font-bold"> 
+                <button>{translations.button?.home || "Home"}</button>
+                <button>{translations.button?.about || "About"}</button>
+                <button>{translations.button?.tools || "Tools"}</button>
+                <button>{translations.button?.help || "Help"}</button>
             </div>
 
             <div className="px-16 m-0">
-                <h1 className="text-center">zedev (c) 2025</h1>
                 <div className="place-items-center">
                     <Logo />
                 </div>
+                <h1 className="text-center text-sm">zedev (c) 2025</h1>
             </div>
         
         </div>
