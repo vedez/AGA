@@ -12,7 +12,7 @@ export default function Home() {
 
     return (
         <main>
-            <div className="header">
+            <div className="center">
                 <Logo />
                 <div className="horizontal-flex">
                     <RegisterLogin />

@@ -50,7 +50,7 @@
   @apply text-white bg-[#0a2229] hover:bg-[#3f4142] hover:text-white text-xs;
 }
 
-.header {
+.center {
   @apply horizontal-flex justify-between
 }
 

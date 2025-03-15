@@ -5,11 +5,6 @@ export default function CreateAccount() {
 
     return(
         <div>
-            <div>
-                <h1>{translations.createNewAccount || "Create New Account"}</h1>
-                <h2>{translations.alreadyRegistered || "Already Registered? Login"}</h2>
-            </div>
-
             <form>
 
             </form>

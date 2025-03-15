@@ -5,8 +5,8 @@ export default function DesignLogo() {
     const { language, setLanguage, translations } = useTranslation();
 
     return(
-        <div>
-            <div>
+        <div className="flex flex-col items-center justify-center h-screen">
+            <div className="flex flex-col items-center">
                 <Image
                     src="/favicon.ico"
                     alt="Next.js logo"
