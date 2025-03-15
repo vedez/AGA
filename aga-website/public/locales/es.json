@@ -1,0 +1,13 @@
+{
+  "title": "AGA",
+  "button": {
+    "start": "Iniciar sesión",
+    "createAccount": "¿Crear cuenta?",
+    "aboutUs": "Sobre nosotros"
+  },
+  "description": "El Asistente de Orientación Avanzada está diseñado para apoyarte en la gestión de tareas diarias y mantener un estilo de vida estructurado y equilibrado.",
+  "languageOption": {
+    "english": "Inglés",
+    "spanish": "Español"
+  }
+}

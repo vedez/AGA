@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fff7f7d8;
+  --foreground: #0a0a0a;
+}
+
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #fff7f7d8;
+  }
+}*/
+
+.horizontal-flex {
+  @apply flex items-center space-x-2;
+}
+
+.secondary-button {
+  @apply bg-transparent hover:bg-[#62cc5b] text-[#33a835] font-semibold hover:text-white py-2 px-4 border border-[#33a835] hover:border-transparent rounded
+}
+
+.main-button {
+  @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded
+
+}
+
+.third-button {
+  @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded
+
+}
+
+.small-screen {
+  @apply sm:w-auto flex-shrink-0 w-auto text-sm sm:text-base px-2 py-1 sm:px-4 sm:py-2
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: "Roboto Mono", monospace;
+  /*font-family: "Poppins", sans-serif;*/
+  font-family: "Merriweather", sans-serif;
+
+  margin: 35px;
+
+}
+
