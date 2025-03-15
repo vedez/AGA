@@ -8,7 +8,7 @@ export default function DesignLogo() {
         <div className="flex flex-col items-center justify-center h-screen">
             <div className="flex flex-col items-center">
                 <Image
-                    src="/favicon.ico"
+                    src="/assets/logo-animated.gif"
                     alt="Next.js logo"
                     width={180}
                     height={38}
