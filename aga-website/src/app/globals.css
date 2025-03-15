@@ -28,14 +28,32 @@
 
 }
 
+/*
 .third-button {
   @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded
 
-}
+}*/
 
 .small-screen {
   @apply sm:w-auto flex-shrink-0 w-auto text-sm sm:text-base px-2 py-1 sm:px-4 sm:py-2
 }
+
+.hide{
+  @apply hidden sm:inline-block
+}
+
+.language-select {
+  @apply bg-[#0a2229] hover:bg-[#3f4142] text-white font-semibold py-1 px-1 border border-[#0a2229] hover:border-transparent rounded cursor-pointer appearance-none text-xs ;
+}
+
+.languageOption {
+  @apply text-white bg-[#0a2229] hover:bg-[#3f4142] hover:text-white text-xs;
+}
+
+.header {
+  @apply horizontal-flex justify-between
+}
+
 
 body {
   color: var(--foreground);
@@ -45,6 +63,6 @@ body {
   font-family: "Merriweather", sans-serif;
 
   margin: 35px;
-
 }
+
 

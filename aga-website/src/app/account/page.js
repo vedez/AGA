@@ -13,20 +13,20 @@ export default function Account() {
 
     return (
         <main>
-            <div>
-                <Logo />
+            <div className="flex justify-end">
                 <LanguageSwitcher />
             </div>
 
-            <div>
+            <div className="horizontal-flex">
                 <DesignLogo />
-            
                 <div>
                     <div>
                         <CreateAccount />
+                        create
                     </div>
                     <div>
                         <Login />
+                        login
                     </div>
                 </div>
             </div>
