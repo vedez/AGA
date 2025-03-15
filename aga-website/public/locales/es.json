@@ -1,13 +1,17 @@
 {
   "title": "AGA",
+  "abbreviation" : "Asistente de Guía Avanzada",
   "button": {
-    "start": "Iniciar sesión",
-    "createAccount": "¿Crear cuenta?",
-    "aboutUs": "Sobre nosotros"
+    "signIn": "Iniciar Sesión",
+    "createAccount": "¿Crear Cuenta?",
+    "aboutUs": "Sobre Nosotros"
   },
-  "description": "El Asistente de Orientación Avanzada está diseñado para apoyarte en la gestión de tareas diarias y mantener un estilo de vida estructurado y equilibrado.",
+  "description": "El Asistente de Guía Avanzada está diseñado para ayudarte a gestionar las tareas diarias y mantener un estilo de vida equilibrado y estructurado.",
   "languageOption": {
-    "english": "Inglés",
-    "spanish": "Español"
+    "english": "EN",
+    "spanish": "ES"
+  },
+  "altText": {
+    "logo": "Logo de AGA"
   }
 }
