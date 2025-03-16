@@ -33,7 +33,7 @@ export default function Calendar() {
             </div>
 
             {/* Today */}
-            <div className="text-[#ffffff] text-2xl text-bg-shadow">
+            <div className="text-[#ffffff] text-xl text-bg-shadow">
                 <p className="text-center font-bold">
                     <span>{todayData.weekday} | </span> 
                     {todayData.fullDate}
