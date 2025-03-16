@@ -27,20 +27,6 @@ export default function Home() {
                         <LanguageSwitcher/>
                     </div>
                 </div>
-        <div className="flex flex-col min-h-screen">
-            <main className="flex-grow">
-                <div className="center">
-                    <Logo />
-                    <div className="horizontal-flex">
-                        {currentUser ? (
-                            <UserProfile />
-                        ) : (
-                            <RegisterLogin />
-                        )}
-                        <LanguageSwitcher/>
-                    </div>
-                </div>
-
                 <div>
                     <Slogan />
                     <p>
