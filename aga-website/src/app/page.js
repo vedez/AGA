@@ -14,29 +14,31 @@ export default function Home() {
     const { currentUser } = useAuth();
 
     return (
-        <main>
-            <div className="center">
-                <Logo />
-                <div className="horizontal-flex">
-                    {currentUser ? (
-                        <UserProfile />
-                    ) : (
-                        <RegisterLogin />
-                    )}
-                    <LanguageSwitcher/>
+        <div className="flex flex-col min-h-screen">
+            <main className="flex-grow">
+                <div className="center">
+                    <Logo />
+                    <div className="horizontal-flex">
+                        {currentUser ? (
+                            <UserProfile />
+                        ) : (
+                            <RegisterLogin />
+                        )}
+                        <LanguageSwitcher/>
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                <Slogan />
-                <p>
-                    {translations.description ||
-                    "The Advanced Guidance Assistant designed to support you in managing daily tasks and maintaining a structured, balanced lifestyle."}
-                </p>
-                <button>{translations.button?.aboutUs || "About Us"}</button>
-            </div>
+                <div>
+                    <Slogan />
+                    <p>
+                        {translations.description ||
+                        "The Advanced Guidance Assistant designed to support you in managing daily tasks and maintaining a structured, balanced lifestyle."}
+                    </p>
+                    <button>{translations.button?.aboutUs || "About Us"}</button>
+                </div>
+            </main>
 
-            <Footer />
-        </main>
+            <Footer className="mt-auto" />
+        </div>
     );
 }

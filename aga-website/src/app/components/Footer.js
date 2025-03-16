@@ -6,7 +6,7 @@ export default function Footer() {
     const { language, setLanguage, translations } = useTranslation();
 
     return(
-        <div className="center">
+        <div className="center relative bottom-0">
             <div className="md:px-4 lg:px-16 center">
                 <div>
                     <Media />

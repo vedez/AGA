@@ -98,11 +98,14 @@
   @apply text-[#62cc5b] text-sm text-center mb-8 cursor-pointer;
 }
 
-/* === BODY STYLING === */
+.text-bg-shadow {
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6)
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Roboto Mono", monospace;
+  /*font-family: "Roboto Mono", monospace;*/
   /* font-family: "Poppins", sans-serif; */
   font-family: "Merriweather", sans-serif;
   margin: 35px;
