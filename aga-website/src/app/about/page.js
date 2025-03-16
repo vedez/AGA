@@ -34,7 +34,7 @@ export default function About() {
                     />
                 </div>
                 <article>
-                    <h1>About AGA</h1>
+                    <h1>{translations.about?.title || "About AGA"}</h1>
                     <div><Slogan /></div>
 
                     <p>
@@ -44,7 +44,7 @@ export default function About() {
                         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                     </p>
 
-                    <h2>Looda Doot</h2>
+                    <h2>{translations.about?.subtitle || "Looda Doot"}</h2>
                     <p>
                         "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, 
                         totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 

@@ -1,17 +1,17 @@
 import useTranslation from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
+import useTranslation from "@/hooks/useTranslation";
 import { BiLoader } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 
-const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
-
 export default function Weather() {
+    const { translations } = useTranslation();
     const [weatherData, setWeatherData] = useState(null);
+    const [suggestion, setSuggestion] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [suggestion, setSuggestion] = useState('');
-    const {translations} = useTranslation();
 
+    // Fetch weather data from our secure API route
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             async (position) => {
@@ -20,12 +20,18 @@ export default function Weather() {
                 try {
                     const response = await fetch(
                         `/api/weather?lat=${latitude}&lon=${longitude}`
+                        `/api/weather?lat=${latitude}&lon=${longitude}`
                     );
                     if (!response.ok) {
+                        throw new Error('Failed to fetch weather data');
                         throw new Error('Failed to fetch weather data');
                     }
 
                     const data = await response.json();
+                    setWeatherData(data.weatherData);
+                    if (data.suggestion) {
+                        setSuggestion(data.suggestion);
+                    }
                     setWeatherData(data.weatherData);
                     if (data.suggestion) {
                         setSuggestion(data.suggestion);
@@ -41,7 +47,7 @@ export default function Weather() {
                 setLoading(false);
             }
         );
-    }, []);
+    }, []); 
 
     if (loading) return (
         <div className="bg-gradient-to-r from-[#6475bc] to-[#8698eb] border-[#6475bc] border-2 text-white text-l font-bold feature-element grid place-items-center h-full"><BiLoader className="animate-spin text-3xl" /></div>

@@ -5,7 +5,7 @@ export default function ToolInfo() {
 
     return(
         <div>
-            <h1>Tool Information</h1>
+            <h1>{translations.components?.toolInfo || "Tool Information"}</h1>
         </div>
     );
 }

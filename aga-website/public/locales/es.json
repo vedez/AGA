@@ -1,10 +1,14 @@
 {
   "title": "AGA",
-  "abbreviation" : "Asistente de Guía Avanzada",
+  "abbreviation": "Asistente de Guía Avanzada",
   "button": {
     "signIn": "Iniciar Sesión",
     "createAccount": "¿Crear Cuenta?",
-    "aboutUs": "Sobre Nosotros"
+    "aboutUs": "Sobre Nosotros",
+    "home": "Inicio",
+    "about": "Acerca de",
+    "tools": "Herramientas",
+    "help": "Ayuda"
   },
   "description": "El Asistente de Guía Avanzada está diseñado para ayudarte a gestionar las tareas diarias y mantener un estilo de vida equilibrado y estructurado.",
   "languageOption": {
@@ -13,5 +17,48 @@
   },
   "altText": {
     "logo": "Logo de AGA"
+  },
+  "account": {
+    "createNewAccount": "Crear nueva cuenta",
+    "alreadyRegistered": "¿Ya registrado? Inicia sesión",
+    "signin": "Iniciar Sesión",
+    "notRegiestered": "¿Nuevo miembro? Regístrate"
+  },
+  "about": {
+    "title": "Acerca de AGA",
+    "subtitle": "Looda Doot"
+  },
+  "components": {
+    "weather": "Clima",
+    "weatherLoading": "Obteniendo Pronóstico del Tiempo",
+    "weatherError": "No se puede obtener la ubicación",
+    "weatherSuggestion": "Sugerencia del Clima",
+    "focusMode": "Modo de Concentración",
+    "taskSetter": "Gestor de Tareas",
+    "calendar": "Calendario",
+    "mood": "Estado de Ánimo",
+    "toolInfo": "Información de Herramientas",
+    "contactUs": "Contáctanos",
+    "adverts": "Anuncios"
+  },
+  "forms": {
+    "enterFirstName": "Por favor ingresa tu nombre",
+    "enterEmail": "Por favor ingresa tu correo electrónico",
+    "enterPassword": "Por favor ingresa tu contraseña",
+    "enterDob": "Por favor ingresa tu fecha de nacimiento",
+    "signUp": "REGISTRARSE",
+    "signIn": "INICIAR SESIÓN",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "loading": "Cargando...",
+    "errorSignup": "Error al crear la cuenta.",
+    "errorLogin": "Error al iniciar sesión. Por favor verifica tus credenciales.",
+    "resetPassword": "Restablecer Contraseña",
+    "resetInstructions": "Ingresa tu correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.",
+    "email": "Correo electrónico",
+    "emailRequired": "El correo electrónico es obligatorio",
+    "cancel": "Cancelar",
+    "sending": "Enviando...",
+    "sendResetLink": "Enviar Enlace",
+    "resetEmailSent": "Correo de restablecimiento enviado. Por favor revisa tu bandeja de entrada."
   }
 }

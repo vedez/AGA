@@ -5,7 +5,7 @@ export default function TaskSetter() {
 
     return(
         <div>
-            <h1>TaskSetter</h1>
+            <h1>{translations.components?.taskSetter || "Task Setter"}</h1>
         </div>
     );
 }

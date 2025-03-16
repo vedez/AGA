@@ -1,10 +1,14 @@
 {
   "title": "AGA",
-  "abbreviation" : "Advanced Guidance Assistance",
+  "abbreviation": "Advanced Guidance Assistance",
   "button": {
     "signIn": "Sign In",
     "createAccount": "Create Account?",
-    "aboutUs": "About Us"
+    "aboutUs": "About Us",
+    "home": "Home",
+    "about": "About",
+    "tools": "Tools",
+    "help": "Help"
   },
   "description": "The Advanced Guidance Assistant designed to support you in managing daily tasks and maintaining a structured, balanced lifestyle.",
   "languageOption": {
@@ -14,11 +18,52 @@
   "altText": {
     "logo": "AGA Logo"
   },
+  "account": {
+    "createNewAccount": "Create new Account",
+    "alreadyRegistered": "Already Registered? Login",
+    "signin": "Sign In",
+    "notRegiestered": "New member? Sign Up"
+  },
+  "about": {
+    "title": "About AGA",
+    "subtitle": "Looda Doot"
+  },
+  "components": {
+    "weather": "Weather",
+    "weatherLoading": "Retrieving Weather Forecast",
+    "weatherError": "Unable to get location",
+    "weatherSuggestion": "Weather Suggestion",
+    "focusMode": "Focus Mode",
+    "taskSetter": "Task Setter",
+    "calendar": "Calendar",
+    "mood": "Mood",
+    "toolInfo": "Tool Information",
+    "contactUs": "Contact Us",
+    "adverts": "Adverts"
+  },
+  "forms": {
+    "enterFirstName": "Please enter your first name",
+    "enterEmail": "Please enter Email",
+    "enterPassword": "Please enter password",
+    "enterDob": "Please enter date of birth",
+    "signUp": "SIGN UP",
+    "signIn": "SIGN IN",
+    "forgotPassword": "Forgot Password?",
+    "loading": "Loading...",
+    "errorSignup": "Failed to create an account.",
+    "errorLogin": "Failed to sign in. Please check your credentials.",
+    "resetPassword": "Reset Password",
+    "resetInstructions": "Enter your email address and we'll send you instructions to reset your password.",
+    "email": "Email",
+    "emailRequired": "Email is required",
+    "cancel": "Cancel",
+    "sending": "Sending...",
+    "sendResetLink": "Send Reset Link",
+    "resetEmailSent": "Password reset email sent. Please check your inbox."
+  },
   "weather": {
     "pleaseTurnOnLocation": "Please turn on location",
     "temperatureUnit": "°C",
     "suggestionPrefix": "\""
   }
-  
-  
 }

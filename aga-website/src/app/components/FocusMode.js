@@ -5,7 +5,7 @@ export default function FocusMode() {
 
     return(
         <div>
-            <h1>FocusMode</h1>
+            <h1>{translations.components?.focusMode || "Focus Mode"}</h1>
         </div>
     );
 }

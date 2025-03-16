@@ -5,7 +5,7 @@ export default function Mood() {
 
     return(
         <div>
-            <h1>Mood</h1>
+            <h1>{translations.components?.mood || "Mood"}</h1>
         </div>
     );
 }
