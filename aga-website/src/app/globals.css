@@ -54,6 +54,9 @@
   @apply horizontal-flex justify-between
 }
 
+.feature-element {
+  @apply p-4 rounded-lg shadow-lg w-full max-w-sm mx-auto 
+}
 
 body {
   color: var(--foreground);
