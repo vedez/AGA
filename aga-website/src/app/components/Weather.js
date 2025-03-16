@@ -86,7 +86,7 @@ export default function Weather() {
             </div>
 
             {suggestion && (
-                    <div className='bg-white text-[#303037] font-semibold text-center feature-element'>
+                    <div className='bg-white text-[#303037] text-center feature-element'>
                         <p>{translations.weather.suggestionPrefix}{suggestion}{translations.weather.suggestionPrefix}</p>
                     </div>
             )}             
