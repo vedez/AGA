@@ -40,7 +40,6 @@ export default function Calendar() {
                 </p>
             </div>
 
-
             {/* Tomorrow */}
             <div className="text-[#91205a] drop-shadow-md">
                 <p className="text-center">
