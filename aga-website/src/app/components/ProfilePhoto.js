@@ -1,7 +1,7 @@
 import useTranslation from "@/hooks/useTranslation";
 import Image from "next/image";
 
-export default function ToolInfo() {
+export default function ProfilePhoto() {
     const { language, setLanguage, translations } = useTranslation();
 
     return(
@@ -13,7 +13,7 @@ export default function ToolInfo() {
                 height={38}
                 priority
             />
-            <h1>Change Photo</h1>
+            <h1>{translations.profile?.changePhoto || "Change Photo"}</h1>
         </div>
     );
 }

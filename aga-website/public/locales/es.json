@@ -60,5 +60,13 @@
     "sending": "Enviando...",
     "sendResetLink": "Enviar Enlace",
     "resetEmailSent": "Correo de restablecimiento enviado. Por favor revisa tu bandeja de entrada."
+  },
+  "profile": {
+    "settings": "Configuración de perfil",
+    "account": "Configuración de cuenta",
+    "preferences": "Preferencias",
+    "security": "Seguridad",
+    "notifications": "Notificaciones",
+    "changePhoto": "Cambiar Foto"
   }
 }

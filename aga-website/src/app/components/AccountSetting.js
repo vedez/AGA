@@ -6,7 +6,12 @@ export default function AccountSetting() {
 
     return(
         <div>
-            <h1>Settings Form</h1>
+            <h1>{translations.profile?.account || "Account Settings"}</h1>
+            <div>
+                <h2>{translations.profile?.preferences || "Preferences"}</h2>
+                <h2>{translations.profile?.security || "Security"}</h2>
+                <h2>{translations.profile?.notifications || "Notifications"}</h2>
+            </div>
         </div>
     );
 }

@@ -1,7 +1,6 @@
 import useTranslation from "@/hooks/useTranslation";
 import ProfileIcon from "@/app/components/ProfileIcon"
 import LanguageSwitcher from "./LanguageSwitcher";
-import RegisterLogin from "./RegisterLogin";
 
 
 export default function Navbar() {
@@ -16,7 +15,6 @@ export default function Navbar() {
 
             <div className="horizontal-flex gap-x-3">
                 <div><ProfileIcon /></div>
-                <div><RegisterLogin /></div>
 
                 <LanguageSwitcher />
             </div>

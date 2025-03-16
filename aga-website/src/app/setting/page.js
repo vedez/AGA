@@ -8,12 +8,12 @@ import ProfilePhoto from "@/app/components/ProfilePhoto";
 import AccountSetting from "@/app/components/AccountSetting";
 
 
-export default function Help() {
+export default function Setting() {
     const { language, setLanguage, translations } = useTranslation();
 
     return (
         <main>
-            <div>
+            <div className="center">
                 <Logo />
                 <ShortNav />
             </div>
