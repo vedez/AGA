@@ -1,6 +1,5 @@
 import useTranslation from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
-import useTranslation from "@/hooks/useTranslation";
 import { BiLoader } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 
