@@ -6,10 +6,12 @@ export default function AccountSetting() {
     const { translations } = useTranslation();
 
     return(
-        <div className="flex-1 max-w-md m-5">
-            <button className="main-button rounded text-m mb-4 float-right">
-                {translations.profile?.saveChanges || "Save Changes"}
-            </button>
+        <div className="w-full mx-auto max-w-lg m-5">
+            <div className="flex justify-center sm:justify-end mb-4">
+                <button className="main-button rounded text-m">
+                    {translations.profile?.saveChanges || "Save Changes"}
+                </button>
+            </div>
             
             <div className="clear-both space-y-5">
                 <div className="mb-3">

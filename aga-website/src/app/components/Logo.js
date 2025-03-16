@@ -2,12 +2,13 @@
 
 import useTranslation from "@/hooks/useTranslation";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Logo() {
     const { language, setLanguage, translations } = useTranslation();
 
     return (
-        <div className="horizontal-flex">
+        <Link href="/" className="horizontal-flex cursor-pointer hover:opacity-80 transition-opacity">
             <Image
                 src="/favicon.ico"
                 alt={translations.altText?.logo || "AGA Logo"}
@@ -17,6 +18,6 @@ export default function Logo() {
             />
 
             <h1 className="text-[25px] font-bold">{translations.title || "AGA"}</h1>
-        </div>
+        </Link>
     );
 }

@@ -14,7 +14,7 @@ export default function Home() {
     const { currentUser } = useAuth();
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col screen-size">
             <main className="flex-grow">
                 <div className="center">
                     <Logo />
