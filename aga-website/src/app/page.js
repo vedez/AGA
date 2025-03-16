@@ -6,16 +6,23 @@ import Logo from "@/app/components/Logo";
 import RegisterLogin from "@/app/components/RegisterLogin";
 import Slogan from "@/app/components/Slogan";
 import Footer from "@/app/components/Footer";
+import UserProfile from "@/app/components/UserProfile";
+import { useAuth } from "@/app/utils/AuthContext";
 
 export default function Home() {
     const { translations } = useTranslation();
+    const { currentUser } = useAuth();
 
     return (
         <main>
             <div className="center">
                 <Logo />
                 <div className="horizontal-flex">
-                    <RegisterLogin />
+                    {currentUser ? (
+                        <UserProfile />
+                    ) : (
+                        <RegisterLogin />
+                    )}
                     <LanguageSwitcher/>
                 </div>
             </div>

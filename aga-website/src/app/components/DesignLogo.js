@@ -5,20 +5,21 @@ export default function DesignLogo() {
     const { language, setLanguage, translations } = useTranslation();
 
     return(
-        <div className="flex flex-col items-center justify-center h-screen">
-            <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center justify-center ">
+            <div className="mb-6 rounded-2xl shadow-2xl">
                 <Image
                     src="/assets/logo-animated.gif"
-                    alt="Next.js logo"
-                    width={180}
-                    height={38}
+                    alt={translations.altText?.logo || "AGA Logo"}
+                    width={250}
+                    height={250}
+                    className="rounded-2xl"
+                    unoptimized
                     priority
                 />
-
-                <h1>{translations.title || "AGA"}</h1>
             </div>
-            <h2>{translations.abbreviation || "Advance Guidance Assistance"}</h2>
+            
+            <h1 className="text-4xl pt-4 font-bold text-white mb-2">AGA</h1>
+            <h2 className="text-xl text-white font-bold text-center font-mono">Advanced Guidance Assistance</h2>
         </div>
     );
 }
-

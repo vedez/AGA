@@ -5,7 +5,7 @@ export default function Calendar() {
 
     return(
         <div>
-            <h1>Calendar</h1>
+            <h1>{translations.components?.calendar || "Calendar"}</h1>
         </div>
     );
 }

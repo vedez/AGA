@@ -7,65 +7,103 @@
   --foreground: #0a0a0a;
 }
 
-/*
+/* Dark mode setup 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #fff7f7d8;
   }
-}*/
+}/*
 
+/* Flex utility */
 .horizontal-flex {
   @apply flex items-center space-x-2;
 }
 
+/* Button styles */
 .secondary-button {
-  @apply bg-transparent hover:bg-[#62cc5b] text-[#33a835] font-semibold hover:text-white py-2 px-4 border border-[#33a835] hover:border-transparent rounded
+  @apply bg-transparent hover:bg-[#62cc5b] text-[#33a835] font-semibold hover:text-white py-2 px-4 border border-[#33a835] hover:border-transparent rounded;
 }
 
 .main-button {
-  @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded
-
+  @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded;
 }
 
+/* Remove third-button unless needed */
 /*
 .third-button {
-  @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded
+  @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded;
+}
+*/
 
-}*/
-
+/* Responsive sizing */
 .small-screen {
-  @apply sm:w-auto flex-shrink-0 w-auto text-sm sm:text-base px-2 py-1 sm:px-4 sm:py-2
+  @apply sm:w-auto flex-shrink-0 w-auto text-sm sm:text-base px-2 py-1 sm:px-4 sm:py-2;
 }
 
-.hide{
-  @apply hidden sm:inline-block
+/* Hide element on small screens */
+.hide {
+  @apply hidden sm:inline-block;
 }
 
+/* Language select dropdown */
 .language-select {
-  @apply bg-[#0a2229] hover:bg-[#3f4142] text-white font-semibold py-1 px-1 border border-[#0a2229] hover:border-transparent rounded cursor-pointer appearance-none text-xs ;
+  @apply bg-[#0a2229] hover:bg-[#3f4142] text-white font-semibold py-1 px-1 border border-[#0a2229] hover:border-transparent rounded cursor-pointer appearance-none text-xs;
 }
 
 .languageOption {
   @apply text-white bg-[#0a2229] hover:bg-[#3f4142] hover:text-white text-xs;
 }
 
+/* Center content horizontally */
 .center {
-  @apply horizontal-flex justify-between
+  @apply horizontal-flex justify-between;
 }
 
+/* Feature card */
 .feature-element {
-  @apply p-4 rounded-lg shadow-lg w-full max-w-sm mx-auto 
+  @apply p-4 rounded-lg shadow-lg w-full max-w-sm mx-auto;
 }
 
+/* === FORM UTILITY CLASSES === */
+.form-container {
+  @apply w-full space-y-6;
+}
+
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-gray-600 text-sm mb-1;
+}
+
+.form-input {
+  @apply w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#62cc5b];
+}
+
+.form-button {
+  @apply w-full p-3 bg-[#62cc5b] hover:bg-[#58a154] text-white font-medium rounded transition duration-200;
+}
+
+.form-link {
+  @apply text-sm italic text-[#62cc5b] hover:underline cursor-pointer;
+}
+
+.form-title {
+  @apply text-[#62cc5b] text-3xl font-bold text-center mb-2;
+}
+
+.form-subtitle {
+  @apply text-[#62cc5b] text-sm text-center mb-8 cursor-pointer;
+}
+
+/* === BODY STYLING === */
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: "Roboto Mono", monospace;
-  /*font-family: "Poppins", sans-serif;*/
+  /* font-family: "Poppins", sans-serif; */
   font-family: "Merriweather", sans-serif;
-
   margin: 35px;
 }
-
-

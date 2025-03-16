@@ -5,7 +5,7 @@ export default function Adverts() {
 
     return(
         <div>
-            <h1>Adverts</h1>
+            <h1>{translations.components?.adverts || "Adverts"}</h1>
         </div>
     );
 }

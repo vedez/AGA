@@ -6,42 +6,50 @@ import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 import CreateAccount from "@/app/components/CreateAccount";
 import Login from "@/app/components/Login";
 import DesignLogo from "@/app/components/DesignLogo";
-import Footer from "@/app/components/Footer"; 
 
 export default function Account() {
     const { language, setLanguage, translations } = useTranslation();
     const { activeMode, switchMode } = useAccountMode();
 
     return (
-        <main>
-            <div className="flex justify-end">
-                <LanguageSwitcher />
+        <main className="flex h-screen w-screen overflow-hidden">
+            {/* Left side with logo - hidden on mobile */}
+            <div className="hide sm:flex sm:w-1/2 bg-[#70C1D3] flex-col justify-center items-center">
+                <DesignLogo />
             </div>
-
-            <div className="flex w-full h-screen">
-                <div className="flex-1 flex justify-center items-center">
-                    <div>
-                        <DesignLogo />
-                    </div>
+            
+            {/* Right side with form - full width on mobile */}
+            <div className="w-full sm:w-1/2 bg-white flex flex-col">
+                {/* Language switcher in top right */}
+                <div className="flex justify-end p-4">
+                    <LanguageSwitcher />
                 </div>
                 
-                <div className="flex-1 flex justify-center items-center">
+                {/* Form container */}
+                <div className="flex-1 flex flex-col justify-center items-center px-6 sm:px-12">
                     {activeMode === "create" ? (
-                        <div>
-                            <h1>{translations.createNewAccount || "Create New Account"}</h1>
-                            <button onClick={switchMode}>{translations.alreadyRegistered || "Already Registered? Login"}</button>
+                        <div className="w-full max-w-md">
+                            <h1 className="form-title">
+                                {translations.account?.createNewAccount || "Create new Account"}
+                            </h1>
+                            <p className="form-subtitle" onClick={switchMode}>
+                                {translations.account?.alreadyRegistered || "Already Registered? Login"}
+                            </p>
                             <CreateAccount />
                         </div>
                     ) : (
-                        <div>
-                            <h1>{translations.signin || "Sign In"}</h1>
-                            <button onClick={switchMode}>{translations.notRegiestered || "New member? Sign Up"}</button>
+                        <div className="w-full max-w-md">
+                            <h1 className="form-title">
+                                {translations.account?.signin || "Sign In"}
+                            </h1>
+                            <p className="form-subtitle" onClick={switchMode}>
+                                {translations.account?.notRegiestered || "New member? Sign Up"}
+                            </p>
                             <Login />
                         </div>
                     )}
                 </div>
             </div>
-            <Footer />
         </main>
     );
 }

@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
+import useTranslation from "@/hooks/useTranslation";
 import { BiLoader } from "react-icons/bi";
-import { FaLocationDot } from "react-icons/fa6";
-
-
-
-const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
 
 export default function Weather() {
+    const { translations } = useTranslation();
     const [weatherData, setWeatherData] = useState(null);
+    const [suggestion, setSuggestion] = useState('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Fetch weather data from our secure API route
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             async (position) => {
@@ -18,15 +17,17 @@ export default function Weather() {
 
                 try {
                     const response = await fetch(
-                        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+                        `/api/weather?lat=${latitude}&lon=${longitude}`
                     );
-
                     if (!response.ok) {
-                        throw new Error('Weather Data Unavailable');
+                        throw new Error('Failed to fetch weather data');
                     }
 
                     const data = await response.json();
-                    setWeatherData(data);
+                    setWeatherData(data.weatherData);
+                    if (data.suggestion) {
+                        setSuggestion(data.suggestion);
+                    }
                 } catch (error) {
                     setError(error.message);
                 } finally {
@@ -34,29 +35,22 @@ export default function Weather() {
                 }
             },
             (error) => {
-                setError('Please turn on location');
+                setError(translations.components?.weatherError || 'Unable to get location');
                 setLoading(false);
             }
         );
-    }, []);
+    }, []); 
 
     if (loading) return (
         <div className="bg-[#5087ff] text-white text-center text-l font-semibold feature-element grid place-items-center h-full">
             <div className="flex flex-col place-items-center space-y-3">
-                <h6>Retrieving Weather Forecast</h6>
+                <h6>{translations.components?.weatherLoading || "Retrieving Weather Forecast"}</h6>
                 <BiLoader className="animate-spin text-3xl" />
             </div>
         </div>
     );
     
-    if (error) return (
-        <div className="bg-red-500 text-white text-center text-l font-semibold feature-element grid place-items-center h-full">
-            <div className="flex flex-row items-center gap-x-3">
-                <FaLocationDot className="animate-bounce text-xl" />
-                {error}                 
-            </div>
-        </div>
-    );
+    if (error) return <div className="bg-[#5087ff] text-white p-4 feature-element">{error}</div>;
 
     return (
         <div className="bg-[#5087ff] text-white feature-element flex flex-col items-center p-4">
@@ -79,11 +73,16 @@ export default function Weather() {
             <p className="text-l capitalize">
                 {weatherData.weather[0].description}
             </p>
-            
             <p className="text-2xl font-semibold">
                 {Math.round(weatherData.main.temp)}°C
             </p>
-        </div>
 
+            {/* AI-Generated Suggestion */}
+            {suggestion && (
+                <div className="mt-4 bg-white text-black p-2 rounded-lg shadow-md">
+                    <span>{suggestion}</span> 
+                </div>
+            )}
+        </div>
     );
 }
