@@ -8,7 +8,7 @@ export default function Navbar() {
 
     return(
         <div className="center gap-x-3">
-            <div className="space-x-5 font-semibold">
+            <div className="space-x-5 font-semibold hide">
                 <button>{translations.button?.home || "Home"}</button>
                 <button>{translations.button?.about || "About"}</button>
             </div>

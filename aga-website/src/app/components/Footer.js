@@ -6,7 +6,7 @@ export default function Footer() {
     const { language, setLanguage, translations } = useTranslation();
 
     return(
-        <div className="center">
+        <div className="center relative">
             <div className="md:px-4 lg:px-16 center">
                 <div>
                     <Media />
@@ -20,14 +20,12 @@ export default function Footer() {
                 <button>{translations.button?.help || "Help"}</button>
             </div>
 
-            <div className="md:px-4 lg:px-16 m-0">
+            <div className="md:px-4 lg:px-16">
                 <div className="place-items-center">
                     <Logo />
                 </div>
                 <h1 className="text-center text-sm">zedev (c) 2025</h1>
             </div>
-        
         </div>
-
     );
 }

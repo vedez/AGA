@@ -8,7 +8,8 @@
     "home": "Inicio",
     "about": "Acerca de",
     "tools": "Herramientas",
-    "help": "Ayuda"
+    "help": "Ayuda",
+    "settings": "Configuración"
   },
   "description": "El Asistente de Guía Avanzada está diseñado para ayudarte a gestionar las tareas diarias y mantener un estilo de vida equilibrado y estructurado.",
   "languageOption": {
@@ -67,6 +68,8 @@
     "preferences": "Preferencias",
     "security": "Seguridad",
     "notifications": "Notificaciones",
-    "changePhoto": "Cambiar Foto"
+    "changePhoto": "Cambiar Foto",
+    "saveChanges": "GUARDAR CAMBIOS",
+    "deactivateAccount": "Desactivar Cuenta"
   }
 }

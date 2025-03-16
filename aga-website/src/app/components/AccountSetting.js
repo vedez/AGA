@@ -1,16 +1,66 @@
+"use client";
+
 import useTranslation from "@/hooks/useTranslation";
-import Image from "next/image";
 
 export default function AccountSetting() {
-    const { language, setLanguage, translations } = useTranslation();
+    const { translations } = useTranslation();
 
     return(
-        <div>
-            <h1>{translations.profile?.account || "Account Settings"}</h1>
-            <div>
-                <h2>{translations.profile?.preferences || "Preferences"}</h2>
-                <h2>{translations.profile?.security || "Security"}</h2>
-                <h2>{translations.profile?.notifications || "Notifications"}</h2>
+        <div className="flex-1 max-w-md m-5">
+            <button className="main-button rounded text-m mb-4 float-right">
+                {translations.profile?.saveChanges || "Save Changes"}
+            </button>
+            
+            <div className="clear-both space-y-5">
+                <div className="mb-3">
+                    <label className="block text-s mb-1">
+                        {translations.forms?.enterFirstName || "Please enter your first name"}
+                    </label>
+                    <input 
+                        type="text" 
+                        className="form-input" 
+                        placeholder="Jiara"
+                    />
+                </div>
+                
+                <div className="mb-3">
+                    <label className="block text-s mb-1">
+                        {translations.forms?.enterDob || "Please enter date of birth"}
+                    </label>
+                    <input 
+                        type="text" 
+                        className="form-input" 
+                        placeholder="Month and Year"
+                    />
+                </div>
+                
+                <div className="mb-3">
+                    <label className="block text-s mb-1">
+                        {translations.forms?.enterEmail || "Please enter Email"}
+                    </label>
+                    <input 
+                        type="email" 
+                        className="form-input" 
+                        placeholder="hello@reallygreatsite.com"
+                    />
+                </div>
+                
+                <div className="mb-3">
+                    <label className="block text-s mb-1">
+                        {translations.forms?.enterPassword || "Please enter password"}
+                    </label>
+                    <input 
+                        type="password" 
+                        className="form-input" 
+                        placeholder="******"
+                    />
+                </div>
+                
+                <div className="mt-4">
+                    <button className="text-red-600 text-sm font-bold">
+                        {translations.profile?.deactivateAccount || "Deactivate Account"}
+                    </button>
+                </div>
             </div>
         </div>
     );

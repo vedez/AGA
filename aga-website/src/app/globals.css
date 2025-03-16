@@ -65,6 +65,7 @@
   @apply p-4 rounded-lg shadow-lg w-full max-w-xs mx-auto 
 }
 
+
 /* === FORM UTILITY CLASSES === */
 .form-container {
   @apply w-full space-y-6;
@@ -97,6 +98,28 @@
 .form-subtitle {
   @apply text-[#62cc5b] text-sm text-center mb-8 cursor-pointer;
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #e7e7e7; /* Background of the scrollbar track */
+  border-radius: 2.5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #474747; /* Color of the scrollbar handle */
+  border-radius: 10px;
+  border: 1px solid #474747; /* Border around the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #474747;
+}
+
 
 /* === BODY STYLING === */
 body {

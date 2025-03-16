@@ -1,19 +1,19 @@
+"use client";
+
 import useTranslation from "@/hooks/useTranslation";
-import Image from "next/image";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function ProfilePhoto() {
-    const { language, setLanguage, translations } = useTranslation();
+    const { translations } = useTranslation();
 
     return(
-        <div>
-            <Image
-                src="/favicon.ico"
-                alt="Next.js logo"
-                width={180}
-                height={38}
-                priority
-            />
-            <h1>{translations.profile?.changePhoto || "Change Photo"}</h1>
+        <div className="flex flex-col items-center">
+            <div className="w-70 h-70 rounded-full flex items-center justify-center">
+                <FaUserCircle size={180} className="text-gray-700 m-5" />
+            </div>
+            <button className="main-button">
+                {translations.profile?.changePhoto || "CHANGE PHOTO"}
+            </button>
         </div>
     );
 }
