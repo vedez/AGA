@@ -8,7 +8,7 @@ export default function Navbar() {
 
     return(
         <div className="flex space-x-6">
-            <Link href="/" className="hover:text-[#36bee0] transition-colors">
+            <Link href="/main" className="hover:text-[#36bee0] transition-colors">
                 {translations.button?.home || "Home"}
             </Link>
             <Link href="/about" className="hover:text-[#36bee0] transition-colors">

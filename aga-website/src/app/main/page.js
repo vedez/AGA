@@ -15,27 +15,29 @@ export default function Main() {
     const { language, setLanguage, translations } = useTranslation();
 
     return (
-        <main>
-            <div className="center">
-                <Logo />
-                <ShortNav />
-            </div>
+        <div className=" flex flex-col screen-size">
+            <main className="flex-grow">
+                <div className="center">
+                    <Logo />
+                    <ShortNav />
+                </div>
 
-            <div className="flex flex-row gap-5 justify-between">
-                <div className="flex flex-col gap-5">
-                    <Calendar />
-                    <Weather />
+                <div className="flex flex-row gap-5 justify-between">
+                    <div className="flex flex-col gap-5">
+                        <Calendar />
+                        <Weather />
+                    </div>
+                    <div className="flex flex-col gap-5">
+                        <TaskSetter />
+                    </div>
+                    <div className="flex flex-col gap-5">
+                        <Mood />
+                        <FocusMode />
+                    </div>
                 </div>
-                <div className="flex flex-col gap-5">
-                    <TaskSetter />
-                </div>
-                <div className="flex flex-col gap-5">
-                    <FocusMode />
-                    <Mood />
-                </div>
-            </div>
+            </main>
 
             <Footer />
-        </main>
+        </div>
     );
 }

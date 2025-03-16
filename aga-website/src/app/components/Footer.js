@@ -17,7 +17,7 @@ export default function Footer() {
             </div>
 
             <div className="flex hide space-x-10 font-bold"> 
-                <Link href="/" className="hover:text-[#36bee0] transition-colors">
+                <Link href="/main" className="hover:text-[#36bee0] transition-colors">
                     {translations.button?.home || "Home"}
                 </Link>
                 <Link href="/about" className="hover:text-[#36bee0] transition-colors">

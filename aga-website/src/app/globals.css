@@ -138,3 +138,23 @@ body {
   font-family: "Merriweather", sans-serif;
   margin: 35px;
 }
+
+/* Custom Scrollbar for Task List */
+.task-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-scrollbar::-webkit-scrollbar-track {
+  background: #adf0f9;
+  border-radius: 4px;
+}
+
+.task-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #6590df;
+  border-radius: 4px;
+  border: 2px solid #adf0f9;
+}
+
+.task-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #5480cf;
+}

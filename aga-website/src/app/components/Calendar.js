@@ -1,26 +1,8 @@
 import useTranslation from "@/hooks/useTranslation";
+import useCalender from "@/hooks/useCalender";
 
 export default function Calendar() {
-    const today = new Date();
-    const yesterday = new Date();
-    const tomorrow = new Date();
-
-    yesterday.setDate(today.getDate() - 1);
-    tomorrow.setDate(today.getDate() + 1);
-
-    const formatDate = (date) => {
-        const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
-        const fullDate = date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        return { weekday, fullDate };
-    };
-
-    const todayData = formatDate(today);
-    const yesterdayData = formatDate(yesterday);
-    const tomorrowData = formatDate(tomorrow);
+    const { todayData, yesterdayData, tomorrowData } = useCalender();
 
     return (
         <div className="bg-gradient-to-r from-[#e56baa] to-[#ffd176] border-[#e56baa] border-2 flex flex-col items-center space-y-2 feature-element">
