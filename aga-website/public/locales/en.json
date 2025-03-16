@@ -60,5 +60,10 @@
     "sending": "Sending...",
     "sendResetLink": "Send Reset Link",
     "resetEmailSent": "Password reset email sent. Please check your inbox."
+  },
+  "weather": {
+    "pleaseTurnOnLocation": "Please turn on location",
+    "temperatureUnit": "°C",
+    "suggestionPrefix": "\""
   }
 }

@@ -11,7 +11,7 @@ export async function GET(request) {
   }
 
   try {
-    // Fetch weather data
+    // fetch weather data
     const weatherResponse = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.OPENWEATHER_API_KEY}`
     );
@@ -22,7 +22,7 @@ export async function GET(request) {
     
     const weatherData = await weatherResponse.json();
     
-    // Generate AI suggestion if weather condition exists
+    // AI suggestion if weather condition exists
     let suggestion = null;
     if (weatherData.weather && weatherData.weather[0] && process.env.OPENAI_API_KEY) {
       const weatherCondition = weatherData.weather[0].main;
@@ -32,7 +32,7 @@ export async function GET(request) {
       });
       
       try {
-        const prompt = `It's currently ${weatherCondition} outside. In one short line, please advice the user on what to wear or bring with them?`;
+        const prompt = `It's currently ${weatherCondition} outside. In 10 words or less, please advice the user on what to wear or bring with them? Add personality using emojis.`;
         const aiResponse = await openai.chat.completions.create({
           model: 'gpt-4o',
           messages: [{ role: 'user', content: prompt }],
@@ -45,7 +45,6 @@ export async function GET(request) {
       }
     }
     
-    // Return combined data
     return NextResponse.json({
       weatherData,
       suggestion
