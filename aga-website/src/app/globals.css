@@ -65,9 +65,6 @@
   @apply p-4 rounded-lg shadow-lg w-full max-w-xs mx-auto 
 }
 
-  @apply p-4 rounded-lg shadow-lg w-full max-w-sm mx-auto;
-}
-
 /* === FORM UTILITY CLASSES === */
 .form-container {
   @apply w-full space-y-6;

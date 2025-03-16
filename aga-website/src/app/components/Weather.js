@@ -1,6 +1,5 @@
 import useTranslation from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
-import useTranslation from "@/hooks/useTranslation";
 import { BiLoader } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 
@@ -20,10 +19,9 @@ export default function Weather() {
                 try {
                     const response = await fetch(
                         `/api/weather?lat=${latitude}&lon=${longitude}`
-                        `/api/weather?lat=${latitude}&lon=${longitude}`
                     );
+
                     if (!response.ok) {
-                        throw new Error('Failed to fetch weather data');
                         throw new Error('Failed to fetch weather data');
                     }
 
