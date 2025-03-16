@@ -121,11 +121,36 @@
 }
 
 
-/* === BODY STYLING === */
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #e7e7e7; /* Background of the scrollbar track */
+  border-radius: 2.5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #474747; /* Color of the scrollbar handle */
+  border-radius: 10px;
+  border: 1px solid #474747; /* Border around the scrollbar handle */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #474747;
+}
+
+
+.text-bg-shadow {
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.6)
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Roboto Mono", monospace;
+  /*font-family: "Roboto Mono", monospace;*/
   /* font-family: "Poppins", sans-serif; */
   font-family: "Merriweather", sans-serif;
   margin: 35px;

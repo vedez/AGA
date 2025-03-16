@@ -10,7 +10,6 @@ export default function Weather() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Fetch weather data from our secure API route
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
             async (position) => {
@@ -64,7 +63,7 @@ export default function Weather() {
         <div className="bg-gradient-to-r from-[#6475bc] to-[#8698eb] border-[#6475bc] border-2 text-white feature-element flex flex-col items-center p-4">
             <div className='center gap-x-8'>
                 
-                <div className='flex flex-col'>
+                <div className='flex flex-col text-bg-shadow'>
                     <p className="text-2xl font-semibold">
                         {Math.round(weatherData.main.temp)}{translations.weather.temperatureUnit}
                     </p>
@@ -81,7 +80,7 @@ export default function Weather() {
                         <img
                             src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
                             alt={weatherData.weather[0].description}
-                            className="w-25 h-25"
+                            className="w-25 h-25 fff-text-bg-shadow"
                         />
                     )}
             </div>
