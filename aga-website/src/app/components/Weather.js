@@ -1,8 +1,7 @@
+import useTranslation from '@/hooks/useTranslation';
 import { useEffect, useState } from 'react';
 import { BiLoader } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
-
-
 
 const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
 
@@ -10,6 +9,8 @@ export default function Weather() {
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [suggestion, setSuggestion] = useState('');
+    const {translations} = useTranslation();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
@@ -18,15 +19,17 @@ export default function Weather() {
 
                 try {
                     const response = await fetch(
-                        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+                        `/api/weather?lat=${latitude}&lon=${longitude}`
                     );
-
                     if (!response.ok) {
-                        throw new Error('Weather Data Unavailable');
+                        throw new Error('Failed to fetch weather data');
                     }
 
                     const data = await response.json();
-                    setWeatherData(data);
+                    setWeatherData(data.weatherData);
+                    if (data.suggestion) {
+                        setSuggestion(data.suggestion);
+                    }
                 } catch (error) {
                     setError(error.message);
                 } finally {
@@ -34,23 +37,18 @@ export default function Weather() {
                 }
             },
             (error) => {
-                setError('Please turn on location');
+                setError(translations.weather?.pleaseTurnOnLocation || 'Please turn on location');
                 setLoading(false);
             }
         );
     }, []);
 
     if (loading) return (
-        <div className="bg-[#5087ff] text-white text-center text-l font-semibold feature-element grid place-items-center h-full">
-            <div className="flex flex-col place-items-center space-y-3">
-                <h6>Retrieving Weather Forecast</h6>
-                <BiLoader className="animate-spin text-3xl" />
-            </div>
-        </div>
+        <div className="bg-gradient-to-r from-[#6475bc] to-[#8698eb] border-[#6475bc] border-2 text-white text-l font-bold feature-element grid place-items-center h-full"><BiLoader className="animate-spin text-3xl" /></div>
     );
     
     if (error) return (
-        <div className="bg-red-500 text-white text-center text-l font-semibold feature-element grid place-items-center h-full">
+        <div className="bg-red-500 border-red-600 border-2 text-white text-center text-l font-semibold feature-element grid place-items-center h-full">
             <div className="flex flex-row items-center gap-x-3">
                 <FaLocationDot className="animate-bounce text-xl" />
                 {error}                 
@@ -59,31 +57,36 @@ export default function Weather() {
     );
 
     return (
-        <div className="bg-[#5087ff] text-white feature-element flex flex-col items-center p-4">
-            <h2 className="text-xl font-bold">
-                {weatherData.name}
-                {weatherData.sys?.country &&
-                    `, ${new Intl.DisplayNames(['en'], { type: 'region' }).of(weatherData.sys.country)}`
-                }
-            </h2>
+        <div className="bg-gradient-to-r from-[#6475bc] to-[#8698eb] border-[#6475bc] border-2 text-white feature-element flex flex-col items-center p-4">
+            <div className='center gap-x-8'>
+                
+                <div className='flex flex-col'>
+                    <p className="text-2xl font-semibold">
+                        {Math.round(weatherData.main.temp)}{translations.weather.temperatureUnit}
+                    </p>
 
-            {/* Weather Icon */}
-            {weatherData.weather[0]?.icon && (
-                <img
-                    src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-                    alt={weatherData.weather[0].description}
-                    className="w-16 h-16"
-                />
-            )}
+                    <h2 className="text-sm font-bold pb-3">
+                        {weatherData.name}
+                        {weatherData.sys?.country &&
+                            `, ${new Intl.DisplayNames(['en'], { type: 'region' }).of(weatherData.sys.country)}`
+                        }
+                    </h2>
+                </div>
 
-            <p className="text-l capitalize">
-                {weatherData.weather[0].description}
-            </p>
-            
-            <p className="text-2xl font-semibold">
-                {Math.round(weatherData.main.temp)}°C
-            </p>
+                {weatherData.weather[0]?.icon && (
+                        <img
+                            src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                            alt={weatherData.weather[0].description}
+                            className="w-25 h-25"
+                        />
+                    )}
+            </div>
+
+            {suggestion && (
+                    <div className='bg-white text-[#303037] font-semibold text-center feature-element'>
+                        <p>{translations.weather.suggestionPrefix}{suggestion}{translations.weather.suggestionPrefix}</p>
+                    </div>
+            )}             
         </div>
-
     );
 }

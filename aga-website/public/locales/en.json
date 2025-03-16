@@ -13,5 +13,12 @@
   },
   "altText": {
     "logo": "AGA Logo"
+  },
+  "weather": {
+    "pleaseTurnOnLocation": "Please turn on location",
+    "temperatureUnit": "°C",
+    "suggestionPrefix": "\""
   }
+  
+  
 }
