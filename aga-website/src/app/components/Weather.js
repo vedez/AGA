@@ -24,7 +24,6 @@ export default function Weather() {
                     );
                     if (!response.ok) {
                         throw new Error('Failed to fetch weather data');
-                        throw new Error('Failed to fetch weather data');
                     }
 
                     const data = await response.json();
