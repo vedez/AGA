@@ -16,7 +16,7 @@ export default function Main() {
 
     return (
         <main>
-            <div>
+            <div className="center">
                 <Logo />
                 <ShortNav />
             </div>
