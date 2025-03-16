@@ -124,6 +124,11 @@
   text-shadow: 2px 2px 6px rgba(0,0,0,0.6)
 }
 
+/* Max screen size */
+.screen-size {
+  height: calc(100vh - 70px);
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

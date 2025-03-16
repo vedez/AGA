@@ -1,6 +1,9 @@
+"use client";
+
 import useTranslation from "@/hooks/useTranslation";
 import Media from "@/app/components/Media";
 import Logo from "@/app/components/Logo";
+import Link from "next/link";
 
 export default function Footer() {
     const { language, setLanguage, translations } = useTranslation();
@@ -14,10 +17,18 @@ export default function Footer() {
             </div>
 
             <div className="flex hide space-x-10 font-bold"> 
-                <button>{translations.button?.home || "Home"}</button>
-                <button>{translations.button?.about || "About"}</button>
-                <button>{translations.button?.tools || "Tools"}</button>
-                <button>{translations.button?.help || "Help"}</button>
+                <Link href="/" className="hover:text-[#36bee0] transition-colors">
+                    {translations.button?.home || "Home"}
+                </Link>
+                <Link href="/about" className="hover:text-[#36bee0] transition-colors">
+                    {translations.button?.about || "About"}
+                </Link>
+                <Link href="/tools" className="hover:text-[#36bee0] transition-colors">
+                    {translations.button?.tools || "Tools"}
+                </Link>
+                <Link href="/help" className="hover:text-[#36bee0] transition-colors">
+                    {translations.button?.help || "Help"}
+                </Link>
             </div>
 
             <div className="md:px-4 lg:px-16">

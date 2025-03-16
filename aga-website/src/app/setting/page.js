@@ -13,7 +13,7 @@ export default function Setting() {
     const { currentUser } = useAuth();
 
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col screen-size">
             {/* Header */}
             <div className="center">
                 <Logo />

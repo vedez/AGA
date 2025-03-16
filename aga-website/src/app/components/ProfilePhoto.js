@@ -7,11 +7,11 @@ export default function ProfilePhoto() {
     const { translations } = useTranslation();
 
     return(
-        <div className="flex flex-col items-center">
-            <div className="w-70 h-70 rounded-full flex items-center justify-center">
-                <FaUserCircle size={180} className="text-gray-700 m-5" />
+        <div className="flex flex-col items-center w-full sm:w-auto">
+            <div className="rounded-full flex items-center justify-center mb-4">
+                <FaUserCircle size={150} className="text-gray-700" />
             </div>
-            <button className="main-button">
+            <button className="main-button text-base py-2.5 px-5">
                 {translations.profile?.changePhoto || "CHANGE PHOTO"}
             </button>
         </div>
