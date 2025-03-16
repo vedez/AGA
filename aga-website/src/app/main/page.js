@@ -21,19 +21,20 @@ export default function Main() {
                 <ShortNav />
             </div>
 
-            <div>
-                <div>
+            <div className="flex flex-row gap-5 justify-between">
+                <div className="flex flex-col gap-5">
+                    <Calendar />
                     <Weather />
-                    <FocusMode />
                 </div>
-                <div>
+                <div className="flex flex-col gap-5">
                     <TaskSetter />
                 </div>
-                <div>
-                    <Calendar />
+                <div className="flex flex-col gap-5">
+                    <FocusMode />
                     <Mood />
                 </div>
             </div>
+
             <Footer />
         </main>
     );
