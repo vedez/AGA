@@ -29,12 +29,9 @@
   @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded;
 }
 
-/* Remove third-button unless needed */
-/*
 .third-button {
-  @apply bg-[#36bee0] hover:bg-[#41a1b9] text-white font-bold py-2 px-4 border border-[#3391a8] rounded;
+  @apply bg-[#62cc5b] hover:bg-[#33a835] text-white font-bold py-2 px-4 border border-[#62cc5b] rounded;
 }
-*/
 
 /* Responsive sizing */
 .small-screen {
@@ -122,6 +119,10 @@
 
 .text-bg-shadow {
   text-shadow: 2px 2px 6px rgba(0,0,0,0.6)
+}
+
+.text-bg-light-shadow {
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.1)
 }
 
 /* Max screen size */

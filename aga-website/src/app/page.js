@@ -27,17 +27,21 @@ export default function Home() {
                         <LanguageSwitcher/>
                     </div>
                 </div>
-                <div>
+                <div className="flex items-center justify-start h-full">
+
+                <div className="w-full max-w-l">
                     <Slogan />
-                    <p>
+
+                    <p className="text-[#1f697c] text-bg-light-shadow leading-relaxed text-m py-4 max-w-md">
                         {translations.description ||
-                        "The Advanced Guidance Assistant designed to support you in managing daily tasks and maintaining a structured, balanced lifestyle."}
+                        "The Advanced Guidance Assistant is designed to help you manage daily tasks and maintain a structured, balanced lifestyle, empowering you to unlock your full potential."}
                     </p>
 
-                    <button>{translations.button?.aboutUs || "About Us"}</button>
+                    <button className="third-button">{translations.button?.aboutUs || "About Us"}</button>
                 </div>
-            </main>
+            </div>
 
+            </main>
             <Footer className="mt-auto" />
         </div>
     );
