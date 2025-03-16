@@ -7,20 +7,20 @@ export default function Footer() {
 
     return(
         <div className="center">
-            <div className="px-16 center">
+            <div className="md:px-4 lg:px-16 center">
                 <div>
                     <Media />
                 </div>
             </div>
 
-            <div className="flex space-x-10 font-bold"> 
+            <div className="flex hide space-x-10 font-bold"> 
                 <button>{translations.button?.home || "Home"}</button>
                 <button>{translations.button?.about || "About"}</button>
                 <button>{translations.button?.tools || "Tools"}</button>
                 <button>{translations.button?.help || "Help"}</button>
             </div>
 
-            <div className="px-16 m-0">
+            <div className="md:px-4 lg:px-16 m-0">
                 <div className="place-items-center">
                     <Logo />
                 </div>

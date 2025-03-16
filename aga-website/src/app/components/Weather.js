@@ -20,6 +20,7 @@ export default function Weather() {
                     const response = await fetch(
                         `/api/weather?lat=${latitude}&lon=${longitude}`
                     );
+
                     if (!response.ok) {
                         throw new Error('Failed to fetch weather data');
                     }

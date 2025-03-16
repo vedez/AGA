@@ -32,6 +32,7 @@ export async function GET(request) {
       });
       
       try {
+        /*
         const prompt = `It's currently ${weatherCondition} outside. In 10 words or less, please advice the user on what to wear or bring with them? Add personality using emojis.`;
         const aiResponse = await openai.chat.completions.create({
           model: 'gpt-4o',
@@ -39,7 +40,8 @@ export async function GET(request) {
           max_tokens: 50,
         });
         
-        suggestion = aiResponse.choices[0].message.content;
+        suggestion = aiResponse.choices[0].message.content;*/
+        suggestion = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.";
       } catch (error) {
         console.error('Error fetching AI suggestion:', error);
       }

@@ -61,6 +61,14 @@
     "sendResetLink": "Send Reset Link",
     "resetEmailSent": "Password reset email sent. Please check your inbox."
   },
+  "profile": {
+    "settings": "Profile settings",
+    "account": "Account Settings",
+    "preferences": "Preferences",
+    "security": "Security",
+    "notifications": "Notifications",
+    "changePhoto": "Change Photo"
+  },
   "weather": {
     "pleaseTurnOnLocation": "Please turn on location",
     "temperatureUnit": "°C",
