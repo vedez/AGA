@@ -15,26 +15,30 @@ export default function Main() {
     const { language, setLanguage, translations } = useTranslation();
 
     return (
-        <main>
-            <div className="center">
-                <Logo />
-                <ShortNav />
-            </div>
+        <div>
+            <main>
+                <div className="center">
+                    <Logo />
+                    <ShortNav />
+                </div>
 
-            <div>
                 <div>
-                    <Weather />
-                    <FocusMode />
+                    <div>
+                        <Weather />
+                        <FocusMode />
+                    </div>
+                    <div>
+                        <TaskSetter />
+                    </div>
+                    <div>
+                        <Calendar />
+                        <Mood />
+                    </div>
                 </div>
-                <div>
-                    <TaskSetter />
-                </div>
-                <div>
-                    <Calendar />
-                    <Mood />
-                </div>
-            </div>
+                
+            </main>
+
             <Footer />
-        </main>
+        </div>
     );
 }
