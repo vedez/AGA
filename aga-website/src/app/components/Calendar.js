@@ -1,4 +1,3 @@
-import useTranslation from "@/hooks/useTranslation";
 import useCalender from "@/hooks/useCalender";
 
 export default function Calendar() {

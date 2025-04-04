@@ -9,7 +9,8 @@
     "about": "About",
     "tools": "Tools",
     "help": "Help",
-    "settings": "Setting"
+    "settings": "Setting",
+    "logout": "Logout"
   },
   "description": "The Advanced Guidance Assistant is designed to help you manage daily tasks and maintain a structured, balanced lifestyle, empowering you to unlock your full potential.",
   "languageOption": {
@@ -24,10 +25,6 @@
     "alreadyRegistered": "Already Registered? Login",
     "signin": "Sign In",
     "notRegiestered": "New member? Sign Up"
-  },
-  "about": {
-    "title": "About AGA",
-    "subtitle": "Looda Doot"
   },
   "components": {
     "weather": "Weather",
@@ -76,5 +73,26 @@
     "pleaseTurnOnLocation": "Please turn on location",
     "temperatureUnit": "°C",
     "suggestionPrefix": "\""
+  },
+  "slogan": {
+    "one": "ONE",
+    "unit": "UNIT",
+    "at_a_time": "AT A TIME"
+  },
+  "about": {
+    "about_us_title": "About Us",
+    "what_is_aga": "What is AGA?",
+    "intro_description": "AGA is more than just an organisation tool — it’s a supportive companion for individuals who find it difficult to structure, prioritise, and manage their daily routines. Built with empathy and intention, AGA is designed to bring clarity to the chaos by helping users break down their responsibilities into achievable steps — one unit at a time.",
+    "units_core_idea": "The idea of “units” lies at the core of AGA. Each unit represents a single step toward a larger goal. First one unit cube, then ten, then a hundred, and eventually a thousand—together forming a greater whole.",
+    "unit_slogan_paragraph": "This illustrates that every accomplishment is both a milestone and a stepping stone on the path to something bigger. They become milestones in a larger journey, encouraging steady forward movement. This concept inspires our slogan: “One Unit at a Time” — a reminder that progress doesn’t need to be fast or perfect; it just needs to be consistent.",
+    "creator_backstory": "AGA was born from a personal struggle. The creator faced a daily battle with overwhelming responsibilities, where tasks blurred into one unmanageable mess. Traditional scheduling apps didn’t help — they lacked the connection, care, and adaptability needed in moments of stress. AGA was created to fill that gap. It doesn’t just organise tasks; it actively supports users in staying focused, balanced, and well. AGA provides tools such as:",
+    "feature_task_tracker": "Task Tracker",
+    "feature_calendar_weather": "Calendar & Weather",
+    "feature_focus_mode": "Focus Mode",
+    "feature_wellbeing_insights": "Wellbeing Insights",
+    "creator_quote": "\"Whether you're feeling overwhelmed, stuck, or simply looking to build better routines, AGA is here to walk with you — just as it walked with me — one unit at a time.\" - zedev (Creator)",
+    "thank_you": "Thank you for choosing AGA!",
+    "thank_you_message": "Your support means the world to us. AGA was built with care, inspired by real struggles, and designed to bring clarity, focus, and wellbeing to your daily life. We truly hope it’s helped you feel more in control, more at ease, and more inspired to grow.\n\nTogether, one unit at a time, we’re not just getting things done — we’re becoming better, more balanced versions of ourselves.\nHere’s to your journey, and thank you for letting AGA be a part of it.",
+    "media_share": "Find us on other platforms"
   }
 }

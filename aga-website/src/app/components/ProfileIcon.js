@@ -26,7 +26,7 @@ export default function ProfileIcon() {
             aria-label={translations.profile?.settings || "Profile settings"}
             title={translations.profile?.settings || "Profile settings"}
         >
-            <FaUserCircle size={30} className="text-gray-700 hover:text-blue-600 transition-colors" />
+            <FaUserCircle size={30} />
         </button>
     );
 }

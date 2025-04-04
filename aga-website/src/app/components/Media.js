@@ -1,16 +1,17 @@
-import useTranslation from "@/hooks/useTranslation";
 import { FaGithubSquare, FaInstagramSquare  } from "react-icons/fa";
 import { FaSquareXTwitter, FaLinkedin } from "react-icons/fa6";
 
-
-
-export default function Media() {
+export default function Media({size =""}) {
     return(
         <div className="flex space-x-3"> 
-            <button><FaGithubSquare size={25}/></button>
-            <button><FaSquareXTwitter size={25}/></button>
-            <button><FaInstagramSquare  size={25}/></button>
-            <button><FaLinkedin size={25}/></button>
+            <a href="https://egggame.org/" target="_blank" rel="noopener noreferrer">
+                <FaGithubSquare size={size} /></a>
+            <a href="https://egggame.org/" target="_blank" rel="noopener noreferrer">
+                <FaSquareXTwitter size={size} /></a>
+            <a href="https://egggame.org/" target="_blank" rel="noopener noreferrer">
+                <FaInstagramSquare size={size} /></a>
+            <a href="https://egggame.org/" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin size={size} /></a>
         </div>
     );
 }

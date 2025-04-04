@@ -13,19 +13,15 @@ export default function Account() {
 
     return (
         <main className="flex h-screen w-screen overflow-hidden">
-            {/* Left side with logo - hidden on mobile */}
             <div className="hide sm:flex sm:w-1/2 bg-[#70C1D3] flex-col justify-center items-center">
                 <DesignLogo />
             </div>
             
-            {/* Right side with form - full width on mobile */}
             <div className="w-full sm:w-1/2 bg-white flex flex-col">
-                {/* Language switcher in top right */}
                 <div className="flex justify-end p-4">
                     <LanguageSwitcher />
                 </div>
                 
-                {/* Form container */}
                 <div className="flex-1 flex flex-col justify-center items-center px-6 sm:px-12">
                     {activeMode === "create" ? (
                         <div className="w-full max-w-md">

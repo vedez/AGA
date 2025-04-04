@@ -8,16 +8,16 @@ export default function Navbar() {
 
     return(
         <div className="flex space-x-6">
-            <Link href="/main" className="hover:text-[#36bee0] transition-colors">
+            <Link href="/main" className="text-link">
                 {translations.button?.home || "Home"}
             </Link>
-            <Link href="/about" className="hover:text-[#36bee0] transition-colors">
+            <Link href="/about" className="text-link">
                 {translations.button?.about || "About"}
             </Link>
-            <Link href="/tools" className="hover:text-[#36bee0] transition-colors">
+            <Link href="/tools" className="text-link">
                 {translations.button?.tools || "Tools"}
             </Link>
-            <Link href="/help" className="hover:text-[#36bee0] transition-colors">
+            <Link href="/help" className="text-link">
                 {translations.button?.help || "Help"}
             </Link>
         </div>

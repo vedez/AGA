@@ -6,17 +6,17 @@ import "./styles.css";
 
 export default function AccountLayout({ children }) {
   useEffect(() => {
-    // Save original styles
+    // original styles
     const originalMargin = document.body.style.margin;
     const originalPadding = document.body.style.padding;
     const originalOverflow = document.body.style.overflow;
     
-    // Apply account page styles
+    // apply account page styles
     document.body.style.margin = "0";
     document.body.style.padding = "0";
     document.body.style.overflow = "hidden";
     
-    // Cleanup function to restore original styles when navigating away
+    // function to restore original styles when navigating away
     return () => {
       document.body.style.margin = originalMargin;
       document.body.style.padding = originalPadding;

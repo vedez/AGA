@@ -1,6 +1,5 @@
 "use client";
 
-import useTranslation from "@/hooks/useTranslation";
 import Logo from "@/app/components/Logo";
 import Footer from "@/app/components/Footer";
 import ShortNav from "@/app/components/ShortNav";
@@ -10,11 +9,9 @@ import ToolInfo from "@/app/components/ToolInfo";
 
 
 export default function Help() {
-    const { language, setLanguage, translations } = useTranslation();
-
     return (
         <main>
-            <div>
+            <div className="center">
                 <Logo />
                 <ShortNav />
             </div>

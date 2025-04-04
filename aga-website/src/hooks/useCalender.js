@@ -1,15 +1,8 @@
-
-const formatDate = (date) => {
-    const weekday = date.toLocaleDateString('en-US', { weekday: 'long' });
-    const fullDate = date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-    return { weekday, fullDate };
-};
+import useTranslation from "@/hooks/useTranslation";
 
 export default function useCalender() {
+    const { language } = useTranslation(); // 'en', 'es', etc.
+
     const today = new Date();
     const yesterday = new Date();
     const tomorrow = new Date();
@@ -17,9 +10,20 @@ export default function useCalender() {
     yesterday.setDate(today.getDate() - 1);
     tomorrow.setDate(today.getDate() + 1);
 
-    const todayData = formatDate(today);
-    const yesterdayData = formatDate(yesterday);
-    const tomorrowData = formatDate(tomorrow);
+    const todayData = formatDate(today, language);
+    const yesterdayData = formatDate(yesterday, language);
+    const tomorrowData = formatDate(tomorrow, language);
 
     return { todayData, yesterdayData, tomorrowData };
 }
+
+const formatDate = (date, locale) => {
+    const weekday = date.toLocaleDateString(locale, { weekday: 'long' });
+    const fullDate = date.toLocaleDateString(locale, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    return { weekday, fullDate };
+};
+

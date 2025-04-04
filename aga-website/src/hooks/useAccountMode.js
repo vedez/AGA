@@ -6,9 +6,9 @@ export default function useAccountMode() {
     const [activeMode, setActiveMode] = useState("create");
 
     useEffect(() => {
-        // Get the mode from the URL query parameter
+        // get the mode from the URL query
         const mode = searchParams.get("mode");
-        // Set the active mode based on the query parameter, default to "create"
+        // set the active mode based on the query param (default create)
         if (mode === "login") {
             setActiveMode("login");
         } else {
@@ -16,7 +16,7 @@ export default function useAccountMode() {
         }
     }, [searchParams]);
 
-    // Function to switch between create account and login
+    // function to switch between create account and login
     const switchMode = () => {
         setActiveMode(activeMode === "create" ? "login" : "create");
     };

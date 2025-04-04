@@ -1,13 +1,15 @@
 "use client";
+import Link from "next/link";
 
 import useTranslation from "@/hooks/useTranslation";
-import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 import Logo from "@/app/components/Logo";
 import RegisterLogin from "@/app/components/RegisterLogin";
 import Slogan from "@/app/components/Slogan";
 import Footer from "@/app/components/Footer";
-import UserProfile from "@/app/components/UserProfile";
+import ShortNav from "@/app/components/ShortNav";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 import { useAuth } from "@/app/utils/AuthContext";
+
 
 export default function Home() {
     const { translations } = useTranslation();
@@ -20,26 +22,27 @@ export default function Home() {
                     <Logo />
                     <div className="horizontal-flex">
                         {currentUser ? (
-                            <UserProfile />
+                            <ShortNav />
                         ) : (
                             <RegisterLogin />
                         )}
-                        <LanguageSwitcher/>
                     </div>
                 </div>
-                <div className="flex items-center justify-start h-full">
+                    <div className="flex items-center justify-start h-full">
 
-                <div className="w-full max-w-l">
-                    <Slogan />
+                    <div className="w-full max-w-l sm:px-20 px-0">
+                        <Slogan />
 
-                    <p className="text-[#1f697c] text-bg-light-shadow leading-relaxed text-m py-4 max-w-md">
-                        {translations.description ||
-                        "The Advanced Guidance Assistant is designed to help you manage daily tasks and maintain a structured, balanced lifestyle, empowering you to unlock your full potential."}
-                    </p>
+                        <p className="text-[#1f697c] text-bg-light-shadow leading-relaxed text-m py-4 max-w-md">
+                            {translations.description ||
+                            "The Advanced Guidance Assistant is designed to help you manage daily tasks and maintain a structured, balanced lifestyle, empowering you to unlock your full potential."}
+                        </p>
 
-                    <button className="third-button">{translations.button?.aboutUs || "About Us"}</button>
+                        <Link href="/about"> 
+                            <button  className="third-button">{translations.button?.aboutUs || "About Us"}</button>
+                        </Link>
+                    </div>
                 </div>
-            </div>
 
             </main>
             <Footer className="mt-auto" />

@@ -5,7 +5,9 @@ export default function Adverts() {
 
     return(
         <div>
-            <h1>{translations.components?.adverts || "Adverts"}</h1>
+            <div className="feature">
+
+            </div>
         </div>
     );
 }

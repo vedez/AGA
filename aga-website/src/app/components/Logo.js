@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Logo() {
-    const { language, setLanguage, translations } = useTranslation();
+    const { translations } = useTranslation();
 
     return (
         <Link href="/" className="horizontal-flex cursor-pointer hover:opacity-80 transition-opacity">

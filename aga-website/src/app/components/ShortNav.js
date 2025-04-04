@@ -1,31 +1,57 @@
 "use client";
 
 import useTranslation from "@/hooks/useTranslation";
+import { useAuth } from "@/app/utils/AuthContext";
 import ProfileIcon from "@/app/components/ProfileIcon"
-import LanguageSwitcher from "./LanguageSwitcher";
-import Link from "next/link";
+import LanguageSwitcher from "@/app/components/LanguageSwitcher";
+import RegisterLogin from "@/app/components/RegisterLogin";
 
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { MdLogout } from "react-icons/md";
 
 export default function Navbar() {
-    const { language, setLanguage, translations } = useTranslation();
+    const { translations } = useTranslation();
+    const { logout, currentUser } = useAuth();
+    const router = useRouter();
+  
+    const handleLogout = async () => {
+      try {
+        await logout();
+        router.push("/");
+      } catch (error) {
+        console.error("Unable to Logout due to system error. Try again.", error);
+      }
+    };
 
     return(
         <div className="center gap-x-3">
             <div className="space-x-5 font-semibold hide">
-                <Link href="/" className="hover:text-[#36bee0] transition-colors">
+                <Link href="/main" className="text-link">
                     {translations.button?.home || "Home"}
                 </Link>
-                <Link href="/about" className="hover:text-[#36bee0] transition-colors">
+
+                <Link href="/about" className="text-link">
                     {translations.button?.about || "About"}
                 </Link>
             </div>
 
             <div className="horizontal-flex gap-x-3">
-                <div><ProfileIcon /></div>
+            {currentUser && (
+                <>
+                    <div><ProfileIcon /></div>
+                    <button
+                        onClick={handleLogout}
+                        className="p-0 m-0 text-xs flex items-center gap-1 text-link hover:text-red-500 transition-colors"
+                    >
+                        <h6>{translations.button?.logout || "Logout"}</h6>
+                        <MdLogout className="w-4 h-4" title="Log Out" />
+                    </button>
+                </>
+            )}
 
                 <LanguageSwitcher />
             </div>
-            
         </div>
     );
 }
