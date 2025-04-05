@@ -9,10 +9,12 @@ import FocusMode from "@/app/components/FocusMode";
 import TaskSetter from "@/app/components/TaskSetter";
 import Calendar from "@/app/components/Calendar";
 import Mood from "@/app/components/Mood";
-
+import usePageBackground from "@/hooks/usePageBackground";
 
 export default function Main() {
     const { language, setLanguage, translations } = useTranslation();
+
+    usePageBackground('TERTIARY', 0.7);
 
     return (
         <div className=" flex flex-col screen-size">

@@ -23,13 +23,24 @@ export default function CreateAccount() {
             setError("");
             setLoading(true);
             const userCredential = await signup(email, password);
-            
-            // Here you could store additional user data in Firestore if needed
-            // For example: name, date of birth, etc.
-            
-            router.push("/"); // Redirect to home page after successful signup
+              
+            router.push("/"); // redirect to home page after successful signup
         } catch (error) {
-            setError((translations.forms?.errorSignup || "Failed to create an account.") + " " + error.message);
+            let errorMessage = translations.forms?.errorSignup || "Failed to create an account.";
+            
+            // Handle specific Firebase error codes with more user-friendly messages
+            if (error.code === "auth/weak-password") {
+                errorMessage = translations.forms?.weakPassword || "Password must be at least 6 characters long.";
+            } else if (error.code === "auth/email-already-in-use") {
+                errorMessage = translations.forms?.emailInUse || "This email is already registered. Please use a different email or try logging in.";
+            } else if (error.code === "auth/invalid-email") {
+                errorMessage = translations.forms?.invalidEmail || "Please enter a valid email address.";
+            } else {
+                // For other errors, append the error message
+                errorMessage += " " + error.message;
+            }
+            
+            setError(errorMessage);
             console.error("Signup error:", error);
         } finally {
             setLoading(false);

@@ -20,6 +20,28 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Firebase Setup
+
+This project uses Firebase for authentication and database storage. Before running the application, make sure to set up Firebase:
+
+1. Create a Firebase project in the [Firebase Console](https://console.firebase.google.com/)
+2. Set up Authentication and Firestore Database
+3. Create a `.env.local` file with your Firebase configuration
+4. See the `FIREBASE_SETUP.md` file for detailed instructions
+
+## Features
+
+### Task Management System
+
+The application includes a task management system that allows users to:
+
+- Create, read, and delete tasks
+- Set task priorities (1-5 scale)
+- Schedule tasks for specific dates
+- View tasks organized by date and priority
+
+Tasks are stored in Firebase Firestore and are protected by security rules to ensure users can only access their own tasks.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

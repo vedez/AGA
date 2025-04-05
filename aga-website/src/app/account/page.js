@@ -11,6 +11,8 @@ export default function Account() {
     const { language, setLanguage, translations } = useTranslation();
     const { activeMode, switchMode } = useAccountMode();
 
+    usePageBackground('TERTIARY', 0.7, 'TERTIARY_MOBILE');
+
     return (
         <main className="flex h-screen w-screen overflow-hidden">
             <div className="hide sm:flex sm:w-1/2 bg-[#70C1D3] flex-col justify-center items-center">
