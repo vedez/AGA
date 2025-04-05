@@ -159,5 +159,12 @@
     "wellbeing_explaination": "Esta futura función se centrará en el bienestar mental, ofreciendo ejercicios y técnicas para reconectar contigo mismo y crear rutinas saludables.",
     "wellbeing_explaination2": "Por ahora, puedes registrar tu estado de ánimo tres veces al día: mañana, tarde y noche.",
     "wellbeing_explaination3": "Tus registros se analizan semanalmente para ayudarte a identificar patrones emocionales y mejorar tu bienestar de forma consciente."
-  }
+  },
+  "week_of": "Semana de",
+  "mood": {
+  "question": "¿Cómo te sientes hoy?",
+  "slider": "Encuentra el estado de ánimo que mejor te describa.",
+  "success": "Tu estado de ánimo ha sido registrado correctamente. ¡Que tengas un excelente día!",
+  "mood_log": "Registrar estado de ánimo"
+}
 }
