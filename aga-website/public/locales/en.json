@@ -57,7 +57,13 @@
     "cancel": "Cancel",
     "sending": "Sending...",
     "sendResetLink": "Send Reset Link",
-    "resetEmailSent": "Password reset email sent. Please check your inbox."
+    "resetEmailSent": "Password reset email sent. Please check your inbox.",
+    "yourMessage": "Message",
+    "writeSomething": "Enter your message here...",
+    "submit": "Submit",
+    "messageSent": "Thank you for reaching out! We will get back to you as soon as possible.",
+    "submitError": "Something went wrong. Please try again.",
+    "allFieldsRequired": "Please fill in all fields."
   },
   "profile": {
     "settings": "Profile settings",
@@ -94,5 +100,23 @@
     "thank_you": "Thank you for choosing AGA!",
     "thank_you_message": "Your support means the world to us. AGA was built with care, inspired by real struggles, and designed to bring clarity, focus, and wellbeing to your daily life. We truly hope it’s helped you feel more in control, more at ease, and more inspired to grow.\n\nTogether, one unit at a time, we’re not just getting things done — we’re becoming better, more balanced versions of ourselves.\nHere’s to your journey, and thank you for letting AGA be a part of it.",
     "media_share": "Find us on other platforms"
-  }
+  },
+  "tool": {
+  "tasksetter_explaination": "Task Setter helps you manage tasks based on priority and daily focus. On the home screen, Task Setter shows you the top 3 priority tasks for today to help you focus on one task at a time. It also previews the top 3 tasks for tomorrow so you can stay prepared and plan ahead.",
+  "tasksetter_explaination2": "To add a task, click the [+] icon, then enter a description, set a priority from 1–5 (with 1 being the most important), and choose a due date.",
+  "tasksetter_explaination3": "Once added, tasks appear on the home screen if they're due today or tomorrow. You can mark tasks as complete by clicking the check icon.",
+  "tasksetter_explaination4": "All active and completed tasks are stored in the task backlog, accessible from Settings. From there, you can edit the task’s description, priority, or date, or delete tasks you no longer need. Missed tasks will appear greyed out and can be rescheduled or removed.",
+
+  "focusmode_explaination": "Focus Mode is a smart feature built into the physical AGA bot that helps you stay engaged and intentional while working or studying. Simply place the bot in front of you and begin your task.",
+  "focusmode_explaination2": "It uses body language detection to recognise when you’re distracted, gently alerting you to refocus on the task at hand. On the flip side, if you've been working for 30 minutes straight, the bot will suggest taking a break to avoid burnout.",
+  "focusmode_explaination3": "You can ignore the break suggestion up to three times, but after that, the bot will enforce a minimum 15-minute break to support your mental wellbeing. It’s designed not just to keep you productive — but to help you maintain a healthy, sustainable workflow.",
+
+  "calendar_weather_explaination": "The AGA web app features an integrated calendar and weather tool to support your daily routine. It's designed for moments when you forget the date or feel unsure about the weather — giving you an always-accessible, real-time snapshot of what matters most.",
+  "calendar_weather_explaination2": "The calendar highlights yesterday, today, and tomorrow — emphasising the rhythm of reflection, action, and preparation. We learn from the past, focus on today, and get ready for what’s next.",
+  "calendar_weather_explaination3": "The weather tool is powered by AI to offer smart suggestions — like reminding you to take an umbrella if it’s going to rain — helping you prepare for the day ahead without needing to check manually.",
+
+  "wellbeing_explaination": "This upcoming feature will expand AGA’s focus on mental wellbeing, offering tools and guidance to help users learn how to regulate their mental health. It will encourage self-investment through practices like breathing techniques and self-care exercises — helping users reconnect with themselves and build healthy routines.",
+  "wellbeing_explaination2": "For now, the Mood Insight tool is live. You can set your mood daily, with mood prompts appearing at three key points throughout the day: 6AM–12PM, 12PM–6PM, 6PM–12AM.",
+  "wellbeing_explaination3": "Mood entries are analysed over time, offering a weekly mood overview (up to 4 weeks), helping you understand what affects your emotional state and how to respond to it with intention. Your personalised mood trends can be found on the main page."
+}
 }

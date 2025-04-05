@@ -116,7 +116,7 @@ export default function CreateAccount() {
                     className="form-button"
                     disabled={loading}
                 >
-                    {loading ? (translations.forms?.loading || "Loading...") : (translations.forms?.signUp || "SIGN UP")}
+                    {loading ? (translations.forms?.loading || "Loading...") : (translations.forms?.signUp || "Submit")}
                 </button>
             </form>
         </div>
