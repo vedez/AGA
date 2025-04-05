@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { FaCheck, FaRegSquare } from "react-icons/fa";
+import useTranslation from "@/hooks/useTranslation";
 
 export default function TaskList({ tasks, onDelete, colorScheme = "blue" }) {
     // track which tasks are being completed
     const [completingTasks, setCompletingTasks] = useState({});
-    
+    const { translations } = useTranslation();
+
     // handle task completion with animation
     const handleComplete = (taskId) => {
         // set the task as completing (to show animation)
@@ -35,7 +37,7 @@ export default function TaskList({ tasks, onDelete, colorScheme = "blue" }) {
     if (tasks.length === 0) {
         return (
             <div className={`${emptyStateBackgrounds[colorScheme] || emptyStateBackgrounds.blue} p-4 text-center text-gray-500`}>
-                No tasks scheduled
+                {translations.components?.taskSetterNone || "No tasks scheduled"}
             </div>
         );
     }

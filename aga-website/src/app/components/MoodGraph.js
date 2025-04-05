@@ -98,69 +98,69 @@ export default function MoodGraph() {
   if (!hasData) return null;
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-full sm:max-w-7xl overflow-x-auto">
-        <h2 className="text-xl font-semibold text-center mb-4">
-          Mood Trends (Past 4 Weeks)
-        </h2>
+    <div className="w-full h-full">
+      <div className="bg-green-50 rounded-lg shadow-md w-full h-full">
+        <div className="w-full h-full">
+          <ResponsiveContainer width="100%" height={320} aspect={undefined}>
+            <LineChart
+              data={data}
+              margin={{ top: 20, right: 50, left: 0, bottom: 10 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis 
+                dataKey="day"
+                interval={0}
+                tick={({ x, y, payload }) => {
+                  const dayName = payload.value;
+                  const dummyDate = new Date();
+                  const index = days.indexOf(dayName);
+                  dummyDate.setDate(dummyDate.getDate() - dummyDate.getDay() + 1 + index);
 
-        <div className="w-full overflow-x-auto">
-          <div className="min-w-[350px] sm:min-w-[600px] md:min-w-[700px]">
-            <ResponsiveContainer width="100%" height={400}>
-              <LineChart
-                data={data}
-                margin={{ top: 10, right: 30, left: 30, bottom: 50 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis
-                  dataKey="day"
-                  tick={({ x, y, payload }) => {
-                    const dayName = payload.value;
-                    const dummyDate = new Date();
-                    const index = days.indexOf(dayName);
-                    dummyDate.setDate(dummyDate.getDate() - dummyDate.getDay() + 1 + index);
+                  const localized = dummyDate.toLocaleDateString(language || "en", {
+                    weekday: "short"
+                  });
 
-                    const localized = dummyDate.toLocaleDateString(language || "en", {
-                      weekday: "short"
-                    });
+                  return (
+                    <g transform={`translate(${x},${y + 10})`}>
+                      <text
+                        textAnchor="middle"
+                        className="text-xs"
+                        style={{ fill: "#666" }}
+                      >
+                        {localized}
+                      </text>
+                    </g>
+                  );
+                }}
+              />
+              <YAxis 
+                domain={[1, 5]} 
+                ticks={[1, 2, 3, 4, 5]} 
+                interval={0}
+              />
+              <Tooltip />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                wrapperStyle={{ paddingTop: "5px" }}
+              />
 
-                    return (
-                      <g transform={`translate(${x},${y + 10})`}>
-                        <text
-                          textAnchor="middle"
-                          className="text-[10px] sm:rotate-0 rotate-90 origin-top sm:origin-center"
-                          style={{ fill: "#666" }}
-                        >
-                          {localized}
-                        </text>
-                      </g>
-                    );
-                  }}
-                />
-                <YAxis domain={[0, 5]} ticks={[1, 2, 3, 4, 5]} />
-                <Tooltip />
-                <Legend
-                  verticalAlign="bottom"
-                  align="center"
-                  wrapperStyle={{ marginTop: "20px" }}
-                />
-
-                {Object.keys(data[0] || {})
-                  .filter((key) => key !== "day")
-                  .map((weekKey, i) => (
-                    <Line
-                      key={weekKey}
-                      type="monotone"
-                      dataKey={weekKey}
-                      stroke={["#8884d8", "#82ca9d", "#ffc658", "#ff7f7f"][i % 4]}
-                      strokeWidth={2}
-                      dot={{ r: 4 }}
-                      activeDot={{ r: 6 }}
-                    />
-                  ))}
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+              {Object.keys(data[0] || {})
+                .filter((key) => key !== "day")
+                .map((weekKey, i) => (
+                  <Line
+                    key={weekKey}
+                    type="monotone"
+                    dataKey={weekKey}
+                    stroke={["#8884d8", "#82ca9d", "#ffc658", "#ff7f7f"][i % 4]}
+                    strokeWidth={2}
+                    dot={{ r: 3 }}
+                    activeDot={{ r: 5 }}
+                    isAnimationActive={true}
+                  />
+                ))}
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
