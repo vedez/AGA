@@ -32,7 +32,7 @@ export default function Footer() {
             </div>
 
             <div className="md:px-4 lg:px-16">
-                <div className="place-items-center">
+                <div>
                     <Logo />
                 </div>
                 <h1 className="text-center text-sm">zedev (c) 2025</h1>
