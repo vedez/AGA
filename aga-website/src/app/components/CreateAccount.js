@@ -32,7 +32,7 @@ export default function CreateAccount() {
                 dob: dob ? new Date(dob).toISOString() : null
             });
               
-            router.push("/"); // redirect to home page after successful signup
+            router.push("/main"); // redirect to home page after successful signup
         } catch (error) {
             let errorMessage = translations.forms?.errorSignup || "Failed to create an account.";
             

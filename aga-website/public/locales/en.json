@@ -116,7 +116,10 @@
     "deactivateAccount": "Deactivate Account",
     "noChanges": "No changes to save",
     "updateSuccess": "Profile updated successfully",
-    "accountDeactivated": "Account deactivated. You will be signed out."
+    "accountDeactivated": "Account deactivated. You will be signed out.",
+    "invalidFileType": "Please select an image file",
+    "fileTooLarge": "File size should be less than 5MB",
+    "uploadError": "Failed to upload photo. Please try again."
   },
   "weather": {
     "pleaseTurnOnLocation": "Please turn on location",
@@ -165,6 +168,8 @@
     "slider": "Find what mood best describes you.",
     "success": "Your mood has been logged successfully. Have a great day today!",
     "mood_log": "Log Mood"
+  },
+  "feature": {
+    "underDevelopment": "This feature is under development!"
   }
-
 }

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { format } from "date-fns";
 import useTranslation from "@/hooks/useTranslation";
 import { useAuth } from "@/app/utils/AuthContext";
-import { deleteUser } from "firebase/auth";
+import { reauthenticate, deleteUser, EmailAuthProvider } from "firebase/auth";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 export default function AccountSetting() {

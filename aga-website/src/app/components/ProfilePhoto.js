@@ -7,7 +7,7 @@ import { useAuth } from "@/app/utils/AuthContext";
 
 export default function ProfilePhoto() {
     const { translations } = useTranslation();
-    const { currentUser, userProfile, uploadProfilePhoto } = useAuth();
+    const { userProfile, uploadProfilePhoto } = useAuth();
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState("");
     const fileInputRef = useRef(null);
@@ -23,13 +23,13 @@ export default function ProfilePhoto() {
         
         // check file type
         if (!file.type.startsWith('image/')) {
-            setError("Please select an image file");
+            setError(translations.profile?.invalidFileType || "Please select an image file");
             return;
         }
         
         // check file size (max 5MB)
         if (file.size > 5 * 1024 * 1024) {
-            setError("File size should be less than 5MB");
+            setError(translations.profile?.fileTooLarge || "File size should be less than 5MB");
             return;
         }
         
@@ -39,7 +39,7 @@ export default function ProfilePhoto() {
             await uploadProfilePhoto(file);
         } catch (error) {
             console.error("Error uploading photo:", error);
-            setError("Failed to upload photo. Please try again.");
+            setError(translations.profile?.uploadError || "Failed to upload photo. Please try again.");
         } finally {
             setUploading(false);
         }
@@ -75,8 +75,8 @@ export default function ProfilePhoto() {
                 className="main-button text-base py-2.5 px-5"
             >
                 {uploading 
-                    ? "Uploading..." 
-                    : (translations.profile?.changePhoto || "CHANGE PHOTO")}
+                    ? (translations.forms?.loading || "Loading...")
+                    : (translations.profile?.changePhoto || "Change Photo")}
             </button>
         </div>
     );

@@ -107,6 +107,9 @@
     "loadingTasks": "Cargando tareas..."
   },
   "profile": {
+    "invalidFileType": "Por favor selecciona un archivo de imagen",
+    "fileTooLarge": "El archivo debe pesar menos de 5MB",
+    "uploadError": "No se pudo subir la foto. Por favor intenta nuevamente.",
     "settings": "Configuración del perfil",
     "account": "Configuración de la cuenta",
     "preferences": "Preferencias",
@@ -166,5 +169,8 @@
   "slider": "Encuentra el estado de ánimo que mejor te describa.",
   "success": "Tu estado de ánimo ha sido registrado correctamente. ¡Que tengas un excelente día!",
   "mood_log": "Registrar estado de ánimo"
-}
+  },
+  "feature": {
+      "underDevelopment": "Esta función está en desarrollo"
+    }
 }

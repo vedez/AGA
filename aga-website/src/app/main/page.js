@@ -27,7 +27,7 @@ export default function Main() {
                     </div>
 
                     <div className="flex-grow flex mt-[10%] sm:mt-[5%] mb-[10%] sm:mb-[5%]">
-                        <div className="flex flex-col lg:flex-row gap-5 justify-between px-4 w-full center">
+                        <div className="flex flex-col lg:flex-row gap-5 justify-center px-4 w-full center">
                             <div className="flex flex-col gap-5 w-full md:w-1/4 m:items-end center min-w-72">
                                 <Calendar />
                                 <Weather />
@@ -37,7 +37,7 @@ export default function Main() {
                                 <TaskSetter />
                             </div>
 
-                            <div className="flex flex-col gap-5 w-full md:w-1/4 m:items-start center min-w-72">
+                            <div className="flex flex-col gap-5 w-full sm:w-1/4 min-w-72">
                                 <Mood />
                                 <FocusMode />
                             </div>

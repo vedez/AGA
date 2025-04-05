@@ -43,7 +43,7 @@ export default function MoodPromptModal() {
   return (
     <>
         <button onClick={() => setShowModal(true)}
-            className="relative overflow-hidden group text-white font-bold px-4 py-2 rounded border border-[#a6e5dd] shadow-md drop-shadow-sm bg-gradient-to-r from-[#86e69e] to-[#71d191]">
+            className="relative overflow-hidden group text-white font-bold px-4 py-2 pb-4 lg:pb-2 rounded border border-[#a6e5dd] shadow-md drop-shadow-sm bg-gradient-to-r from-[#86e69e] to-[#71d191]">
             <span className="relative z-10 text-bg-shadow">{translations.mood?.mood_log || "Log Mood"}</span>
             <span className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-200 z-0" />
         </button>
