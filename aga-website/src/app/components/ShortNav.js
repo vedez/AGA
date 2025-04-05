@@ -41,7 +41,11 @@ export default function Navbar() {
                 {currentUser ? (
                     <>
                         <div><ProfileIcon /></div>
-                        <div><FaHome size={20} className="sm:hidden inline-block horizontal-flex" /></div>
+                        <div>
+                            <Link href="/main">
+                                <FaHome size={20} className="sm:hidden inline-block horizontal-flex cursor-pointer" />
+                            </Link>
+                        </div>
 
                         <button
                             onClick={handleLogout}

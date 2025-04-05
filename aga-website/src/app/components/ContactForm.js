@@ -25,9 +25,14 @@ export default function ContactForm() {
             setError("");
             setSuccess(false);
 
-            // simulate sending logic
-            await new Promise((resolve) => setTimeout(resolve, 1500));
-
+            await fetch("https://formspree.io/f/xeoardyo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, message }),
+            });
+              
             setSuccess(true);
             setEmail("");
             setMessage("");
