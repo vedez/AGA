@@ -15,12 +15,12 @@
   }
 }/*
 
-/* Flex utility */
+/* flex utility */
 .horizontal-flex {
   @apply flex items-center space-x-2;
 }
 
-/* Button styles */
+/* button styles */
 .secondary-button {
   @apply bg-transparent hover:bg-[#62cc5b] text-[#33a835] font-semibold hover:text-white py-2 px-4 border border-[#33a835] hover:border-transparent rounded;
 }
@@ -33,12 +33,12 @@
   @apply bg-[#62cc5b] hover:bg-[#33a835] text-white font-bold py-2 px-4 border border-[#62cc5b] rounded;
 }
 
-/* Responsive sizing */
+/* responsive sizing */
 .small-screen {
   @apply sm:w-auto flex-shrink-0 w-auto text-sm sm:text-base px-2 py-1 sm:px-4 sm:py-2;
 }
 
-/* Hide element on small screens */
+/* hide element on small screens */
 .hide {
   @apply hidden sm:inline-block;
 }
@@ -56,12 +56,12 @@
   @apply text-white bg-[#0a2229] hover:bg-[#3f4142] hover:text-white text-xs;
 }
 
-/* Center content horizontally */
+/* center content horizontally */
 .center {
   @apply horizontal-flex justify-between;
 }
 
-/* Feature card */
+/* feature card */
 .feature-element {
   @apply p-4 rounded-lg shadow-lg w-full max-w-xs mx-auto 
 }
@@ -70,7 +70,7 @@
   padding: 0 !important;
 }
 
-/* === FORM UTILITY CLASSES === */
+/* FORM UTILITY CLASSES */
 .form-container {
   @apply w-full space-y-6;
 }
@@ -103,23 +103,23 @@
   @apply text-[#62cc5b] text-sm text-center mb-8 cursor-pointer;
 }
 
-/* Custom Scrollbar */
+/* scrollbar */
 ::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #e7e7e7; /* Background of the scrollbar track */
+  background: #e7e7e7; /* background of the scrollbar track */
   border-radius: 2.5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #474747; /* Color of the scrollbar handle */
+  background-color: #474747; 
   border-radius: 10px;
-  border: 1px solid #474747; /* Border around the scrollbar handle */
+  border: 1px solid #474747; 
 }
 
-/* Handle on hover */
+/* on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: #474747;
 }
@@ -132,7 +132,7 @@
   text-shadow: 2px 2px 6px rgba(0,0,0,0.1)
 }
 
-/* Max screen size */
+/* max screen size */
 .screen-size {
   height: calc(100vh - 70px);
 }
@@ -146,7 +146,7 @@ body {
   margin: 35px;
 }
 
-/* Custom Scrollbar for Task List */
+/*TASKSETTER SCROLL*/
 .task-scrollbar::-webkit-scrollbar {
   width: 8px;
 }
