@@ -394,19 +394,18 @@ export default function AccountSetting() {
                                 />
                             </div>
 
-                            <div className="flex justify-end">
-                                <button
-                                    type="submit"
-                                    className="form-button bg-red-600 hover:bg-red-700"
-                                    disabled={loading}
-                                >
-                                    {loading
-                                    ? (translations.forms?.deactivating || "Deactivating...")
-                                    : (translations.forms?.confirmDeactivation || "Confirm Deactivation")}
-                                </button>
-                            </div>
-                        </form>
-                    )}
+                        <div className="flex justify-end">
+                        <button
+                            type="submit"
+                            className="form-button bg-red-600"
+                            disabled={loading}
+                        >
+                            {loading
+                            ? (translations.forms?.deactivating || "Deactivating...")
+                            : (translations.forms?.confirmDeactivation || "Confirm Deactivation")}
+                        </button>
+                        </div>
+                    </form>
                     </div>
                 </div>
             )}
