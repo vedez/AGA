@@ -158,5 +158,13 @@
     "wellbeing_explaination": "This upcoming feature will expand AGA’s focus on mental wellbeing, offering tools and guidance to help users learn how to regulate their mental health. It will encourage self-investment through practices like breathing techniques and self-care exercises — helping users reconnect with themselves and build healthy routines.",
     "wellbeing_explaination2": "For now, the Mood Insight tool is live. You can set your mood daily, with mood prompts appearing at three key points throughout the day: 6AM–12PM, 12PM–6PM, 6PM–12AM.",
     "wellbeing_explaination3": "Mood entries are analysed over time, offering a weekly mood overview (up to 4 weeks), helping you understand what affects your emotional state and how to respond to it with intention. Your personalised mood trends can be found on the main page."
+  },
+  "week_of": "Week of",
+  "mood": {
+    "question": "How are you feeling today?",
+    "slider": "Find what mood best describes you.",
+    "success": "Your mood has been logged successfully. Have a great day today!",
+    "mood_log": "Log Mood"
   }
+
 }
