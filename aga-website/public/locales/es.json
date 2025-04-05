@@ -92,7 +92,11 @@
     "deactivateVerificationTitle": "Verificación para desactivar cuenta",
     "deactivateVerificationMessage": "Por favor ingresa tu contraseña para confirmar la desactivación de la cuenta. Esta acción no se puede deshacer.",
     "confirmDeactivation": "Confirmar desactivación",
-
+    "priorityOne": "Máxima prioridad",
+    "priorityTwo": "Muy importante",
+    "priorityThree": "Para hacer hoy",
+    "priorityFour": "No muy importante",
+    "priorityFive": "Si hay tiempo",
     "addTask": "Agregar tarea",
     "deleteTask": "Eliminar tarea",
     "enterTask": "Escribe tu tarea",

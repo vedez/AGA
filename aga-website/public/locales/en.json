@@ -103,7 +103,12 @@
     "errorAddTask": "Failed to add task. Please try again.",
     "errorDeleteTask": "Failed to delete task. Please try again.",
     "noTasks": "No tasks scheduled",
-    "loadingTasks": "Loading tasks..."
+    "loadingTasks": "Loading tasks...",
+    "priorityOne": "Highest Priority",
+    "priorityTwo": "Highly Important",
+    "priorityThree": "To Be Done Today",
+    "priorityFour": "Not Too Important",
+    "priorityFive": "If There Is Time"
   },
   "profile": {
     "settings": "Profile settings",
