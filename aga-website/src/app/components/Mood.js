@@ -1,8 +1,5 @@
-import useTranslation from "@/hooks/useTranslation";
 
 export default function Mood() {
-    const { language, setLanguage, translations } = useTranslation();
-
     return(
         <div className="bg-gradient-to-r from-[#79d862] to-[#c9eb86] border-[#79d862] border-2 text-white feature-element no-margin">
             <div className='"text-center bg-[#fff] border round-lg border-[#fff] rounded-lg '>

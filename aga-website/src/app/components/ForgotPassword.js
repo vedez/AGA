@@ -3,7 +3,8 @@
 import { useState } from "react";
 import useTranslation from "@/hooks/useTranslation";
 import { useAuth } from "@/app/utils/AuthContext";
-import { IoMdClose } from "react-icons/io";
+import { IoCloseCircleOutline } from "react-icons/io5";
+
 
 export default function ForgotPassword({ onClose, onSuccess }) {
     const { translations } = useTranslation();
@@ -40,27 +41,23 @@ export default function ForgotPassword({ onClose, onSuccess }) {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
                 <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-semibold">
+                    <h2 className="text-xl font-semibold text-center">
                         {translations.forms?.resetPassword || "Reset Password"}
                     </h2>
-                    <button 
-                        onClick={onClose}
-                        className="text-gray-500 hover:text-gray-700"
-                    >
-                        <IoMdClose size={24} />
-                    </button>
+                    
+                    <IoCloseCircleOutline onClick={onClose} className="text-gray-500 hover:text-gray-700" size={30} />
                 </div>
                 
                 {success ? (
                     <div className="text-green-600 mb-4">
-                        {translations.forms?.resetEmailSent || "Password reset email sent. Please check your inbox."}
+                        {translations.forms?.resetEmailSent || "If it’s associated with an account, you’ll receive a password reset link shortly."}
                     </div>
                 ) : (
                     <>
                         {error && <div className="text-red-500 mb-4">{error}</div>}
                         
                         <p className="mb-4">
-                            {translations.forms?.resetInstructions || "Enter your email address and we'll send you instructions to reset your password."}
+                            {translations.forms?.resetInstructions || "Please enter your email address. If it’s associated with an account, you’ll receive a password reset link shortly."}
                         </p>
                         
                         <form className="form-container" onSubmit={handleSubmit}>
@@ -71,7 +68,7 @@ export default function ForgotPassword({ onClose, onSuccess }) {
                                 <input 
                                     type="email" 
                                     id="email" 
-                                    placeholder="hello@reallygreatsite.com"
+                                    placeholder="abby@realsite.com"
                                     className="form-input"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
@@ -87,7 +84,7 @@ export default function ForgotPassword({ onClose, onSuccess }) {
                                 >
                                     {loading 
                                         ? (translations.forms?.sending || "Sending...") 
-                                        : (translations.forms?.sendResetLink || "Send Reset Link")}
+                                        : (translations.forms?.submit || "Submit")}
                                 </button>
                             </div>
                         </form>

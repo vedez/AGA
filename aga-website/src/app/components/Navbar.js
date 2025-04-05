@@ -4,13 +4,19 @@ import useTranslation from "@/hooks/useTranslation";
 import Link from "next/link";
 
 export default function Navbar() {
-    const { language, setLanguage, translations } = useTranslation();
+    const { translations } = useTranslation();
 
     return(
         <div className="flex space-x-6">
-            <Link href="/main" className="text-link">
-                {translations.button?.home || "Home"}
-            </Link>
+            {currentUser ? (
+                <Link href="/main" className="text-link">
+                    {translations.button?.home || "Home"}
+                </Link>
+            ) : (
+                <Link href="/account" className="text-link">
+                    {translations.button?.home || "Home"}
+                </Link>
+            )}
             <Link href="/about" className="text-link">
                 {translations.button?.about || "About"}
             </Link>

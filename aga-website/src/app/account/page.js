@@ -1,15 +1,16 @@
 "use client";
 
+import usePageBackground from "@/hooks/usePageBackground";
 import useTranslation from "@/hooks/useTranslation";
 import useAccountMode from "@/hooks/useAccountMode";
 import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 import CreateAccount from "@/app/components/CreateAccount";
 import Login from "@/app/components/Login";
 import DesignLogo from "@/app/components/DesignLogo";
-import usePageBackground from "@/hooks/usePageBackground";
+import Link from "next/link";
 
 export default function Account() {
-    const { language, setLanguage, translations } = useTranslation();
+    const { translations } = useTranslation();
     const { activeMode, switchMode } = useAccountMode();
 
     usePageBackground('TERTIARY', 0.7, 'TERTIARY_MOBILE');
@@ -17,7 +18,8 @@ export default function Account() {
     return (
         <main className="flex h-screen w-screen overflow-hidden">
             <div className="hide sm:flex sm:w-1/2 bg-[#70C1D3] flex-col justify-center items-center">
-                <DesignLogo />
+                <Link href="/"><DesignLogo  />
+                </Link>
             </div>
             
             <div className="w-full sm:w-1/2 bg-white flex flex-col">

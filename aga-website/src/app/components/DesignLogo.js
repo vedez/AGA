@@ -2,7 +2,7 @@ import useTranslation from "@/hooks/useTranslation";
 import Image from "next/image";
 
 export default function DesignLogo() {
-    const { language, setLanguage, translations } = useTranslation();
+    const { translations } = useTranslation();
 
     return(
         <div className="flex flex-col items-center justify-center ">

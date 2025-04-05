@@ -7,13 +7,11 @@ import Logo from "@/app/components/Logo";
 import Slogan from "@/app/components/Slogan";
 import Footer from "@/app/components/Footer";
 import ShortNav from "@/app/components/ShortNav";
-import LanguageSwitcher from "./components/LanguageSwitcher";
 import { useAuth } from "@/app/utils/AuthContext";
 
 
 export default function Home() {
     const { translations } = useTranslation();
-    const { currentUser } = useAuth();
     
     usePageBackground('MAIN', 0.0);
 

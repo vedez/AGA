@@ -3,23 +3,29 @@
 import useTranslation from "@/hooks/useTranslation";
 import Media from "@/app/components/Media";
 import Logo from "@/app/components/Logo";
+import { useAuth } from "@/app/utils/AuthContext";
 import Link from "next/link";
 
 export default function Footer() {
     const { translations } = useTranslation();
+    const { currentUser } = useAuth();
 
     return(
         <div className="center relative bottom-0">
             <div className="md:px-4 lg:px-16 center">
-                <div>
-                    <Media size={25} />
-                </div>
+                <div><Media size={25} /></div>
             </div>
 
             <div className="flex hide space-x-10 font-bold"> 
-                <Link href="/main" className="text-link">
-                    {translations.button?.home || "Home"}
-                </Link>
+                {currentUser ? (
+                    <Link href="/main" className="text-link">
+                        {translations.button?.home || "Home"}
+                    </Link>
+                ) : (
+                    <Link href="/account" className="text-link">
+                        {translations.button?.home || "Home"}
+                    </Link>
+                )}
                 <Link href="/about" className="text-link">
                     {translations.button?.about || "About"}
                 </Link>

@@ -1,18 +1,18 @@
 {
   "title": "AGA",
-  "abbreviation": "Asistencia Avanzada de Guía",
+  "abbreviation": "Asistencia de Guía Avanzada",
   "button": {
-    "signIn": "Iniciar sesión",
-    "createAccount": "¿Crear cuenta?",
+    "signIn": "Iniciar Sesión",
+    "createAccount": "¿Crear Cuenta?",
     "aboutUs": "Sobre Nosotros",
     "home": "Inicio",
     "about": "Acerca de",
     "tools": "Herramientas",
     "help": "Ayuda",
     "settings": "Configuración",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar Sesión"
   },
-  "description": "La Asistencia Avanzada de Guía está diseñada para ayudarte a gestionar tareas diarias y mantener un estilo de vida estructurado y equilibrado, empoderándote para alcanzar tu máximo potencial.",
+  "description": "La Asistencia de Guía Avanzada está diseñada para ayudarte a gestionar tareas diarias y mantener un estilo de vida estructurado y equilibrado, empoderándote para alcanzar tu máximo potencial.",
   "languageOption": {
     "english": "EN",
     "spanish": "ES"
@@ -22,104 +22,101 @@
   },
   "account": {
     "createNewAccount": "Crear nueva cuenta",
-    "alreadyRegistered": "¿Ya tienes cuenta? Inicia sesión",
-    "signin": "Iniciar sesión",
-    "notRegiestered": "¿Nuevo miembro? Regístrate"
+    "alreadyRegistered": "¿Ya estás registrado? Inicia sesión",
+    "signin": "Iniciar Sesión",
+    "notRegiestered": "¿Nuevo usuario? Regístrate"
   },
   "components": {
     "weather": "Clima",
     "weatherLoading": "Obteniendo pronóstico del clima",
     "weatherError": "No se pudo obtener la ubicación",
-    "weatherSuggestion": "Sugerencia del clima",
-    "focusMode": "Modo de enfoque",
-    "taskSetter": "Organizador de tareas",
+    "weatherSuggestion": "Sugerencia del Clima",
+    "focusMode": "Modo de Enfoque",
+    "taskSetter": "Gestor de Tareas",
     "calendar": "Calendario",
-    "mood": "Estado de ánimo",
-    "toolInfo": "Información de herramientas",
+    "mood": "Estado de Ánimo",
+    "toolInfo": "Información de Herramientas",
     "contactUs": "Contáctanos",
     "adverts": "Anuncios"
   },
   "forms": {
-    "enterFirstName": "Por favor ingresa tu nombre",
-    "enterEmail": "Por favor ingresa tu correo electrónico",
-    "enterPassword": "Por favor ingresa tu contraseña",
-    "enterDob": "Por favor ingresa tu fecha de nacimiento",
-    "signUp": "REGISTRARSE",
-    "signIn": "INICIAR SESIÓN",
+    "enterFirstName": "Ingresa tu nombre",
+    "enterEmail": "Ingresa tu correo electrónico",
+    "enterPassword": "Ingresa tu contraseña",
+    "enterDob": "Ingresa tu fecha de nacimiento",
+    "signUp": "Regístrate",
+    "signIn": "Iniciar Sesión",
     "forgotPassword": "¿Olvidaste tu contraseña?",
     "loading": "Cargando...",
     "errorSignup": "No se pudo crear la cuenta.",
-    "errorLogin": "Error al iniciar sesión. Verifica tus credenciales.",
-    "resetPassword": "Restablecer contraseña",
-    "resetInstructions": "Ingresa tu correo electrónico y te enviaremos instrucciones para restablecer tu contraseña.",
-    "email": "Correo electrónico",
+    "errorLogin": "No se pudo iniciar sesión. Verifica tus credenciales e inténtalo nuevamente.",
+    "resetPassword": "Restablecer Contraseña",
+    "resetInstructions": "Ingresa tu correo electrónico. Si está asociado con una cuenta, recibirás un enlace para restablecer tu contraseña en breve.",
+    "email": "Correo Electrónico",
     "emailRequired": "El correo electrónico es obligatorio",
     "cancel": "Cancelar",
     "sending": "Enviando...",
-    "sendResetLink": "Enviar enlace de restablecimiento",
-    "resetEmailSent": "Correo de restablecimiento enviado. Por favor revisa tu bandeja de entrada.",
+    "sendResetLink": "Enviar Enlace de Restablecimiento",
+    "resetEmailSent": "Si el correo está asociado con una cuenta, recibirás un enlace para restablecer tu contraseña en breve.",
     "yourMessage": "Mensaje",
     "writeSomething": "Escribe tu mensaje aquí...",
     "submit": "Enviar",
     "messageSent": "¡Gracias por contactarnos! Nos pondremos en contacto contigo lo antes posible.",
     "submitError": "Algo salió mal. Intenta nuevamente.",
-    "allFieldsRequired": "Por favor completa todos los campos."
+    "allFieldsRequired": "Por favor, completa todos los campos."
   },
   "profile": {
-    "settings": "Configuración de perfil",
-    "account": "Configuración de la cuenta",
+    "settings": "Configuración de Perfil",
+    "account": "Configuración de Cuenta",
     "preferences": "Preferencias",
     "security": "Seguridad",
     "notifications": "Notificaciones",
-    "changePhoto": "Cambiar foto",
-    "saveChanges": "Guardar cambios",
-    "deactivateAccount": "Desactivar cuenta"
+    "changePhoto": "Cambiar Foto",
+    "saveChanges": "Guardar Cambios",
+    "deactivateAccount": "Desactivar Cuenta"
   },
   "weather": {
-    "pleaseTurnOnLocation": "Por favor activa la ubicación",
+    "pleaseTurnOnLocation": "Por favor, activa la ubicación",
     "temperatureUnit": "°C",
     "suggestionPrefix": "\""
   },
   "slogan": {
-    "one": "UNO",
+    "one": "UNA",
     "unit": "UNIDAD",
     "at_a_time": "A LA VEZ"
-  },
-  "contact": {
-    "enter_email": "Correo electrónico"
   },
   "about": {
     "about_us_title": "Sobre Nosotros",
     "what_is_aga": "¿Qué es AGA?",
-    "intro_description": "AGA es más que una herramienta de organización: es un compañero de apoyo para quienes tienen dificultades para estructurar, priorizar y gestionar sus rutinas diarias. Construido con empatía e intención, AGA está diseñado para aportar claridad al caos ayudando a los usuarios a desglosar sus responsabilidades en pasos alcanzables — una unidad a la vez.",
-    "units_core_idea": "La idea de las “unidades” está en el núcleo de AGA. Cada unidad representa un paso hacia un objetivo mayor. Primero un cubo de unidad, luego diez, luego cien, y eventualmente mil — juntos forman un todo más grande.",
-    "unit_slogan_paragraph": "Esto demuestra que cada logro es tanto un hito como un peldaño hacia algo más grande. Se convierten en hitos en un viaje mayor, fomentando un avance constante. Este concepto inspira nuestro lema: “Una unidad a la vez”, un recordatorio de que el progreso no necesita ser rápido ni perfecto; solo necesita ser constante.",
-    "creator_backstory": "AGA nació de una lucha personal. Su creador enfrentaba una batalla diaria con responsabilidades abrumadoras, donde las tareas se mezclaban en un desorden inmanejable. Las aplicaciones tradicionales no ayudaban: les faltaba conexión, cuidado y adaptabilidad en momentos de estrés. AGA fue creado para llenar ese vacío. No solo organiza tareas, sino que apoya activamente a los usuarios para mantenerse enfocados, equilibrados y bien. AGA ofrece herramientas como:",
-    "feature_task_tracker": "Seguimiento de tareas",
+    "intro_description": "AGA es más que una herramienta de organización: es un compañero de apoyo para quienes encuentran difícil estructurar, priorizar y manejar sus rutinas diarias. Diseñado con empatía e intención, AGA aporta claridad al caos ayudándote a dividir tus responsabilidades en pasos alcanzables — una unidad a la vez.",
+    "units_core_idea": "La idea de las 'unidades' está en el núcleo de AGA. Cada unidad representa un paso hacia una meta mayor. Primero una unidad, luego diez, luego cien, y eventualmente mil — formando un todo significativo.",
+    "unit_slogan_paragraph": "Esto demuestra que cada logro es tanto un hito como una base para avanzar. Inspira nuestro lema: 'Una unidad a la vez' — un recordatorio de que el progreso no necesita ser rápido ni perfecto, solo constante.",
+    "creator_backstory": "AGA nació de una lucha personal. Su creador enfrentaba una batalla diaria con responsabilidades abrumadoras. Las apps tradicionales no ayudaban — faltaba conexión y adaptabilidad. AGA llena ese vacío. No solo organiza tareas, también te apoya en mantener enfoque, equilibrio y bienestar.",
+    "feature_task_tracker": "Gestor de Tareas",
     "feature_calendar_weather": "Calendario y Clima",
     "feature_focus_mode": "Modo de Enfoque",
-    "feature_wellbeing_insights": "Información de Bienestar",
-    "creator_quote": "\"Ya sea que te sientas abrumado, atascado o simplemente quieras construir mejores rutinas, AGA está aquí para acompañarte — así como me acompañó a mí — una unidad a la vez.\" - zedev (Creador)",
+    "feature_wellbeing_insights": "Bienestar y Estado de Ánimo",
+    "creator_quote": "\"Ya sea que te sientas abrumado, estancado o simplemente quieras mejorar tu rutina, AGA está aquí para acompañarte — como me acompañó a mí — una unidad a la vez.\" - zedev (Creador)",
     "thank_you": "¡Gracias por elegir AGA!",
-    "thank_you_message": "Tu apoyo significa el mundo para nosotros. AGA fue creado con cariño, inspirado en luchas reales, y diseñado para aportar claridad, enfoque y bienestar a tu vida diaria. Realmente esperamos que te haya ayudado a sentirte más en control, más tranquilo y más inspirado para crecer.\n\nJuntos, una unidad a la vez, no solo estamos completando tareas — estamos convirtiéndonos en versiones mejores y más equilibradas de nosotros mismos.\nGracias por permitir que AGA sea parte de tu camino.",
+    "thank_you_message": "Tu apoyo significa mucho para nosotros. AGA fue creado con cuidado, inspirado en experiencias reales, y diseñado para brindarte claridad, enfoque y bienestar en tu día a día. Esperamos que te haya ayudado a sentirte más en control, más tranquilo y con más ganas de crecer.\n\nJuntos, una unidad a la vez, no solo estamos completando tareas — estamos creciendo y transformándonos.",
     "media_share": "Encuéntranos en otras plataformas"
   },
   "tool": {
-  "tasksetter_explaination": "El Organizador de Tareas te ayuda a gestionar tus tareas según su prioridad y tu enfoque diario. En la pantalla principal, muestra las 3 tareas prioritarias del día para ayudarte a enfocarte en una tarea a la vez. También muestra un avance de las 3 tareas principales de mañana para que puedas estar preparado y planificar con anticipación.",
-  "tasksetter_explaination2": "Para añadir una tarea, haz clic en el icono [+], escribe una descripción, asigna una prioridad del 1 al 5 (donde 1 es la más importante), y elige una fecha límite.",
-  "tasksetter_explaination3": "Una vez añadidas, las tareas aparecerán en la pantalla principal si tienen fecha para hoy o mañana. Puedes marcarlas como completadas haciendo clic en el icono de verificación.",
-  "tasksetter_explaination4": "Todas las tareas activas y completadas se almacenan en el historial de tareas, accesible desde Configuración. Desde allí puedes editar la descripción, prioridad o fecha de una tarea, o eliminar las que ya no necesites. Las tareas vencidas aparecerán en gris y podrás reprogramarlas o eliminarlas.",
+    "tasksetter_explaination": "El Gestor de Tareas te ayuda a organizarte por prioridad y enfoque diario. En la pantalla principal, verás las 3 tareas más importantes del día para enfocarte en una a la vez. También muestra las 3 principales de mañana para que puedas prepararte.",
+    "tasksetter_explaination2": "Para añadir una tarea, haz clic en el icono [+], luego escribe una descripción, establece una prioridad del 1 al 5 (siendo 1 la más importante), y elige una fecha.",
+    "tasksetter_explaination3": "Una vez añadidas, las tareas aparecen en la pantalla principal si están programadas para hoy o mañana. Puedes marcarlas como completadas con el icono de verificación.",
+    "tasksetter_explaination4": "Todas las tareas activas y completadas se guardan en el historial de tareas dentro de Configuración. Desde allí puedes editar la descripción, prioridad o fecha, o eliminarlas. Las tareas no cumplidas aparecerán en gris y pueden reprogramarse o eliminarse.",
 
-  "focusmode_explaination": "El Modo de Enfoque es una función inteligente integrada en el bot físico de AGA que te ayuda a mantenerte concentrado y con intención mientras estudias o trabajas. Simplemente coloca el bot frente a ti y comienza tu tarea.",
-  "focusmode_explaination2": "Usa detección de lenguaje corporal para reconocer cuando estás distraído y te alerta suavemente para que vuelvas a enfocarte. Si has estado trabajando durante 30 minutos seguidos, el bot sugerirá tomar un descanso para evitar el agotamiento.",
-  "focusmode_explaination3": "Puedes ignorar la sugerencia de descanso hasta tres veces, pero después de eso, el bot aplicará un descanso mínimo de 15 minutos para apoyar tu bienestar mental. Está diseñado no solo para mantenerte productivo, sino también para ayudarte a mantener un flujo de trabajo saludable y sostenible.",
+    "focusmode_explaination": "El Modo de Enfoque es una función inteligente integrada en el robot físico de AGA que te ayuda a mantenerte enfocado mientras estudias o trabajas. Solo colócalo frente a ti y comienza.",
+    "focusmode_explaination2": "Detecta lenguaje corporal que indique distracción y te alerta suavemente para que regreses a tu tarea. Si llevas 30 minutos trabajando sin pausas, sugiere tomar un descanso.",
+    "focusmode_explaination3": "Puedes ignorar la sugerencia hasta 3 veces, pero luego se aplicará un descanso mínimo de 15 minutos para cuidar tu bienestar mental. Está diseñado para ayudarte a ser productivo sin descuidar tu salud.",
 
-  "calendar_weather_explaination": "La app web de AGA incluye un calendario y una herramienta del clima integrada para respaldar tu rutina diaria. Está diseñada para momentos en los que olvidas la fecha o no estás seguro del clima, brindándote una vista accesible y en tiempo real de lo que más importa.",
-  "calendar_weather_explaination2": "El calendario resalta ayer, hoy y mañana — enfatizando el ritmo de reflexión, acción y preparación. Aprendemos del pasado, nos enfocamos en el presente y nos preparamos para lo que viene.",
-  "calendar_weather_explaination3": "La herramienta del clima está potenciada por IA y ofrece sugerencias inteligentes — como recordarte que lleves paraguas si va a llover — ayudándote a prepararte sin necesidad de consultar manualmente.",
+    "calendar_weather_explaination": "La app de AGA integra un calendario y clima para ayudarte en tu rutina diaria. Ideal para cuando olvidas la fecha o el clima, y necesitas una referencia rápida y precisa.",
+    "calendar_weather_explaination2": "El calendario muestra ayer, hoy y mañana — promoviendo reflexión, acción y preparación. Aprendemos del pasado, actuamos hoy y nos preparamos para el futuro.",
+    "calendar_weather_explaination3": "La herramienta de clima usa inteligencia artificial para darte sugerencias útiles, como recordarte un paraguas si va a llover — para que no tengas que preocuparte por comprobarlo tú mismo.",
 
-  "wellbeing_explaination": "Esta futura función ampliará el enfoque de AGA en el bienestar mental, ofreciendo herramientas y orientación para que los usuarios aprendan a regular su salud mental. Fomentará la inversión personal a través de prácticas como técnicas de respiración y ejercicios de autocuidado, ayudando a reconectarte contigo mismo y a construir rutinas saludables.",
-  "wellbeing_explaination2": "Por ahora, la herramienta de Estado de Ánimo ya está activa. Puedes registrar tu estado de ánimo diariamente, con recordatorios que aparecen en tres momentos clave del día: de 6AM a 12PM, de 12PM a 6PM, y de 6PM a 12AM.",
-  "wellbeing_explaination3": "Las entradas de estado de ánimo se analizan con el tiempo y ofrecen una visión semanal (hasta 4 semanas), ayudándote a entender qué afecta tu estado emocional y cómo responder con intención. Tus tendencias personalizadas se muestran en la página principal."
-}
+    "wellbeing_explaination": "Esta futura función ampliará el enfoque de AGA en el bienestar mental, brindando herramientas y orientación para ayudarte a regular tu salud emocional. Incluirá técnicas de respiración y ejercicios de autocuidado.",
+    "wellbeing_explaination2": "Por ahora, la herramienta de Estado de Ánimo ya está disponible. Puedes registrar tu ánimo diario, con recordatorios a las 6AM–12PM, 12PM–6PM, y 6PM–12AM.",
+    "wellbeing_explaination3": "Los registros se analizan semanalmente (hasta 4 semanas) para ayudarte a entender qué afecta tu estado emocional y cómo responder de forma consciente. Puedes ver tu análisis en la página principal."
+  }
 }
