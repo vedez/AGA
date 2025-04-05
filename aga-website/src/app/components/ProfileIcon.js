@@ -8,7 +8,7 @@ import { useAuth } from "@/app/utils/AuthContext";
 export default function ProfileIcon() {
     const { translations } = useTranslation();
     const router = useRouter();
-    const { currentUser } = useAuth();
+    const { currentUser, userProfile } = useAuth();
 
     const handleProfileClick = () => {
         if (currentUser) {
@@ -26,7 +26,17 @@ export default function ProfileIcon() {
             aria-label={translations.profile?.settings || "Profile settings"}
             title={translations.profile?.settings || "Profile settings"}
         >
-            <FaUserCircle className="text-gray-900 w-5 h-5 sm:w-[30px] sm:h-[30px]" />
+            {userProfile?.photoURL ? (
+                <div className="rounded-full overflow-hidden w-5 h-5 sm:w-[30px] sm:h-[30px] border-2 border-gray-800">
+                    <img 
+                        src={userProfile.photoURL} 
+                        alt="Profile" 
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+            ) : (
+                <FaUserCircle className="text-gray-900 w-5 h-5 sm:w-[30px] sm:h-[30px]" />
+            )}
         </button>
     );
 }

@@ -5,7 +5,12 @@ import {
     signInWithEmailAndPassword, 
     signOut, 
     onAuthStateChanged,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    updatePassword,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    updateEmail,
+    updateProfile
 } from "firebase/auth";
 import { 
     getFirestore, 
@@ -18,8 +23,11 @@ import {
     query,
     where,
     orderBy,
-    serverTimestamp
+    serverTimestamp,
+    setDoc,
+    getDoc
 } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "placeholder-api-key",
@@ -34,6 +42,7 @@ const firebaseConfig = {
 let app;
 let auth;
 let db;
+let storage;
 
 // check if in browser environment
 if (typeof window !== 'undefined') {
@@ -41,6 +50,7 @@ if (typeof window !== 'undefined') {
         app = initializeApp(firebaseConfig);
         auth = getAuth(app);
         db = getFirestore(app);
+        storage = getStorage(app);
     } catch (error) {
         console.error("Firebase initialization error:", error);
     }
@@ -49,11 +59,17 @@ if (typeof window !== 'undefined') {
 export { 
     auth, 
     db,
+    storage,
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     signOut, 
     onAuthStateChanged,
     sendPasswordResetEmail,
+    updatePassword,
+    EmailAuthProvider,
+    reauthenticateWithCredential,
+    updateEmail,
+    updateProfile,
     collection,
     doc,
     addDoc,
@@ -63,5 +79,10 @@ export {
     query,
     where,
     orderBy,
-    serverTimestamp
+    serverTimestamp,
+    setDoc,
+    getDoc,
+    ref,
+    uploadBytes,
+    getDownloadURL
 }; 

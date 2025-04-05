@@ -41,13 +41,17 @@
   },
   "forms": {
     "enterFirstName": "Ingresa tu nombre",
-    "enterEmail": "Ingresa tu correo electrónico",
+    "enterName": "Ingresa un nuevo nombre",
+    "enterEmail": "Correo electrónico",
     "enterPassword": "Ingresa tu contraseña",
-    "enterDob": "Ingresa tu fecha de nacimiento",
+    "enterDob": "Fecha de nacimiento",
     "signUp": "Regístrate",
     "signIn": "Iniciar Sesión",
     "forgotPassword": "¿Olvidaste tu contraseña?",
     "loading": "Cargando...",
+    "saving": "Guardando...",
+    "verifying": "Verificando...",
+    "deactivating": "Desactivando...",
     "errorSignup": "No se pudo crear la cuenta.",
     "errorLogin": "No se pudo iniciar sesión. Verifica tus credenciales e inténtalo nuevamente.",
     "resetPassword": "Restablecer Contraseña",
@@ -63,7 +67,28 @@
     "submit": "Enviar",
     "messageSent": "¡Gracias por contactarnos! Nos pondremos en contacto contigo lo antes posible.",
     "submitError": "Algo salió mal. Intenta nuevamente.",
-    "allFieldsRequired": "Por favor, completa todos los campos."
+    "allFieldsRequired": "Por favor, completa todos los campos.",
+    "newPassword": "Ingresa una nueva contraseña",
+    "confirmPassword": "Confirmar Nueva Contraseña",
+    "yourName": "Tu Nombre",
+    "leaveBlankPassword": "Deja en blanco para mantener la contraseña actual",
+    "confirmNewPassword": "Confirma la nueva contraseña",
+    "notSpecified": "No especificado",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+    "passwordRequired": "Por favor introduce tu contraseña actual",
+    "wrongPassword": "Has introducido una contraseña incorrecta",
+    "tooManyAttempts": "Demasiados intentos. Inténtalo más tarde.",
+    "updateFailed": "Error al actualizar el perfil: ",
+    "deactivationFailed": "Error al desactivar la cuenta: ",
+    "verifyPassword": "Verificar Contraseña",
+    "passwordVerificationMessage": "Para confirmar tus cambios, por favor ingresa tu contraseña actual.",
+    "currentPassword": "Contraseña Actual",
+    "confirm": "Confirmar",
+    "password": "Contraseña",
+    "deactivateVerificationTitle": "Verificación para Desactivar Cuenta",
+    "deactivateVerificationMessage": "Por favor, introduce tu contraseña para confirmar la desactivación de la cuenta. Esta acción no se puede deshacer.",
+    "confirmDeactivation": "Confirmar Desactivación"
   },
   "profile": {
     "settings": "Configuración de Perfil",
@@ -73,7 +98,10 @@
     "notifications": "Notificaciones",
     "changePhoto": "Cambiar Foto",
     "saveChanges": "Guardar Cambios",
-    "deactivateAccount": "Desactivar Cuenta"
+    "deactivateAccount": "Desactivar Cuenta",
+    "noChanges": "No hay cambios para guardar",
+    "updateSuccess": "Perfil actualizado correctamente",
+    "accountDeactivated": "Cuenta desactivada. Se cerrará tu sesión."
   },
   "weather": {
     "pleaseTurnOnLocation": "Por favor, activa la ubicación",
@@ -106,15 +134,12 @@
     "tasksetter_explaination2": "Para añadir una tarea, haz clic en el icono [+], luego escribe una descripción, establece una prioridad del 1 al 5 (siendo 1 la más importante), y elige una fecha.",
     "tasksetter_explaination3": "Una vez añadidas, las tareas aparecen en la pantalla principal si están programadas para hoy o mañana. Puedes marcarlas como completadas con el icono de verificación.",
     "tasksetter_explaination4": "Todas las tareas activas y completadas se guardan en el historial de tareas dentro de Configuración. Desde allí puedes editar la descripción, prioridad o fecha, o eliminarlas. Las tareas no cumplidas aparecerán en gris y pueden reprogramarse o eliminarse.",
-
     "focusmode_explaination": "El Modo de Enfoque es una función inteligente integrada en el robot físico de AGA que te ayuda a mantenerte enfocado mientras estudias o trabajas. Solo colócalo frente a ti y comienza.",
     "focusmode_explaination2": "Detecta lenguaje corporal que indique distracción y te alerta suavemente para que regreses a tu tarea. Si llevas 30 minutos trabajando sin pausas, sugiere tomar un descanso.",
     "focusmode_explaination3": "Puedes ignorar la sugerencia hasta 3 veces, pero luego se aplicará un descanso mínimo de 15 minutos para cuidar tu bienestar mental. Está diseñado para ayudarte a ser productivo sin descuidar tu salud.",
-
     "calendar_weather_explaination": "La app de AGA integra un calendario y clima para ayudarte en tu rutina diaria. Ideal para cuando olvidas la fecha o el clima, y necesitas una referencia rápida y precisa.",
     "calendar_weather_explaination2": "El calendario muestra ayer, hoy y mañana — promoviendo reflexión, acción y preparación. Aprendemos del pasado, actuamos hoy y nos preparamos para el futuro.",
     "calendar_weather_explaination3": "La herramienta de clima usa inteligencia artificial para darte sugerencias útiles, como recordarte un paraguas si va a llover — para que no tengas que preocuparte por comprobarlo tú mismo.",
-
     "wellbeing_explaination": "Esta futura función ampliará el enfoque de AGA en el bienestar mental, brindando herramientas y orientación para ayudarte a regular tu salud emocional. Incluirá técnicas de respiración y ejercicios de autocuidado.",
     "wellbeing_explaination2": "Por ahora, la herramienta de Estado de Ánimo ya está disponible. Puedes registrar tu ánimo diario, con recordatorios a las 6AM–12PM, 12PM–6PM, y 6PM–12AM.",
     "wellbeing_explaination3": "Los registros se analizan semanalmente (hasta 4 semanas) para ayudarte a entender qué afecta tu estado emocional y cómo responder de forma consciente. Puedes ver tu análisis en la página principal."

@@ -14,7 +14,7 @@ export default function CreateAccount() {
     const [dobError, setDobError] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
-    const { signup } = useAuth();
+    const { signup, updateUserProfile } = useAuth();
     const router = useRouter();
     
 
@@ -25,6 +25,12 @@ export default function CreateAccount() {
             setError("");
             setLoading(true);
             const userCredential = await signup(email, password);
+            
+            // create or update user profile with additional data
+            await updateUserProfile({
+                displayName: firstName,
+                dob: dob ? new Date(dob).toISOString() : null
+            });
               
             router.push("/"); // redirect to home page after successful signup
         } catch (error) {
