@@ -40,7 +40,14 @@
         "adverts": "Annonces",
         "taskSetterToday": "Tâches du jour",
         "taskSetterTomorrow": "Tâches de demain",
-        "taskSetterNone": "Aucune tâche prévue"
+        "taskSetterNone": "Aucune tâche prévue",
+        "taskBacklog": "Historique des tâches",
+        "noTasksMessage": "Vous n'avez pas de tâches prévues.",
+        "taskPriority": "Priorité",
+        "editTask": "Modifier la tâche",
+        "taskText": "Tâche",
+        "taskDate": "Date",
+        "saveChanges": "Enregistrer les modifications"
     },
     "forms": {
         "enterFirstName": "Entrez votre prénom",

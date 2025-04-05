@@ -44,7 +44,15 @@
     "adverts": "Adverts",
     "taskSetterToday": "Today's Tasks",
     "taskSetterTomorrow": "Tomorrow's Tasks",
-    "taskSetterNone": "No tasks scheduled"
+    "taskSetterNone": "No tasks scheduled",
+    "taskBacklog": "Task Backlog",
+    "noTasksMessage": "You don't have any tasks yet.",
+    "taskPriority": "Priority",
+    "editTask": "Edit Task",
+    "taskText": "Task",
+    "taskDate": "Date",
+    "saveChanges": "Save Changes",
+    "cancel": "Cancel"
   },
   "forms": {
     "enterFirstName": "Enter First Name",

@@ -44,7 +44,14 @@
     "adverts": "Anuncios",
     "taskSetterToday": "Tareas de Hoy",
     "taskSetterTomorrow": "Tareas de Mañana",
-    "taskSetterNone": "No hay tareas programadas"
+    "taskSetterNone": "No hay tareas programadas",
+    "taskBacklog": "Registro de Tareas",
+    "noTasksMessage": "No tienes ninguna tarea programada.",
+    "taskPriority": "Prioridad",
+    "editTask": "Editar Tarea",
+    "taskText": "Tarea",
+    "taskDate": "Fecha",
+    "saveChanges": "Guardar Cambios"
   },
   "forms": {
     "enterFirstName": "Ingresa tu nombre",

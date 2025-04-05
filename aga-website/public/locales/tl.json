@@ -40,7 +40,14 @@
         "adverts": "Mga Ad",
         "taskSetterToday": "Mga Gawain Ngayon",
         "taskSetterTomorrow": "Mga Gawain Bukas",
-        "taskSetterNone": "Walang nakatakdang gawain"
+        "taskSetterNone": "Walang nakatakdang gawain",
+        "taskBacklog": "Mga Gawain na Nakalagay",
+        "noTasksMessage": "Walang nakatakdang gawain.",
+        "taskPriority": "Prayoridad",
+        "editTask": "I-edit ang Gawain",
+        "taskText": "Gawain",
+        "taskDate": "Araw",
+        "saveChanges": "I-save ang mga Pagbabago"
     },
     "forms": {
         "enterFirstName": "Ilagay ang Unang Pangalan",

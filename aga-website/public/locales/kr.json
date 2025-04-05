@@ -40,7 +40,14 @@
         "adverts": "광고",
         "taskSetterToday": "오늘의 업무",
         "taskSetterTomorrow": "내일의 업무",
-        "taskSetterNone": "예정된 업무가 없습니다"
+        "taskSetterNone": "예정된 업무가 없습니다",
+        "taskBacklog": "업무 기록",
+        "noTasksMessage": "아직 예정된 업무가 없습니다.",
+        "taskPriority": "우선순위",
+        "editTask": "업무 수정",
+        "taskText": "업무",
+        "taskDate": "날짜",
+        "saveChanges": "변경사항 저장"
     },
     "forms": {
         "enterFirstName": "이름을 입력하세요",

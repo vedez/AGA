@@ -40,7 +40,14 @@
         "adverts": "广告",
         "taskSetterToday": "今天的任务",
         "taskSetterTomorrow": "明天的任务",
-        "taskSetterNone": "暂无任务安排"
+        "taskSetterNone": "暂无任务安排",
+        "taskBacklog": "任务记录",
+        "noTasksMessage": "你还没有任何任务安排。",
+        "taskPriority": "优先级",
+        "editTask": "编辑任务",
+        "taskText": "任务",
+        "taskDate": "日期",
+        "saveChanges": "保存更改"
     },
     "forms": {
         "enterFirstName": "请输入名字",

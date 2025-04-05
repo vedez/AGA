@@ -40,7 +40,14 @@
         "adverts": "Werbung",
         "taskSetterToday": "Aufgaben für heute",
         "taskSetterTomorrow": "Aufgaben für morgen",
-        "taskSetterNone": "Keine Aufgaben geplant"
+        "taskSetterNone": "Keine Aufgaben geplant",
+        "taskBacklog": "Aufgabenarchiv",
+        "noTasksMessage": "Du hast noch keine Aufgaben.",
+        "taskPriority": "Priorität",
+        "editTask": "Aufgabe bearbeiten",
+        "taskText": "Aufgabe",
+        "taskDate": "Datum",
+        "saveChanges": "Änderungen speichern"
     },
     "forms": {
         "enterFirstName": "Vorname eingeben",

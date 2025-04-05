@@ -151,7 +151,7 @@ export default function TaskBacklog() {
                                 <div className="flex-1">
                                     <div className="text-gray-800 font-medium">{task.text}</div>
                                     <div className="text-xs text-gray-700 italic">
-                                        Priority: {task.priority} 
+                                        {translations.components?.taskPriority || "Priority"}: {task.priority} 
                                         {task.priority === 1 ? ' (Highest)' : 
                                         task.priority === 5 ? ' (Lowest)' : ''} 
                                         <span className="mx-2">•</span> 
