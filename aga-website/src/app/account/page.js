@@ -6,6 +6,7 @@ import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 import CreateAccount from "@/app/components/CreateAccount";
 import Login from "@/app/components/Login";
 import DesignLogo from "@/app/components/DesignLogo";
+import usePageBackground from "@/hooks/usePageBackground";
 
 export default function Account() {
     const { language, setLanguage, translations } = useTranslation();
