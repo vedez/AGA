@@ -19,13 +19,14 @@ export default function Help() {
             </div>
 
             <div className="flex sm:flex-row flex-col gap-5 justify-center sm:p-10 py-5 center">
-                <div className="flex flex-col gap-5 hide">
+                <div className="flex flex-col gap-5 hide sm:flex w-auto sm:w-[33%] items-end">
                     <Adverts />
                 </div>
-                <div className="flex flex-col gap-5 w-full">
+                <div className="flex flex-col gap-5 w-full sm:w-[33%]">
                     <ContactForm />
                 </div>
-                <div className="flex flex-col gap-5">
+                
+                <div className="flex flex-col gap-5 w-auto sm:w-[33%] items-start">
                     <Adverts />
                 </div>
             </div>
