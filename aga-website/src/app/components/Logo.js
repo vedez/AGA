@@ -8,7 +8,7 @@ export default function Logo() {
     const { translations } = useTranslation();
 
     return (
-        <Link href="/" className="horizontal-flex cursor-pointer hover:opacity-80 transition-opacity">
+        <Link href="/" className="horizontal-flex cursor-pointer hover:opacity-80 transition-opacity w-5 h-5 sm:w-[30px] sm:h-[30px]">
             <Image
                 src="/favicon.ico"
                 alt={translations.altText?.logo || "AGA Logo"}
@@ -17,7 +17,8 @@ export default function Logo() {
                 priority
             />
 
-            <h1 className="text-[25px] font-bold">{translations.title || "AGA"}</h1>
+            <h1 className="text-[15px] sm:text-[25px] font-bold">{translations.title || "AGA"}</h1>
         </Link>
     );
 }
+

@@ -9,6 +9,7 @@ import RegisterLogin from "@/app/components/RegisterLogin";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { MdLogout } from "react-icons/md";
+import { FaHome } from "react-icons/fa";
 
 export default function Navbar() {
     const { translations } = useTranslation();
@@ -36,20 +37,23 @@ export default function Navbar() {
                 </Link>
             </div>
 
-            <div className="horizontal-flex gap-x-3">
-            {currentUser && (
-                <>
-                    <div><ProfileIcon /></div>
-                    <button
-                        onClick={handleLogout}
-                        className="p-0 m-0 text-xs flex items-center gap-1 text-link hover:text-red-500 transition-colors"
-                    >
-                        <h6>{translations.button?.logout || "Logout"}</h6>
-                        <MdLogout className="w-4 h-4" title="Log Out" />
-                    </button>
-                </>
-            )}
+            <div className="horizontal-flex ">
+                {currentUser ? (
+                    <>
+                        <div><ProfileIcon /></div>
+                        <div><FaHome size={20} className="sm:hidden inline-block horizontal-flex" /></div>
 
+                        <button
+                            onClick={handleLogout}
+                            className="p-0 m-0 text-xs flex items-center gap-1 text-link hover:text-red-500 transition-colors"
+                        >
+                            <h6>{translations.button?.logout || "Logout"}</h6>
+                            <MdLogout className="w-4 h-4" title="Log Out" />
+                        </button>
+                    </>
+                ): (
+                    <RegisterLogin />
+                )}
                 <LanguageSwitcher />
             </div>
         </div>

@@ -26,7 +26,7 @@ export default function ProfileIcon() {
             aria-label={translations.profile?.settings || "Profile settings"}
             title={translations.profile?.settings || "Profile settings"}
         >
-            <FaUserCircle size={30} />
+            <FaUserCircle className="text-gray-900 w-5 h-5 sm:w-[30px] sm:h-[30px]" />
         </button>
     );
 }

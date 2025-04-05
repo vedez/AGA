@@ -4,7 +4,6 @@ import Link from "next/link";
 import useTranslation from "@/hooks/useTranslation";
 import usePageBackground from "@/hooks/usePageBackground";
 import Logo from "@/app/components/Logo";
-import RegisterLogin from "@/app/components/RegisterLogin";
 import Slogan from "@/app/components/Slogan";
 import Footer from "@/app/components/Footer";
 import ShortNav from "@/app/components/ShortNav";
@@ -24,11 +23,7 @@ export default function Home() {
                 <div className="center">
                     <Logo />
                     <div className="horizontal-flex">
-                        {currentUser ? (
-                            <ShortNav />
-                        ) : (
-                            <RegisterLogin />
-                        )}
+                        <ShortNav />
                     </div>
                 </div>
                     <div className="flex items-center justify-start h-full">
