@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import useTranslation from "@/hooks/useTranslation";
 import Logo from "@/app/components/Logo";
-import RegisterLogin from "@/app/components/RegisterLogin";
 import Slogan from "@/app/components/Slogan";
 import Footer from "@/app/components/Footer";
 import ShortNav from "@/app/components/ShortNav";
@@ -13,7 +12,6 @@ import { useAuth } from "@/app/utils/AuthContext";
 
 export default function Home() {
     const { translations } = useTranslation();
-    const { currentUser } = useAuth();
 
     return (
         <div className="flex flex-col screen-size">
@@ -21,11 +19,7 @@ export default function Home() {
                 <div className="center">
                     <Logo />
                     <div className="horizontal-flex">
-                        {currentUser ? (
-                            <ShortNav />
-                        ) : (
-                            <RegisterLogin />
-                        )}
+                        <ShortNav />
                     </div>
                 </div>
                     <div className="flex items-center justify-start h-full">
