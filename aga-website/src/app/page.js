@@ -12,7 +12,6 @@ import { useAuth } from "@/app/utils/AuthContext";
 
 export default function Home() {
     const { translations } = useTranslation();
-    const { currentUser } = useAuth();
     
     usePageBackground('MAIN', 0.0);
 

@@ -7,7 +7,7 @@ export default function AddTaskModal({ onClose, onAdd }) {
     const today = format(new Date(), "yyyy-MM-dd");
     const [taskText, setTaskText] = useState("");
     const [taskDate, setTaskDate] = useState(today);
-    const [priority, setPriority] = useState(3); // Default priority is medium (3)
+    const [priority, setPriority] = useState(3); // default priority is medium (3)
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,7 +20,7 @@ export default function AddTaskModal({ onClose, onAdd }) {
             priority: Number(priority)
         });
         
-        // Reset form
+        // reset form
         setTaskText("");
         setTaskDate(today);
         setPriority(3);

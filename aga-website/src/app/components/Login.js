@@ -23,7 +23,7 @@ export default function Login() {
             setError("");
             setLoading(true);
             await login(email, password);
-            router.push("/"); // redirect to home page after successful login
+            router.push("/"); // redirect to landing page after successful login
 
         } catch (error) {
             setError(translations.forms?.errorLogin || "Failed to sign in. Please check your credentials.");

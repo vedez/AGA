@@ -3,7 +3,7 @@
 import { FaCheck } from "react-icons/fa";
 
 export default function TaskList({ tasks, onDelete }) {
-    // If there are no tasks, display a message
+    // ff there are no tasks, display a message
     if (tasks.length === 0) {
         return (
             <div className="bg-[#E1F5FE] p-4 text-center text-gray-500">
@@ -12,7 +12,7 @@ export default function TaskList({ tasks, onDelete }) {
         );
     }
     
-    // Priority colors - all blue shades
+    // priority colors - darkest to light
     const priorityColors = {
         1: "bg-blue-200 border-blue-300",
         2: "bg-blue-100 border-blue-200",

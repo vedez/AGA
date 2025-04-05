@@ -28,9 +28,15 @@ export default function Navbar() {
     return(
         <div className="center gap-x-3">
             <div className="space-x-5 font-semibold hide">
-                <Link href="/main" className="text-link">
-                    {translations.button?.home || "Home"}
-                </Link>
+                {currentUser ? (
+                    <Link href="/main" className="text-link">
+                        {translations.button?.home || "Home"}
+                    </Link>
+                ) : (
+                    <Link href="/account" className="text-link">
+                        {translations.button?.home || "Home"}
+                    </Link>
+                )}
 
                 <Link href="/about" className="text-link">
                     {translations.button?.about || "About"}

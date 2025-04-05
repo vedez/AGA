@@ -7,37 +7,12 @@ const BackgroundWrapper = ({ children }) => {
     const { backgroundImage, overlayOpacity } = useBackground();
 
     return (
-        <div
-            style={{
-            position: 'relative',
-            }}
-        >
-            <div
-                style={{
-                    backgroundImage: `url(${backgroundImage})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundAttachment: 'scroll',
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    zIndex: -2,
-                }}
+        <div className="relative">
+            <div className="fixed inset-0 bg-cover bg-center bg-no-repeat z-[-2]"
+                style={{ backgroundImage: `url(${backgroundImage})` }}
             />
-
-            <div
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundColor: `rgba(255, 255, 255, ${overlayOpacity})`,
-                    zIndex: -1,
-                }}
+            <div className="fixed inset-0 bg-white z-[-1]"
+                style={{ backgroundColor: `rgba(255, 255, 255, ${overlayOpacity})` }}
             />
 
             <div className="relative z-10">
