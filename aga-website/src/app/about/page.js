@@ -2,6 +2,7 @@
 
 import useTranslation from "@/hooks/useTranslation";
 import useUnitWordsRotator from "@/hooks/useUnitWordsRotator";
+import usePageBackground from "@/hooks/usePageBackground";
 import Logo from "@/app/components/Logo";
 import ShortNav from "@/app/components/ShortNav";
 import Footer from "@/app/components/Footer";
@@ -17,6 +18,8 @@ import { MdCamera } from "react-icons/md";
 export default function About() {
     const { language, translations } = useTranslation();
     const currentWord = useUnitWordsRotator(language);
+    
+    usePageBackground('TERTIARY', 0.7);
 
     return (
         <div className="flex flex-col screen-size relative">     
@@ -35,7 +38,7 @@ export default function About() {
                                 <div className="rounded-lg overflow-hidden">
                                     <Image
                                         src="/assets/people-about.png"
-                                        alt="World Mental Health Day"
+                                        alt="People in a group"
                                         width={500}
                                         height={500}
                                         className="w-full h-auto object-cover border border-1 border-[#d5b281]"

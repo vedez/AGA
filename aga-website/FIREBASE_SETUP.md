@@ -53,42 +53,74 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
 3. Enable the authentication methods you want to use (at minimum, enable Email/Password)
 4. Save your changes
 
-## Step 6: Test Your Authentication
-
-1. Run your Next.js application with `npm run dev`
-2. Navigate to the login/signup page
-3. Try creating a new account and logging in
-4. Check the Firebase Console under "Authentication" > "Users" to see if your test user was created
-
-## Additional Features
-
-### Firestore Database (Optional)
-
-If you want to store additional user data (like name, date of birth, etc.):
+## Step 6: Set Up Firestore Database
 
 1. In the Firebase Console, go to "Firestore Database"
 2. Click "Create database"
-3. Start in production or test mode as needed
-4. Choose a location for your database
-5. Create a users collection to store additional user information
+3. Start in production mode (recommended for deployed applications) or test mode (for development)
+4. Choose a location for your database that is closest to your users
+5. Wait for the database to be provisioned
 
-### Security Rules
+## Step 7: Create Firestore Collections and Security Rules
 
-Make sure to set up proper security rules for your Firestore database:
+1. After your database is created, you'll need to set up the necessary collections:
+   - `tasks` - Stores user tasks
+
+2. Set up security rules for your Firestore database by going to the "Rules" tab and adding the following:
 
 ```
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Basic user authentication check
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Verify the user owns the document they're accessing
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+    
+    // Tasks collection rules
+    match /tasks/{taskId} {
+      // Allow read/write only if the task belongs to the authenticated user
+      allow create: if isAuthenticated() && 
+                      request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if isAuthenticated() && 
+                                    resource.data.userId == request.auth.uid;
+    }
+    
+    // User profile rules (if you add user profiles later)
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if isAuthenticated() && isOwner(userId);
     }
   }
 }
 ```
 
-## Troubleshooting
+3. Publish your security rules by clicking "Publish"
+
+## Step 8: Test Your Authentication and Firestore
+
+1. Run your Next.js application with `npm run dev`
+2. Navigate to the login/signup page and create an account
+3. Try creating and managing tasks
+4. Check the Firebase Console under "Firestore Database" > "Data" to see if your test data was created correctly
+
+## Additional Features
+
+### Firestore Database Indexes (if needed)
+
+If you're using complex queries that require indexes:
+
+1. Firebase will notify you in the console if an index is required
+2. Click on the provided link to create the needed index
+3. Alternatively, navigate to Firestore Database > Indexes and create them manually
+
+### Troubleshooting
 
 - If you encounter CORS issues, make sure your Firebase project has the correct domains listed in the Authentication > Settings > Authorized domains section.
 - Check browser console for any Firebase-related errors.
-- Ensure your environment variables are correctly set and accessible in your application. 
+- Ensure your environment variables are correctly set and accessible in your application.
+- If security rules are blocking operations, check the Firebase console for security rule errors. 

@@ -2,6 +2,7 @@
 import Link from "next/link";
 
 import useTranslation from "@/hooks/useTranslation";
+import usePageBackground from "@/hooks/usePageBackground";
 import Logo from "@/app/components/Logo";
 import RegisterLogin from "@/app/components/RegisterLogin";
 import Slogan from "@/app/components/Slogan";
@@ -14,6 +15,8 @@ import { useAuth } from "@/app/utils/AuthContext";
 export default function Home() {
     const { translations } = useTranslation();
     const { currentUser } = useAuth();
+    
+    usePageBackground('MAIN', 0.0);
 
     return (
         <div className="flex flex-col screen-size">
