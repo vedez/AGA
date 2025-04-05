@@ -66,6 +66,10 @@
   @apply p-4 rounded-lg shadow-lg w-full max-w-xs mx-auto 
 }
 
+.no-padding {
+  padding: 0 !important;
+}
+
 /* === FORM UTILITY CLASSES === */
 .form-container {
   @apply w-full space-y-6;
