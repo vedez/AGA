@@ -62,7 +62,10 @@ export function AuthProvider({ children }) {
             console.error("Firebase auth is not initialized");
             return Promise.reject(new Error("Firebase auth is not initialized"));
         }
-        return signInWithEmailAndPassword(auth, email, password);
+        
+        // Login with Firebase
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        return userCredential;
     }
 
     async function logout() {
@@ -219,15 +222,20 @@ export function AuthProvider({ children }) {
         let unsubscribe = () => {};
         
         if (auth) {
-            unsubscribe = onAuthStateChanged(auth, (user) => {
+            unsubscribe = onAuthStateChanged(auth, async (user) => {
                 setCurrentUser(user);
-                setLoading(false);
                 
                 if (user) {
-                    fetchUserProfile();
+                    try {
+                        await fetchUserProfile();
+                    } catch (err) {
+                        console.error("Error in auth state change:", err);
+                    }
                 } else {
                     setUserProfile(null);
                 }
+                
+                setLoading(false);
             });
         } else {
             console.error("Firebase auth is not initialized");

@@ -5,6 +5,8 @@ import { useState } from "react";
 import { FaSadTear, FaMeh, FaAngry, FaSmileBeam } from "react-icons/fa";
 import {FaFaceGrinTongueSquint} from "react-icons/fa6"
 import { IoCloseCircleOutline } from "react-icons/io5";
+import { useAuth } from "@/app/utils/AuthContext";
+import { db, collection, addDoc, serverTimestamp } from "@/app/utils/firebase";
 
 // define emoji components with both regular and enlarged sizes
 const moodEmojis = [
@@ -15,40 +17,69 @@ const moodEmojis = [
     { icon: (isSelected) => <FaFaceGrinTongueSquint className="text-[#369b29] transition-all duration-200" size={isSelected ? 42 : 30} />, value: 5 }
 ];
 
-export default function MoodPromptModal() {
+export default function MoodPromptModal({ onMoodLogged }) {
     const [showModal, setShowModal] = useState(false);
     const [moodValue, setMoodValue] = useState(3);
     const [submitted, setSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
     const { translations } = useTranslation();
+    const { currentUser } = useAuth();
 
-    const logMood = (value) => {
-        const now = new Date();
-        const logs = JSON.parse(localStorage.getItem("mood_logs")) || [];
-
-        logs.push({
-            date: now.toISOString(),
-            mood: value
-        });
-
-        localStorage.setItem("mood_logs", JSON.stringify(logs));
+    const logMood = async (value) => {
+        try {
+            // store mood in Firestore
+            const docRef = await addDoc(collection(db, "mood_logs"), {
+                userId: currentUser.uid,
+                date: serverTimestamp(),
+                mood: value,
+                createdAt: serverTimestamp()
+            });
+            
+            // return the doc reference so we can use it later
+            return docRef;
+        } catch (err) {
+            console.error("Error saving mood to Firestore:", err);
+            setError(translations.mood?.moodSaveError || "Failed to save your mood. Please try again.");
+            throw err; // rethrow to be caught by handleSubmit
+        }
     };
   
-
-    const handleSubmit = () => {
-        logMood(moodValue);
-        setSubmitted(true);
-
-        setTimeout(() => {
-            setShowModal(false);
-            setSubmitted(false);
-        }, 1500);
+    const handleSubmit = async () => {
+        setIsLoading(true);
+        setError(null);
+        
+        try {
+            const docRef = await logMood(moodValue);
+            setSubmitted(true);
+            
+            // call the onMoodLogged callback to notify parent component
+            if (onMoodLogged) {
+                onMoodLogged({
+                    id: docRef.id,
+                    mood: moodValue,
+                    date: new Date(),
+                    userId: currentUser.uid
+                });
+            }
+            
+            setTimeout(() => {
+                setShowModal(false);
+                setSubmitted(false);
+            }, 1500);
+        } catch (err) {
+            setError(translations.mood?.moodWriteError || "Something went wrong. Please try again.");
+            console.error("Error in handleSubmit:", err);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
   return (
     <>
         <button onClick={() => setShowModal(true)}
-            className="relative overflow-hidden group text-white font-bold px-4 py-2 pb-4 lg:pb-2 rounded border border-[#a6e5dd] shadow-md drop-shadow-sm bg-gradient-to-r from-[#86e69e] to-[#71d191]">
-            <span className="relative z-10 text-bg-shadow">{translations.mood?.mood_log || "Log Mood"}</span>
+            className="w-full relative overflow-hidden group text-white font-bold px-4 py-3 rounded-md border border-[#a6e5dd] shadow-md drop-shadow-sm bg-gradient-to-r from-[#86e69e] to-[#71d191] hover:from-[#75d384] hover:to-[#65cb84] transition-all">
+            <span className="relative z-10 text-bg-shadow text-center">{translations.mood?.mood_log || "Log Mood"}</span>
             <span className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-200 z-0" />
         </button>
 
@@ -90,8 +121,14 @@ export default function MoodPromptModal() {
                             className="w-full mb-4 mood-range-slider"
                         />
 
-                        <button onClick={handleSubmit} className="third-button w-full">
-                            {translations.forms?.submit || "Submit"}
+                        {error && <p className="text-red-500 mb-2 text-sm">{error}</p>}
+
+                        <button 
+                            onClick={handleSubmit} 
+                            className="third-button w-full"
+                            disabled={isLoading}
+                        >
+                            {isLoading ? "Saving..." : translations.forms?.submit || "Submit"}
                         </button>
                     </>
                 ) : (

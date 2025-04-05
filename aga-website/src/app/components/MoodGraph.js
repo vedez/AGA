@@ -13,6 +13,8 @@ import {
 
 import { useEffect, useState } from "react";
 import useTranslation from "@/hooks/useTranslation";
+import { useAuth } from "@/app/utils/AuthContext";
+import { db, collection, query, where, getDocs, orderBy } from "@/app/utils/firebase";
 
 // retrieve last N week-start dates (Mondays)
 function getLastNWeekStarts(n) {
@@ -38,93 +40,197 @@ function getLastNWeekStarts(n) {
 }
 
 function formatWeekLabel(date, translations) {
-    return `${translations["week_of"]} ${String(date.getMonth() + 1).padStart(2, "0")}/${String(
+    return `${translations["week_of"] || "Week of"} ${String(date.getMonth() + 1).padStart(2, "0")}/${String(
         date.getDate()
     ).padStart(2, "0")}`;
-  }  
+}  
+
+// create empty data structure for when there are no mood logs
+function createEmptyDataset(translations) {
+    const weekStarts = getLastNWeekStarts(4);
+    
+    return days.map((day) => {
+        const entry = { day };
+        
+        weekStarts.forEach((weekStart) => {
+            const label = formatWeekLabel(weekStart, translations);
+            entry[label] = null; // use null for all data points to show an empty graph
+        });
+        
+        return entry;
+    });
+}
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-export default function MoodGraph() {
+export default function MoodGraph({ refreshTrigger }) {
     const { language, translations } = useTranslation();
+    const { currentUser } = useAuth();
     const [data, setData] = useState([]);
-    const [hasData, setHasData] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [hasMoodData, setHasMoodData] = useState(false);
 
-    useEffect(() => {
-        const moodLogs = JSON.parse(localStorage.getItem("mood_logs")) || [];
-      
-        if (!moodLogs.length) {
-            setHasData(false);
-            return;
-        }
-      
-        const weekStarts = getLastNWeekStarts(4);
-        const grouped = {};
-      
-        moodLogs.forEach(({ date, mood }) => {
-            const d = new Date(date); 
-            // convert the saved date string to a date object
-          
-            const dayIndex = d.getDay() === 0 ? 6 : d.getDay() - 1;
-            // get index for day name (0 = sunday, so shift it to 6)
-          
-            const dayName = days[dayIndex];
-            // get the name like "mon", "tue", etc.
-          
-            const weekKey = weekStarts.find((start) => {
-                const end = new Date(start);
-                end.setDate(end.getDate() + 7);
-                // define the range: monday to next monday
-            
-                return d >= start && d < end;
-                // check if the log date falls in this week
-            });
-          
-            if (!weekKey) return;
-            // if the date doesn't fall in the last 4 weeks, skip it
-          
-            const key = formatWeekLabel(weekKey, translations);
-            // label for the week, like "week of 04/01"
-          
-            if (!grouped[key]) grouped[key] = {};
-            // if this week group doesn't exist yet, create it
-          
-            if (!grouped[key][dayName]) grouped[key][dayName] = [];
-            // if there's no entry for this day in the week, make one
-          
-            grouped[key][dayName].push(mood);
-            // add the mood to the list for that day
-        });
-          
-      
-        const formatted = days.map((day) => {
-            const entry = { day };
+    // function to fetch mood data
+    const fetchMoodData = async () => {
+        setIsLoading(true);
+        setError(null);
         
-            weekStarts.forEach((weekStart) => {
-                const label = formatWeekLabel(weekStart, translations);
-                const moods = grouped[label]?.[day];
+        try {
+            // always create the empty dataset first as a fallback
+            const emptyDataset = createEmptyDataset(translations);
+            setData(emptyDataset);
             
-                if (moods && moods.length) {
-                    const avg = moods.reduce((sum, v) => sum + v, 0) / moods.length;
-                    entry[label] = Math.round(avg);
+            if (!currentUser) {
+                setIsLoading(false);
+                return;
+            }
+            
+            // fetch from Firestore
+            const fourWeeksAgo = new Date();
+            fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28);
+            
+            const moodLogsRef = collection(db, "mood_logs");
+            const q = query(
+                moodLogsRef, 
+                where("userId", "==", currentUser.uid),
+                where("date", ">=", fourWeeksAgo),
+                orderBy("date", "desc")
+            );
+            
+            const querySnapshot = await getDocs(q);
+            const moodLogs = querySnapshot.docs.map(doc => {
+                const data = doc.data();
+                let dateValue;
+                
+                // handle server timestamp which might be null for newly created documents
+                if (data.date && typeof data.date.toDate === 'function') {
+                   
+                    dateValue = data.date.toDate().toISOString();
+                } else if (data.date) {
+                    
+                    dateValue = new Date(data.date).toISOString();
                 } else {
-                    entry[label] = 3;
+                    
+                    dateValue = (data.createdAt && typeof data.createdAt.toDate === 'function') 
+                        ? data.createdAt.toDate().toISOString() 
+                        : new Date().toISOString();
                 }
+                
+                return {
+                    id: doc.id,
+                    date: dateValue,
+                    mood: data.mood
+                };
             });
-        
-            return entry;
-        });
-      
-        setData(formatted);
-        setHasData(true);
-    }, [translations]); // add translations as a dependency
-      
+            
+            if (!moodLogs.length) {
+                // if no mood logs, use the empty dataset
+                setHasMoodData(false);
+                setIsLoading(false);
+                return;
+            }
+            
+            setHasMoodData(true);
+            
+            const weekStarts = getLastNWeekStarts(4);
+            const grouped = {};
+            
+            moodLogs.forEach(({ date, mood }) => {
+                const d = new Date(date); 
+                
+                const dayIndex = d.getDay() === 0 ? 6 : d.getDay() - 1;
+                
+                const dayName = days[dayIndex];
+                
+                const weekKey = weekStarts.find((start) => {
+                    const end = new Date(start);
+                    end.setDate(end.getDate() + 7);
+                    
+                    return d >= start && d < end;
+                });
+                
+                if (!weekKey) return;
+                
+                const key = formatWeekLabel(weekKey, translations);
+                
+                if (!grouped[key]) grouped[key] = {};
+                
+                if (!grouped[key][dayName]) grouped[key][dayName] = [];
+                
+                grouped[key][dayName].push(mood);
+            });
+            
+            const formatted = days.map((day) => {
+                const entry = { day };
+            
+                weekStarts.forEach((weekStart) => {
+                    const label = formatWeekLabel(weekStart, translations);
+                    const moods = grouped[label]?.[day];
+                
+                    if (moods && moods.length) {
+                        const avg = moods.reduce((sum, v) => sum + v, 0) / moods.length;
+                        entry[label] = Math.round(avg);
+                    } else {
+                        entry[label] = null;
+                    }
+                });
+            
+                return entry;
+            });
+            
+            setData(formatted);
+        } catch (error) {
+            console.error("Error fetching mood data:", error);
+            setError(translations.mood?.moodLoadError || "Could not load mood data. Please try again later.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-  if (!hasData) return null;
+    // initial data load
+    useEffect(() => {
+        fetchMoodData();
+    }, [currentUser, translations]);
+
+    // trigger refresh when refreshTrigger changes
+    useEffect(() => {
+        if (refreshTrigger) {
+            fetchMoodData();
+        }
+    }, [refreshTrigger]);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3498db] mx-auto"></div>
+          <p className="mt-2 text-gray-600">{translations.loading || "Loading..."}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <div className="text-center text-red-500">
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full">
-        <div className="bg-[#f0fcf0] rounded-lg shadow-md w-full h-full">
+        <div className="bg-[#f0fcf0] rounded-lg shadow-md w-full h-full relative">
+            {!hasMoodData && (
+                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                    <div className="text-center">
+                        <p className="text-gray-600">{translations.mood?.no_data || "No mood data yet"}</p>
+                    </div>
+                </div>
+            )}
             <div className="w-full h-full">
                 <ResponsiveContainer width="100%" height={320} aspect={undefined}>
                     <LineChart
@@ -180,12 +286,12 @@ export default function MoodGraph() {
 
                         {Object.keys(data[0] || {})
                             .filter((key) => key !== "day")
-
                             .map((weekKey, i) => (
                                 <Line
                                     key={weekKey}
                                     type="monotone"
                                     dataKey={weekKey}
+                                    connectNulls={true}
                                     stroke={["#0066CC", "#EDB120", "#DC143C", "#5E40BE"][i % 4]}
                                     strokeWidth={2}
                                     dot={{ r: 3 }}
