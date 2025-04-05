@@ -30,6 +30,7 @@ export default function AccountSetting() {
     // add a new state for deactivation modal
     const [showDeactivateVerification, setShowDeactivateVerification] = useState(false);
     const [deactivateError, setDeactivateError] = useState("");
+    const [deactivateSuccess, setDeactivateSuccess] = useState("");
 
     useEffect(() => {    
         // fetch user profile data when component mounts
@@ -151,14 +152,21 @@ export default function AccountSetting() {
         try {
             setLoading(true);
             setDeactivateError("");
+            setDeactivateSuccess("");
             
             // first reauthenticate with the user's password
             await reauthenticate(currentPassword);
             
             // then delete the account
             await deleteUser(currentUser);
-            setShowDeactivateVerification(false);
-            alert(translations.profile?.accountDeactivated || "Account deactivated. You will be signed out.");
+            
+            // Show success message in the modal instead of an alert
+            setDeactivateSuccess(translations.profile?.accountDeactivated || "Account deactivated. You will be signed out.");
+            
+            // After a short delay, close the modal (user will be signed out by Firebase)
+            setTimeout(() => {
+                setShowDeactivateVerification(false);
+            }, 3000);
         } catch (err) {
             console.error("Deactivation error:", err);
             
@@ -178,6 +186,7 @@ export default function AccountSetting() {
         setShowDeactivateVerification(false);
         setCurrentPassword("");
         setDeactivateError("");
+        setDeactivateSuccess("");
     };
 
     return(
@@ -362,34 +371,42 @@ export default function AccountSetting() {
                         {deactivateError}
                         </div>
                     )}
-
-                    <form onSubmit={handleDeactivate}>
-                        <div className="form-group">
-                        <label htmlFor="deactivate-password" className="form-label">
-                            {translations.forms?.password || "Password"}
-                        </label>
-                        <input
-                            type="password"
-                            id="deactivate-password"
-                            className="form-input"
-                            value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                            required
-                        />
+                    
+                    {deactivateSuccess && (
+                        <div className="text-green-600 mb-4 text-sm text-center font-semibold">
+                            {deactivateSuccess}
                         </div>
+                    )}
 
-                        <div className="flex justify-end">
-                        <button
-                            type="submit"
-                            className="form-button bg-red-600 hover:bg-red-700"
-                            disabled={loading}
-                        >
-                            {loading
-                            ? (translations.forms?.deactivating || "Deactivating...")
-                            : (translations.forms?.confirmDeactivation || "Confirm Deactivation")}
-                        </button>
-                        </div>
-                    </form>
+                    {!deactivateSuccess && (
+                        <form onSubmit={handleDeactivate}>
+                            <div className="form-group">
+                                <label htmlFor="deactivate-password" className="form-label">
+                                    {translations.forms?.password || "Password"}
+                                </label>
+                                <input
+                                    type="password"
+                                    id="deactivate-password"
+                                    className="form-input"
+                                    value={currentPassword}
+                                    onChange={(e) => setCurrentPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+
+                            <div className="flex justify-end">
+                                <button
+                                    type="submit"
+                                    className="form-button bg-red-600 hover:bg-red-700"
+                                    disabled={loading}
+                                >
+                                    {loading
+                                    ? (translations.forms?.deactivating || "Deactivating...")
+                                    : (translations.forms?.confirmDeactivation || "Confirm Deactivation")}
+                                </button>
+                            </div>
+                        </form>
+                    )}
                     </div>
                 </div>
             )}
