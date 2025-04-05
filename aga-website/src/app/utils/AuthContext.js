@@ -35,10 +35,10 @@ export function AuthProvider({ children }) {
             return Promise.reject(new Error("Firebase auth is not initialized"));
         }
         
-        // Create the user with email and password
+        // create the user with email and password
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         
-        // Automatically create a basic profile in Firestore
+        // automatically create a basic profile in Firestore
         if (db && userCredential.user) {
             try {
                 const userDocRef = doc(db, "users", userCredential.user.uid);
@@ -248,6 +248,7 @@ export function AuthProvider({ children }) {
         updateUserProfile,
         uploadProfilePhoto,
         fetchUserProfile,
+        reauthenticate,
         loading
     };
 
