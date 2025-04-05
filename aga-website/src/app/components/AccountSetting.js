@@ -381,7 +381,7 @@ export default function AccountSetting() {
                         <div className="flex justify-end">
                         <button
                             type="submit"
-                            className="form-button bg-red-600 hover:bg-red-700"
+                            className="form-button bg-red-600"
                             disabled={loading}
                         >
                             {loading
