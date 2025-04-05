@@ -4,16 +4,15 @@ export default function Calendar() {
     const { todayData, yesterdayData, tomorrowData } = useCalender();
 
     return (
-        <div className="bg-gradient-to-r from-[#e56baa] to-[#ffd176] border-[#e56baa] border-2 flex flex-col items-center space-y-2 feature-element">
-            {/* Yesterday */}
+        <div className="bg-gradient-to-r from-[#e56baa] to-[#ffd176] border-[#e56baa] border-2 flex flex-col items-center space-y-2 feature-element no-margin">
+       
             <div className="text-[#91205a] drop-shadow-md">
                 <p className="text-center">
                     <span className="font-semibold">{yesterdayData.weekday} | </span> 
                     {yesterdayData.fullDate}
                 </p>
             </div>
-
-            {/* Today */}
+            
             <div className="text-[#ffffff] text-xl text-bg-shadow">
                 <p className="text-center font-bold">
                     <span>{todayData.weekday} | </span> 
@@ -21,7 +20,6 @@ export default function Calendar() {
                 </p>
             </div>
 
-            {/* Tomorrow */}
             <div className="text-[#91205a] drop-shadow-md">
                 <p className="text-center">
                     <span className="font-semibold">{tomorrowData.weekday} | </span> 

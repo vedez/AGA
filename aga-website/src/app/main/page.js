@@ -17,24 +17,28 @@ export default function Main() {
     usePageBackground('TERTIARY', 0.7);
 
     return (
-        <div className=" flex flex-col screen-size">
-            <main className="flex-grow">
+        <div className="flex flex-col screen-size">
+            <main className="flex-grow flex flex-col">
                 <div className="center">
                     <Logo />
                     <ShortNav />
                 </div>
 
-                <div className="flex flex-row gap-5 justify-between">
-                    <div className="flex flex-col gap-5">
-                        <Calendar />
-                        <Weather />
-                    </div>
-                    <div className="flex flex-col gap-5">
-                        <TaskSetter />
-                    </div>
-                    <div className="flex flex-col gap-5">
-                        <Mood />
-                        <FocusMode />
+                <div className="flex-grow flex mt-[10%] sm:mt-[5%] mb-[10%] sm:mb-[5%]">
+                    <div className="flex flex-col md:flex-row gap-5 justify-between px-4 w-full">
+                        <div className="flex flex-col gap-5 w-full md:w-1/4 items-end">
+                            <Calendar />
+                            <Weather />
+                        </div>
+
+                        <div className="flex flex-col gap-5 w-full md:w-1/3">
+                            <TaskSetter />
+                        </div>
+
+                        <div className="flex flex-col gap-5 w-full md:w-1/4 items-start">
+                            <Mood />
+                            <FocusMode />
+                        </div>
                     </div>
                 </div>
             </main>

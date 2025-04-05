@@ -60,7 +60,7 @@ export default function Weather() {
     );
 
     return (
-        <div className="bg-gradient-to-r from-[#6475bc] to-[#8698eb] border-[#6475bc] border-2 text-white feature-element flex flex-col items-center p-4">
+        <div className="bg-gradient-to-r from-[#6475bc] to-[#8698eb] border-[#6475bc] border-2 text-white feature-element flex flex-col items-center p-4 no-margin">
             <div className='center gap-x-8'>
                 
                 <div className='flex flex-col text-bg-shadow'>

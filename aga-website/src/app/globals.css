@@ -70,6 +70,10 @@
   padding: 0 !important;
 }
 
+.no-margin {
+  margin: 0 !important;
+}
+
 /* === FORM UTILITY CLASSES === */
 .form-container {
   @apply w-full space-y-6;
@@ -84,7 +88,7 @@
 }
 
 .form-input {
-  @apply w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#62cc5b];
+  @apply w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-[#62cc5b] text-sm;
 }
 
 .form-button {

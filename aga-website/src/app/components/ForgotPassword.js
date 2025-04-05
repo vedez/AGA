@@ -3,6 +3,7 @@
 import { useState } from "react";
 import useTranslation from "@/hooks/useTranslation";
 import { useAuth } from "@/app/utils/AuthContext";
+import { IoMdClose } from "react-icons/io";
 
 export default function ForgotPassword({ onClose, onSuccess }) {
     const { translations } = useTranslation();
@@ -46,7 +47,7 @@ export default function ForgotPassword({ onClose, onSuccess }) {
                         onClick={onClose}
                         className="text-gray-500 hover:text-gray-700"
                     >
-                        ✕
+                        <IoMdClose size={24} />
                     </button>
                 </div>
                 
