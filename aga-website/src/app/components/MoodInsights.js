@@ -4,12 +4,16 @@ import useTranslation from "@/hooks/useTranslation";
 import { useState } from "react";
 import { FaSadTear, FaMeh, FaAngry, FaSmileBeam } from "react-icons/fa";
 import {FaFaceGrinTongueSquint} from "react-icons/fa6"
+import { IoCloseCircleOutline } from "react-icons/io5";
 
-const moodEmojis = [<FaAngry  className="text-[#d43f2b]" size={30} />, 
-                    <FaSadTear className="text-[#bd3ed1]" size={30} />, 
-                    <FaMeh className="text-[#e98132]" size={30} />, 
-                    <FaSmileBeam   className="text-[#f1b234]" size={30} />, 
-                    <FaFaceGrinTongueSquint  className="text-[#369b29]" size={30} />];
+// define emoji components with both regular and enlarged sizes
+const moodEmojis = [
+    { icon: (isSelected) => <FaAngry className="text-[#d43f2b] transition-all duration-200" size={isSelected ? 42 : 30} />, value: 1 },
+    { icon: (isSelected) => <FaSadTear className="text-[#bd3ed1] transition-all duration-200" size={isSelected ? 42 : 30} />, value: 2 },
+    { icon: (isSelected) => <FaMeh className="text-[#e98132] transition-all duration-200" size={isSelected ? 42 : 30} />, value: 3 },
+    { icon: (isSelected) => <FaSmileBeam className="text-[#f1b234] transition-all duration-200" size={isSelected ? 42 : 30} />, value: 4 },
+    { icon: (isSelected) => <FaFaceGrinTongueSquint className="text-[#369b29] transition-all duration-200" size={isSelected ? 42 : 30} />, value: 5 }
+];
 
 export default function MoodPromptModal() {
     const [showModal, setShowModal] = useState(false);
@@ -52,6 +56,16 @@ export default function MoodPromptModal() {
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white rounded-xl p-6 max-w-sm text-center shadow-lg w-[90%]">
+                <div className="flex justify-end mb-2">
+                    <button 
+                        onClick={() => setShowModal(false)}
+                        className="text-gray-500 hover:text-gray-700"
+                        aria-label="Close modal"
+                    >
+                        <IoCloseCircleOutline size={24} />
+                    </button>
+                </div>
+                
                 {!submitted ? (
                     <>
                         <h2 className="text-xl font-semibold mb-3">{translations.mood?.question || "How are you feeling Today?"}</h2>
@@ -59,9 +73,11 @@ export default function MoodPromptModal() {
                             {translations.mood?.slider || "Find what mood best describes you."}
                         </p>
 
-                        <div className="flex justify-between text-2xl px-2 mb-4">
+                        <div className="flex justify-between text-2xl px-2 mb-4 items-end h-[50px]">
                             {moodEmojis.map((emoji, index) => (
-                                <span key={index}>{emoji}</span>
+                                <span key={index} className="transition-transform duration-200 flex items-end">
+                                    {emoji.icon(emoji.value === moodValue)}
+                                </span>
                             ))}
                         </div>
 
@@ -71,10 +87,10 @@ export default function MoodPromptModal() {
                             max="5"
                             value={moodValue}
                             onChange={(e) => setMoodValue(parseInt(e.target.value))}
-                            className="w-full mb-4"
+                            className="w-full mb-4 mood-range-slider"
                         />
 
-                        <button onClick={handleSubmit} className="third-button">
+                        <button onClick={handleSubmit} className="third-button w-full">
                             {translations.forms?.submit || "Submit"}
                         </button>
                     </>

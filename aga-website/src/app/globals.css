@@ -169,3 +169,41 @@ body {
 .task-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #5480cf;
 }
+
+/* Mood Range Slider Styling */
+.mood-range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 15px;
+  border-radius: 10px;
+  background: linear-gradient(to right, #d43f2b, #bd3ed1, #e98132, #f1b234, #369b29);
+  outline: none;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.mood-range-slider:hover {
+  opacity: 1;
+}
+
+.mood-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #86e69e;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.mood-range-slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #86e69e;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
