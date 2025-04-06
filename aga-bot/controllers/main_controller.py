@@ -6,71 +6,99 @@ import time
 from widgets.idle_animation_widget import IdleAnimationWidget
 from widgets.clock_widget import ClockWidget
 from widgets.main_menu_widget import MainMenuWidget
+from widgets.focus_page_widget import FocusPageWidget
+from widgets.data_page_widget import DataPageWidget
 
 class MainController(BoxLayout):
     """Controller that manages application flow and state."""
+    
+    # idle timeout in seconds
+    IDLE_TIMEOUT = 5
+    # clock display timeout in seconds
+    CLOCK_TIMEOUT = 5
 
     def __init__(self, **kwargs):
         super(MainController, self).__init__(**kwargs)
         self.orientation = 'vertical'
         
-        # Initialize attributes
+        # initialize attributes
         self.temp_display_timer = None
         self.last_activity_time = time.time()
+        self.current_widget = None
         
-        # create widgets as instances
-        self.idle_widget = IdleAnimationWidget()
-        self.clock_widget = ClockWidget()
-        self.main_menu_widget = MainMenuWidget()
+        # create widget instances
+        self._create_widgets()
         
         # start with idle animation
-        self.current_widget = None
         self.show_idle_animation()
         
         # schedule idle check
         Clock.schedule_interval(self.check_idle_state, 1)
         
         # bind touch events to the window
-        # this is to detect user interaction and prevent the app from entering idle state
         Window.bind(on_touch_down=self.on_activity)
+    
+    def _create_widgets(self):
+        """Create all widget instances."""
+
+        self.idle_widget = IdleAnimationWidget(controller=self)
+        self.clock_widget = ClockWidget(controller=self)
+        self.main_menu_widget = MainMenuWidget(controller=self)
+        self.focus_page_widget = FocusPageWidget(controller=self)
+        self.data_page_widget = DataPageWidget(controller=self)
+    
+    def _switch_to_widget(self, widget, timeout=None, timeout_callback=None):
+        """Generic method to switch to a widget with optional timeout.
+        
+        Args:
+            widget: The widget to switch to
+            timeout: Optional timeout in seconds
+            timeout_callback: Function to call when timeout occurs
+        """
+        # cancel any pending timers
+        self._cancel_temp_display_timer()
+        
+        if self.current_widget != widget:
+            self.clear_widgets()
+            self.add_widget(widget)
+            self.current_widget = widget
+            
+            # set timeout if specified
+            if timeout and timeout_callback:
+                self.temp_display_timer = Clock.schedule_once(
+                    lambda dt: timeout_callback(), timeout)
+            
+            # update activity time
+            self.last_activity_time = time.time()
     
     def show_idle_animation(self):
         """Switch to the idle animation display."""
 
-        # cancel any pending timers
-        self._cancel_temp_display_timer()
-        
-        if self.current_widget != self.idle_widget:
-            self.clear_widgets()
-            self.add_widget(self.idle_widget)
-            self.current_widget = self.idle_widget
+        self._switch_to_widget(self.idle_widget)
     
     def show_clock(self):
         """Switch to the clock display for 5 seconds."""
-        # Cancel any pending timers
-        self._cancel_temp_display_timer()
-        
-        if self.current_widget != self.clock_widget:
-            self.clear_widgets()
-            self.add_widget(self.clock_widget)
-            self.current_widget = self.clock_widget
-            
-            # Schedule return to idle after 5 seconds
-            self.temp_display_timer = Clock.schedule_once(
-                lambda dt: self.show_idle_animation(), 5)
+
+        self._switch_to_widget(
+            self.clock_widget, 
+            timeout=self.CLOCK_TIMEOUT, 
+            timeout_callback=self.show_idle_animation
+        )
     
     def show_main_menu(self):
         """Switch to the main menu display."""
-        # Cancel any pending timers
-        self._cancel_temp_display_timer()
-        
-        if self.current_widget != self.main_menu_widget:
-            self.clear_widgets()
-            self.add_widget(self.main_menu_widget)
-            self.current_widget = self.main_menu_widget
-            
-            # Start tracking time to return to idle
-            self.last_activity_time = time.time()
+
+        self._switch_to_widget(self.main_menu_widget)
+    
+    def show_focus_page(self):
+        """Switch to the focus page."""
+
+        self._switch_to_widget(self.focus_page_widget)
+    
+    def show_data_page(self):
+        """Switch to the data page."""
+
+        self._switch_to_widget(self.data_page_widget)
     
     def _cancel_temp_display_timer(self):
         """Cancel any pending temp display timer."""
@@ -89,25 +117,24 @@ class MainController(BoxLayout):
         if self.current_widget == self.idle_widget:
             # if clicking on idle animation, show clock
             self.show_clock()
-        elif self.current_widget == self.clock_widget:
-            # if clicking on clock, show main menu
-            self.show_main_menu()
-        elif self.current_widget == self.main_menu_widget:
-            # if clicking on main menu, just update the activity time
-            # but don't change the widget
-            pass
-            
-        # allow the event to propagate
+            return True
+        
+        # for other screens, let the screen handle the touch
         return False
     
     def check_idle_state(self, dt):
         """Check if app should return to idle state."""
 
-        idle_timeout = 5  # 5 seconds idle timeout
         current_time = time.time()
-        idle_time = current_time - self.last_activity_time # calculate idle time
+        idle_time = current_time - self.last_activity_time
         
-        # only check for main menu, as clock has its own timer
-        if (idle_time > idle_timeout and 
-            self.current_widget == self.main_menu_widget):
+        # return to idle from any screen except clock (which has its own timer)
+        # and idle (which is already idle)
+        should_return_to_idle = (
+            idle_time > self.IDLE_TIMEOUT and 
+            self.current_widget != self.idle_widget and
+            self.current_widget != self.clock_widget
+        )
+        
+        if should_return_to_idle:
             self.show_idle_animation() 
