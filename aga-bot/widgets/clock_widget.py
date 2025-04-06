@@ -1,14 +1,13 @@
-from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.label import Label
 from kivy.clock import Clock
 from datetime import datetime
+from widgets.base_widget import BaseWidget
 
-class ClockWidget(FloatLayout):
+class ClockWidget(BaseWidget):
     """Widget that displays the clock."""
 
-    def __init__(self, **kwargs):
-        super(ClockWidget, self).__init__(**kwargs)
-        self.padding = 20
+    def __init__(self, controller=None, **kwargs):
+        super(ClockWidget, self).__init__(controller=controller, **kwargs)
         
         # create time display
         self.time_label = Label(
@@ -25,7 +24,7 @@ class ClockWidget(FloatLayout):
         # create date display
         self.date_label = Label(
             text=self.get_current_date(),
-            font_size=28,
+            font_size=36,
             size_hint=(1, 0.2),
             pos_hint={'center_x': 0.5, 'center_y': 0.35},
             halign='center',
@@ -38,14 +37,16 @@ class ClockWidget(FloatLayout):
         self.add_widget(self.date_label)
         
         # schedule updates
-        Clock.schedule_interval(self.update_clock, 1)
+        Clock.schedule_interval(self.update, 1)
     
     def get_current_time(self):
         """Get the current time in HH:MM format."""
+
         return datetime.now().strftime('%H:%M')
     
     def get_current_date(self):
         """Get the current date in the format: Mon, 25th Jun 25."""
+
         now = datetime.now()
         
         # get day suffix (st, nd, rd, th)
@@ -58,7 +59,16 @@ class ClockWidget(FloatLayout):
         # format the date
         return now.strftime(f'%a, {day}{suffix} %b %y')
     
-    def update_clock(self, dt):
+    def update(self, dt=None):
         """Update the clock and date display."""
+
         self.time_label.text = self.get_current_time()
-        self.date_label.text = self.get_current_date() 
+        self.date_label.text = self.get_current_date()
+        
+    def on_widget_touch(self, touch):
+        """Handle touch events to navigate to main menu."""
+        
+        if self.controller:
+            self.controller.show_main_menu()
+            return True
+        return False 
