@@ -28,7 +28,7 @@ export default function Main() {
 
                     <div className="flex-grow flex mt-[10%] sm:mt-[5%] mb-[10%] sm:mb-[5%]">
                         <div className="flex flex-col lg:flex-row gap-5 justify-center px-4 w-full center">
-                            <div className="flex flex-col gap-5 w-full md:w-1/4 m:items-end center min-w-72">
+                            <div className="flex flex-col gap-5 w-full md:w-1/4 md:items-end horizontal-flex min-w-72">
                                 <Calendar />
                                 <Weather />
                             </div>

@@ -6,11 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:firebase": "npm run build && xcopy .next functions\\.next /E /I /Y && xcopy package.json functions\\ /Y"
   },
   "dependencies": {
     "date-fns": "^4.1.0",
-    "firebase": "^11.4.0",
+    "firebase": "^11.6.0",
+    "firebase-functions": "^6.3.2",
     "next": "15.1.7",
     "openai": "^4.87.3",
     "react": "^19.0.0",
