@@ -11,7 +11,7 @@ class IdleAnimationWidget(BoxLayout):
         
         # create idle animation (GIF)
         self.idle_image = Image(
-            source='assets/expressions/menu-animated.gif',
+            source='assets/expressions/happy.gif',
             size_hint=(1, 0.8),
             allow_stretch=True,
             anim_delay=2.5,  # controls animation speed
