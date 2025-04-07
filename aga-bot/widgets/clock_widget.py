@@ -12,7 +12,7 @@ class ClockWidget(BaseWidget):
         # create time display
         self.time_label = Label(
             text = self.get_current_time(),
-            font_size = 100,
+            font_size = 150,
             bold = True,
             size_hint=(1, 0.6),
             pos_hint={'center_x': 0.5, 'center_y': 0.6}, 
@@ -24,7 +24,7 @@ class ClockWidget(BaseWidget):
         # create date display
         self.date_label = Label(
             text=self.get_current_date(),
-            font_size=36,
+            font_size=40,
             size_hint=(1, 0.2),
 
             pos_hint={'center_x': 0.5, 'center_y': 0.35},
