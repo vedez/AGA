@@ -3,7 +3,7 @@ from widgets.base_widget import BaseWidget
 from widgets.menu_button import MenuButton
 
 class MainMenuWidget(BaseWidget):
-    """Widget that displays the main menu grid."""
+    """displays the main menu grid"""
     
     def __init__(self, controller=None, **kwargs):
         super(MainMenuWidget, self).__init__(controller=controller, **kwargs)
@@ -27,13 +27,13 @@ class MainMenuWidget(BaseWidget):
         
         self.data_button = MenuButton(
             icon_source='assets/icons/data.png',
-            text='Data',
+            text='Activity',
             on_press=self._on_data_press
         )
         
         self.wip_button = MenuButton(
-            icon_source='assets/icons/home.png',
-            text='Work In Progress',
+            icon_source='assets/icons/empty.png',
+            text='',
             disabled=True
         )
         
@@ -43,20 +43,15 @@ class MainMenuWidget(BaseWidget):
         self.grid.add_widget(self.data_button)
         self.grid.add_widget(self.wip_button)
     
+    # handle button press for each
     def _on_focus_press(self):
-        """Handle Focus button press."""
-
         if self.controller:
             self.controller.show_focus_page()
     
     def _on_home_press(self):
-        """Handle Home button press."""
-
         if self.controller:
             self.controller.show_clock()
     
     def _on_data_press(self):
-        """Handle Data button press."""
-        
         if self.controller:
             self.controller.show_data_page() 

@@ -4,107 +4,106 @@ from kivy.clock import Clock
 import random
 
 class IdleAnimationWidget(BaseWidget):
-    """Widget that displays the idle animation with different moods."""
-    
-    # animation states
-    MOODS = ['happy', 'bored', 'curious']
-    
-    def __init__(self, controller=None, **kwargs):
+    """Widget: Displays neutral face, blinking and moods."""
+
+    # mood types (assets)
+    MOODS = ['happy', 'bored', 'curious', 'annoyed', 'attitude', 'excited', 'giggly']
+
+    def __init__(self, controller = None, **kwargs):
         super(IdleAnimationWidget, self).__init__(controller=controller, **kwargs)
-        
-        # track state
-        self.current_mood = self._get_random_mood()
-        self.previous_mood = None  # Track previous mood to avoid repeating
-        self.history_moods = []    # Keep a history of recent moods
+
+        self.current_state = 'neutral'  # default
+        self.previous_mood = None
         self.is_blinking = False
-        
-        # create idle animation (GIF)
+        self.is_showing_mood = False
+        self.pending_blink = False  # priorities mood over blink
+
+        # image setup
         self.idle_image = Image(
-            source=self._get_animation_path(self.current_mood),
-            size_hint=(1, 1),
-            pos_hint={'center_x': 0.5, 'center_y': 0.5},
-            allow_stretch=True,
-            keep_ratio=True,
-            anim_delay=2.5,
-            anim_loop=0
+            source=self._get_animation_path('neutral'),
+            size_hint = (1, 1),
+            pos_hint = {'center_x': 0.5, 'center_y': 0.5},
+            allow_stretch = True,
+            keep_ratio = True,
+            anim_delay = -1,  # Neutral is static
+            anim_loop = 0
         )
-        
-        # Add first mood to history
-        self.history_moods.append(self.current_mood)
-        
         self.add_widget(self.idle_image)
-        
-        # schedule animation changes
-        Clock.schedule_interval(self._check_blink, 30)
-        Clock.schedule_interval(self._change_mood, 120)
-    
+
+        # blink and mood time changes
+        Clock.schedule_interval(self._trigger_blink, 8)   # blink every 8s
+        Clock.schedule_interval(self._trigger_mood, 29)   # mood change every 22s
+
+    # random mood picker
     def _get_random_mood(self):
-        """Get a random mood different from the current and previous ones."""
+        moods = [m for m in self.MOODS if m != self.previous_mood]
+        return random.choice(moods) if moods else random.choice(self.MOODS)
+
+    def _get_animation_path(self, state_name):
+        return f'assets/expressions/{state_name}.gif' # retrieve path of mood
+
+    # trigger mood, no overlaps and return neutral after 3 seconds
+    def _trigger_mood(self, dt):
+        if self.is_blinking or self.is_showing_mood:
+            return
+
+        new_mood = self._get_random_mood()
+        self.previous_mood = new_mood
+        self.is_showing_mood = True
+        self.current_state = 'mood'
+
+        self._update_animation(new_mood)
+        Clock.schedule_once(self._return_to_neutral, 3) # length of mood display
+
+    def _trigger_blink(self, dt):
+        if self.is_showing_mood:
+            self.pending_blink = True  # delay blink until mood is finished
+            return
         
-        # First-time case
-        if not self.history_moods:
-            return random.choice(self.MOODS)
-        
-        # Get moods to avoid (current and previous)
-        moods_to_avoid = self.history_moods[-2:] if len(self.history_moods) >= 2 else self.history_moods
-        
-        # Filter available moods
-        available_moods = [mood for mood in self.MOODS if mood not in moods_to_avoid]
-        
-        # If we somehow have no options (could happen with just 2 moods total)
-        if not available_moods and len(self.MOODS) > 0:
-            # At least avoid repeating the current mood
-            available_moods = [mood for mood in self.MOODS if mood != self.current_mood]
-            
-        # If still nothing available, just choose any mood
-        if not available_moods:
-            return random.choice(self.MOODS)
-            
-        return random.choice(available_moods)
-    
-    def _get_animation_path(self, mood):
-        """Get the file path for the specified mood."""
-        return f'assets/expressions/{mood}.gif'
-    
-    def _change_mood(self, dt):
-        """Change to a different random mood."""
-        if not self.is_blinking:
-            # Get new mood avoiding current and previous
-            new_mood = self._get_random_mood()
-            
-            # Update mood tracking
-            self.previous_mood = self.current_mood
-            self.current_mood = new_mood
-            
-            # Add to history (keep only last 3)
-            self.history_moods.append(new_mood)
-            if len(self.history_moods) > 3:
-                self.history_moods.pop(0)
-            
-            # Update animation
-            self.idle_image.source = self._get_animation_path(self.current_mood)
-    
-    def _check_blink(self, dt):
-        """Temporarily switch to blinking animation."""
-        if not self.is_blinking:
-            # save current mood and switch to blink
-            self.blink_previous_mood = self.current_mood  # Separate from history tracking
-            self.is_blinking = True
-            self.idle_image.source = 'assets/expressions/blink.gif'
-            
-            # schedule return to previous mood after 3 seconds
-            Clock.schedule_once(self._stop_blinking, 3)
-    
-    def _stop_blinking(self, dt):
-        """Return to previous mood after blinking."""
+        if self.is_blinking:
+            return
+
+        self.is_blinking = True
+        self.current_state = 'blink'
+        self._update_animation('blink')
+        Clock.schedule_once(self._return_to_neutral, 0.5)  # quick blink
+
+    def _return_to_neutral(self, dt):
+        self.current_state = 'neutral'
         self.is_blinking = False
-        if hasattr(self, 'blink_previous_mood') and self.blink_previous_mood:
-            self.current_mood = self.blink_previous_mood
-            self.idle_image.source = self._get_animation_path(self.current_mood)
-        
+        self.is_showing_mood = False
+        self._update_animation('neutral')
+
+        # if blink was queued during mood, trigger it now
+        if self.pending_blink:
+            self.pending_blink = False
+            Clock.schedule_once(self._trigger_blink, 0.1)
+
+    def _update_animation(self, state_name):
+        """Force reload of the animation with delay"""
+        path = self._get_animation_path(state_name)
+
+        if state_name == 'blink':
+            self.idle_image.anim_delay = 0.05
+            self.idle_image.anim_loop = 1
+
+        elif state_name in self.MOODS:
+            self.idle_image.anim_delay = 1
+            self.idle_image.anim_loop = 1
+
+        else:  # neutral
+            self.idle_image.anim_delay = -1
+            self.idle_image.anim_loop = 0
+
+        # force reload of GIF
+        self.idle_image.source = ''
+        self.idle_image.texture = None
+        self.idle_image.source = path
+
+    # show clock on touch
     def on_widget_touch(self, touch):
-        """Handle touch events to navigate to clock."""
         if self.controller:
             self.controller.show_clock()
             return True
-        return False 
+        
+        return False
