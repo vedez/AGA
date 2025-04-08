@@ -12,7 +12,7 @@ class TimerWidget(BaseWidget):
 
         self.timer_label = Label(
             text=self.format_time(self.elapsed_seconds),
-            font_size=150,
+            font_size=70,
             bold=True,
             size_hint=(1, 1),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},

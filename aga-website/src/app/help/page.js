@@ -18,15 +18,15 @@ export default function Help() {
                 <ShortNav />
             </div>
 
-            <div className="flex sm:flex-row flex-col gap-5 justify-center sm:p-10 py-5 center">
-                <div className="flex flex-col gap-5 hide sm:flex w-auto sm:w-[33%] items-end">
+            <div className="flex sm:flex-row flex-col gap-5 justify-center md:p-10 py-5 center">
+                <div className="flex flex-col hide sm:flex w-auto sm:w-[20%] md:w-[20%] lg:w-[33%] items-end">
                     <Adverts />
                 </div>
-                <div className="flex flex-col gap-5 w-full sm:w-[33%]">
+                <div className="flex flex-col w-full sm:w-[60%] md:w-[60%] lg:w-[33%]">
                     <ContactForm />
                 </div>
                 
-                <div className="flex flex-col gap-5 w-auto sm:w-[33%] items-start">
+                <div className="flex flex-col w-auto sm:w-[20%] md:w-[20%] lg:w-[33%] items-start">
                     <Adverts />
                 </div>
             </div>

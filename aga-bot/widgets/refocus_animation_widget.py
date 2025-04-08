@@ -24,7 +24,7 @@ class RefocusPageWidget(PageWidget):
         self.refocus_image = Image(
             source='assets/icons/refocus.png',
             size_hint=(None, None),
-            size=(250, 250),
+            size=(200, 200),
             pos_hint={'center_x': 0.5, 'center_y': 0.60}
         )
 

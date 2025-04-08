@@ -13,7 +13,7 @@ export default function ToolInfo() {
             <h1 className="text-center text-xl font-bold mb-5" id="#tool-information">{translations.components?.toolInfo || "Tool Information"}</h1>
 
             <div className="flex flex-col gap-5 w-full sm:w-[70%] mx-auto">
-                <div className="rounded-lg bg-gradient-to-r from-[#5074b5] to-[#47c8b5] text-white p-4 sm:px-6 sm:mx-40">
+                <div className="rounded-lg bg-gradient-to-r from-[#5074b5] to-[#47c8b5] text-white p-4 sm:px-6 lg:mx-40">
                     <div className="horizontal-flex gap-2 w-full">
                         <FaTasks className="text-3xl" />
                         
@@ -30,7 +30,7 @@ export default function ToolInfo() {
                     </div>
                 </div>
 
-                <div className="rounded-lg bg-gradient-to-r from-[#db9457] to-[#ea6e50] text-white p-4 sm:px-6 sm:mx-40">
+                <div className="rounded-lg bg-gradient-to-r from-[#db9457] to-[#ea6e50] text-white p-4 sm:px-6 lg:mx-40">
                     <div className="horizontal-flex gap-2 w-full">
                         <MdCamera className="text-3xl" />
                         
@@ -46,7 +46,7 @@ export default function ToolInfo() {
                     </div>
                 </div>
 
-                <div className="rounded-lg bg-gradient-to-r from-[#5cb550] to-[#58c797] text-white p-4 sm:px-6 sm:mx-40">
+                <div className="rounded-lg bg-gradient-to-r from-[#5cb550] to-[#58c797] text-white p-4 sm:px-6 lg:mx-40">
                     <div className="horizontal-flex gap-2 w-full">
                         <TiWeatherSunny className="text-3xl" />
                         
@@ -62,7 +62,7 @@ export default function ToolInfo() {
                     </div>
                 </div>
 
-                <div className="rounded-lg bg-gradient-to-r from-[#b04cad] to-[#674ee2] text-white p-4 sm:px-6 sm:mx-40">
+                <div className="rounded-lg bg-gradient-to-r from-[#b04cad] to-[#674ee2] text-white p-4 sm:px-6 lg:mx-40">
                     <div className="horizontal-flex gap-2 w-full">
                         <TbMoodHeart className="text-3xl" />
                         

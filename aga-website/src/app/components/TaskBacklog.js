@@ -122,6 +122,16 @@ export default function TaskBacklog() {
         }
     };
 
+    // task display logic to show 'Reschedule' for past tasks
+    const isPastTask = (taskDate) => new Date(taskDate) < new Date(today);
+
+    // sort tasks to have past tasks at the top
+    const sortedTasks = tasks.sort((a, b) => {
+        if (isPastTask(a.date) && !isPastTask(b.date)) return -1;
+        if (!isPastTask(a.date) && isPastTask(b.date)) return 1;
+        return 0;
+    });
+
     return (
         <div className="space-y-4 w-full sm:w-1/2 mx-auto px-4">
             <div className="border-2 border-[#6590df] rounded-lg overflow-hidden shadow-md">
@@ -143,15 +153,15 @@ export default function TaskBacklog() {
                     </div>
                 ) : (
                     <div className="max-h-[360px] overflow-y-auto task-scrollbar">
-                        {tasks.map(task => (
+                        {sortedTasks.map(task => (
                             <div 
                                 key={task.id} 
-                                className="p-4 border-b last:border-b-0 flex justify-between items-center bg-white"
+                                className={`p-4 border-b last:border-b-0 flex justify-between items-center ${isPastTask(task.date) ? 'bg-gray-200 text-gray-500' : 'bg-white'}`}
                             >
                                 <div className="flex-1">
                                     <div className="text-gray-800 font-medium">{task.text}</div>
                                     <div className="text-xs text-gray-700 italic">
-                                        {translations.components?.taskPriority || "Priority"}: {task.priority} 
+                                        {isPastTask(task.date) ? 'Reschedule?' : `${translations.components?.taskPriority || "Priority"}: ${task.priority}`}
                                         {task.priority === 1 ? ' (Highest)' : 
                                         task.priority === 5 ? ' (Lowest)' : ''} 
                                         <span className="mx-2">•</span> 
