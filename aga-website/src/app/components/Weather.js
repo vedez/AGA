@@ -4,7 +4,7 @@ import { BiLoader } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 
 export default function Weather() {
-    const { translations } = useTranslation();
+    const { translations, language } = useTranslation();
     const [weatherData, setWeatherData] = useState(null);
     const [suggestion, setSuggestion] = useState('');
     const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ export default function Weather() {
 
                 try {
                     const response = await fetch(
-                        `/api/weather?lat=${latitude}&lon=${longitude}`
+                        `/api/weather?lat=${latitude}&lon=${longitude}&language=${language}`
                     );
 
                     if (!response.ok) {
@@ -25,10 +25,6 @@ export default function Weather() {
                     }
 
                     const data = await response.json();
-                    setWeatherData(data.weatherData);
-                    if (data.suggestion) {
-                        setSuggestion(data.suggestion);
-                    }
                     setWeatherData(data.weatherData);
                     if (data.suggestion) {
                         setSuggestion(data.suggestion);
@@ -44,7 +40,7 @@ export default function Weather() {
                 setLoading(false);
             }
         );
-    }, []); 
+    }, [language]); 
 
     if (loading) return (
         <div className="bg-gradient-to-r from-[#6475bc] to-[#8698eb] border-[#6475bc] border-2 text-white text-l font-bold feature-element grid place-items-center h-full"><BiLoader className="animate-spin text-3xl" /></div>
@@ -87,7 +83,7 @@ export default function Weather() {
 
             {suggestion && (
                 <div className='bg-[#f4f1ff] text-[#303037] text-center feature-element'>
-                    <p>{translations.weather.suggestionPrefix}{suggestion}{translations.weather.suggestionPrefix}</p>
+                    <p>"{suggestion}"</p>
                 </div>
             )}             
         </div>

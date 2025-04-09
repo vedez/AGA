@@ -4,5 +4,6 @@ aga-website/cors.json
 aga-website/storage.rules
 
 .venv/
+.venv310/
 
 __pycache__/

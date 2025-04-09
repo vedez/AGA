@@ -37,6 +37,10 @@ class TimerWidget(BaseWidget):
             self._event.cancel()
             self._event = None
 
+    def is_running(self):
+        """check if the timer is currently running"""
+        return self._event is not None
+
     def reset(self):
         self.stop()
         self.elapsed_seconds = 0
