@@ -43,6 +43,9 @@ from components import (
 AUTO_RETURN_FROM_REFOCUS = True  # automatically return from refocus when user looks back
 
 class FocusPageWidget(PageWidget):
+    # bonus animations
+    BONUS_ANIMATIONS = ['bonus_wink', 'bonus_hum', 'bonus_love']
+    
     def __init__(self, controller=None, **kwargs):
         super(FocusPageWidget, self).__init__(
             controller=controller,
@@ -57,6 +60,13 @@ class FocusPageWidget(PageWidget):
         self.update_event = None
         self.is_looking = False
         self.is_paused = False
+        
+        # double tap detection
+        self.last_touch_time = 0
+        self.double_tap_threshold = 0.3  # seconds between taps to count as double tap
+        self.playing_bonus_animation = False
+        self._pending_tap_event = None
+        self._last_touch_pos = (0, 0)
         
         # create UI elements
         self._setup_ui_elements()
@@ -122,7 +132,7 @@ class FocusPageWidget(PageWidget):
         )
         self.add_widget(self.exit_icon)
         
-        # Regular break UI
+        # regular break UI
         self.break_overlay = Label(
             text="",
             font_size=40,
@@ -143,7 +153,7 @@ class FocusPageWidget(PageWidget):
         )
         self.add_widget(self.break_time_label)
         
-        # Break prompt UI
+        # break prompt UI
         self.break_prompt_overlay = Label(
             text="",
             font_size=40,
@@ -155,7 +165,7 @@ class FocusPageWidget(PageWidget):
         )
         self.add_widget(self.break_prompt_overlay)
         
-        # Time marker icon next to duration text
+        # time marker icon next to duration text
         self.time_marker_icon = Image(
             source='assets/icons/time_marker.png',
             size_hint=(0.1, 0.1),
@@ -177,7 +187,7 @@ class FocusPageWidget(PageWidget):
         )
         self.add_widget(self.break_prompt_message)
         
-        # Break duration label (hidden, kept for compatibility)
+        # break duration label (hidden, kept for compatibility)
         self.break_prompt_duration = Label(
             text="",
             font_size=50,
@@ -189,7 +199,7 @@ class FocusPageWidget(PageWidget):
         )
         self.add_widget(self.break_prompt_duration)
         
-        # Break duration icon (five.png, ten.png, fifteen.png)
+        # break duration icon (five.png, ten.png, fifteen.png)
         self.break_prompt_duration_icon = Image(
             source='assets/icons/five.png',
             size_hint=(0.3, 0.3),
@@ -200,7 +210,7 @@ class FocusPageWidget(PageWidget):
         )
         self.add_widget(self.break_prompt_duration_icon)
         
-        # Icons for break prompt and break over
+        # icons for break prompt and break over
         self.break_icon = Image(
             source='assets/icons/break.png',
             size_hint=(0.2, 0.2),
@@ -241,7 +251,7 @@ class FocusPageWidget(PageWidget):
             if self.controller and self.controller.current_widget == self.controller.focus_page_widget:
                 status_text, should_refocus = self.distraction_tracker.update(user_looking, eyes_detected, current_time)
                 
-                # Only trigger refocus if not in a break
+                # only trigger refocus if not in a break
                 if should_refocus and self.controller and not (self.break_manager.in_break_mode or self.break_manager.in_break_prompt):
                     self.controller.show_refocus_page()
             
@@ -277,42 +287,86 @@ class FocusPageWidget(PageWidget):
         self.video_capture.release()
 
     def on_widget_touch(self, touch):
-        # Handle break over screen
+        # handle double-tap first
+        current_time = Clock.get_time()
+        time_diff = current_time - self.last_touch_time
+        
+        if time_diff < self.double_tap_threshold:
+            # this is a double tap - cancel any pending single tap action
+            if hasattr(self, '_pending_tap_event') and self._pending_tap_event:
+                self._pending_tap_event.cancel()
+                self._pending_tap_event = None
+                
+            # play bonus animation
+            self._play_bonus_animation()
+            self.last_touch_time = 0  # reset time to prevent triple tap detection
+            return True
+            
+        # record this touch time for potential double tap
+        self.last_touch_time = current_time
+        
+        # store touch position for delayed handling
+        self._last_touch_pos = touch.pos
+        
+        # schedule single tap action with delay to allow for double tap detection
+        if hasattr(self, '_pending_tap_event') and self._pending_tap_event:
+            self._pending_tap_event.cancel()
+            
+        # schedule the single tap action with a delay matching the double tap threshold
+        self._pending_tap_event = Clock.schedule_once(
+            lambda dt: self._handle_single_tap(self._last_touch_pos), 
+            self.double_tap_threshold
+        )
+        
+        return True
+        
+    def _handle_single_tap(self, pos):
+        # only execute this if not canceled by a double tap
+        # handle regular touch behaviors
+        
+        # create a touch-like object with the stored position
+        class TouchLike:
+            def __init__(self, pos):
+                self.pos = pos
+                
+        touch = TouchLike(pos)
+        
+        # handle break over screen
         if self.break_manager.in_break_mode and self.break_icon.opacity > 0:
-            # Left icon (work) - go back to work
+            # left icon (work) - go back to work
             if self.break_icon.collide_point(*touch.pos):
                 self.break_manager.end_break()
-                # Resume focus time tracking
+                # resume focus time tracking
                 self.focus_time_tracker.start_focus_session()
                 return True
                 
-            # Right icon (exit) - end focus session
+            # right icon (exit) - end focus session
             if self.work_icon.collide_point(*touch.pos) and self.work_icon.opacity > 0:
                 if self.controller:
-                    # End focus time tracking first
+                    # end focus time tracking first
                     self.focus_time_tracker.end_focus_session()
                     self.controller.show_main_menu()
                 return True
                 
             return True
             
-        # Handle break prompt screen
+        # handle break prompt screen
         if self.break_manager.in_break_prompt:
-            # Left icon (break) - start break
+            # left icon (break) - start break
             if self.break_icon.collide_point(*touch.pos):
-                # Pause focus time tracking during break
+                # pause focus time tracking during break
                 self.focus_time_tracker.end_focus_session()
                 self.break_manager.start_break()
                 return True
                 
-            # Right icon (work) - skip break (if allowed)
+            # right icon (work) - skip break (if allowed)
             if self.work_icon.collide_point(*touch.pos) and self.work_icon.opacity > 0:
                 self.break_manager.skip_break()
                 return True
                 
             return True
             
-        # Regular pause icon
+        # regular pause icon
         if self.pause_icon.opacity > 0 and self.pause_icon.collide_point(*touch.pos):
             focus_duration = time.time() - self.break_manager.focus_start_time
             
@@ -330,7 +384,7 @@ class FocusPageWidget(PageWidget):
                 self.pause_icon.opacity = 1
                 self.exit_icon.opacity = 1
                 self.pause_icon.source = 'assets/icons/play.png'
-                # Pause focus time tracking
+                # pause focus time tracking
                 self.focus_time_tracker.end_focus_session()
             else:
                 self.timer.start()
@@ -339,19 +393,19 @@ class FocusPageWidget(PageWidget):
                 self.pause_icon.source = 'assets/icons/pause.png'
                 self.ui_manager.timer_visible = True
                 self.ui_manager.toggle_timer_visibility()
-                # Resume focus time tracking
+                # resume focus time tracking
                 self.focus_time_tracker.start_focus_session()
             return True
         
-        # Regular exit icon
+        # regular exit icon
         if self.exit_icon.opacity > 0 and self.exit_icon.collide_point(*touch.pos):
             if self.controller:
-                # End focus time tracking
+                # end focus time tracking
                 self.focus_time_tracker.end_focus_session()
                 self.controller.show_main_menu()
             return True
             
-        # Left side of screen
+        # left side of screen
         if touch.pos[0] < self.width / 2:
             if self.pause_icon.opacity == 0:
                 self.ui_manager.timer_visible = False
@@ -382,16 +436,20 @@ class FocusPageWidget(PageWidget):
                 self.ui_manager.timer_visible = True
                 self.ui_manager.toggle_timer_visibility()
         else:
-            # Right side of screen
+            # right side of screen
             if self.exit_icon.opacity == 0:
                 self.ui_manager.timer_visible = False
                 self.ui_manager.toggle_timer_visibility()
                 return True
                 
             if self.controller:
-                # End focus time tracking when exiting to main menu
+                # end focus time tracking when exiting to main menu
                 self.focus_time_tracker.end_focus_session()
                 self.controller.show_main_menu()
+        
+        # clear the pending event reference
+        self._pending_tap_event = None
+        
         return True
 
     def start_toggle_timer(self):
@@ -404,7 +462,7 @@ class FocusPageWidget(PageWidget):
         if not self.break_manager.break_check_event:
             self.break_manager.break_check_event = Clock.schedule_interval(
                 lambda dt: self._update_pause_icon(), 
-                5  # Check more frequently (every 5 seconds)
+                5  # check more frequently (every 5 seconds)
             )
             
     def _update_pause_icon(self):
@@ -440,24 +498,24 @@ class FocusPageWidget(PageWidget):
         
         self.pause_icon.source = 'assets/icons/pause.png'
         
-        # Start focus time tracking
+        # start focus time tracking
         self.focus_time_tracker.start_focus_session()
         
-        # Schedule periodic saves every 30 seconds to prevent data loss on crash
+        # schedule periodic saves every 30 seconds to prevent data loss on crash
         self.focus_time_save_event = Clock.schedule_interval(
             lambda dt: self.focus_time_tracker.update_focus_time(), 
-            30  # Save every 30 seconds
+            30  # save every 30 seconds
         )
 
     def on_exit_focus(self):
         self.timer.stop()
         
-        # End focus time tracking
+        # end focus time tracking
         if self.focus_time_save_event:
             self.focus_time_save_event.cancel()
             self.focus_time_save_event = None
             
-        # Save final focus time
+        # save final focus time
         self.focus_time_tracker.end_focus_session()
         
         if self.update_event:
@@ -488,18 +546,18 @@ class FocusPageWidget(PageWidget):
             self.current_time_update_event.cancel()
             self.current_time_update_event = None
             
-        # Make sure auto-exit timers in the distraction tracker are also canceled
+        # make sure auto-exit timers in the distraction tracker are also canceled
         if self.distraction_tracker.auto_exit_check_event:
             self.distraction_tracker.auto_exit_check_event.cancel()
             self.distraction_tracker.auto_exit_check_event = None
             
-        # Reset all state
+        # reset all state
         self.distraction_tracker.reset()
         self.is_paused = False
         self.break_manager.in_break_mode = False
         self.break_manager.in_break_prompt = False
         
-        # Make sure all UI elements are hidden
+        # make sure all UI elements are hidden
         self.expression_image.opacity = 0
         self.timer.opacity = 0
         self.current_time_label.opacity = 0
@@ -514,4 +572,62 @@ class FocusPageWidget(PageWidget):
         self.time_marker_icon.opacity = 0
         self.break_icon.opacity = 0
         self.work_icon.opacity = 0
+            
+    # random bonus animation picker
+    def _get_random_bonus(self):
+        return random.choice(self.BONUS_ANIMATIONS)
+        
+    # play a bonus animation
+    def _play_bonus_animation(self):
+        if self.is_paused or self.break_manager.in_break_mode or self.break_manager.in_break_prompt:
+            return
+            
+        if self.playing_bonus_animation:
+            return
+            
+        # select random bonus animation
+        bonus_animation = self._get_random_bonus()
+        self.playing_bonus_animation = True
+        
+        # save current state
+        original_source = self.expression_image.source
+        
+        # set the bonus animation
+        bonus_path = f'assets/expressions/{bonus_animation}.gif'
+        self.expression_image.anim_delay = 0.1
+        self.expression_image.source = ''
+        self.expression_image.texture = None
+        self.expression_image.source = bonus_path
+        
+        # make sure the expression is visible
+        self.expression_image.opacity = 1
+        
+        # schedule return to normal expression
+        Clock.schedule_once(
+            lambda dt: self._return_from_bonus_animation(original_source), 
+            5  # display bonus for 5 seconds
+        )
+    
+    def _return_from_bonus_animation(self, original_source):
+        # restore original expression
+        self.expression_image.anim_delay = -1  # static image
+        self.expression_image.source = ''
+        self.expression_image.texture = None
+        self.expression_image.source = original_source
+        
+        self.playing_bonus_animation = False
+        
+        # restore timer visibility state
+        if self.ui_manager.timer_visible:
+            self.expression_image.opacity = 0
+            self.timer.opacity = 1
+            self.current_time_label.opacity = 1
+            self.pause_icon.opacity = 1
+            self.exit_icon.opacity = 1
+        else:
+            self.expression_image.opacity = 1
+            self.timer.opacity = 0
+            self.current_time_label.opacity = 0
+            self.pause_icon.opacity = 0
+            self.exit_icon.opacity = 0
             

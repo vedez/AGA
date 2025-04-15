@@ -14,11 +14,11 @@ class FocusTimeTracker:
         self._ensure_data_file_exists()
         
     def _get_current_date(self):
-        """Return current date in DD/MM format"""
+        """return current date in DD/MM format"""
         return datetime.now().strftime("%d/%m")
         
     def _ensure_data_file_exists(self):
-        """Create data file if it doesn't exist or ensure it has proper structure"""
+        """create data file if it doesn't exist or ensure it has proper structure"""
         if not os.path.exists(self.data_file):
             # create empty data structure
             with open(self.data_file, 'w') as f:
@@ -107,7 +107,7 @@ class FocusTimeTracker:
             print(f"Error saving focus data: {e}")
             
     def get_today_focus_time(self):
-        """Get total focus time for today in minutes"""
+        """get total focus time for today in minutes"""
         try:
             today = self._get_current_date()
             
@@ -123,7 +123,7 @@ class FocusTimeTracker:
             return 0
             
     def get_yesterday_focus_time(self):
-        """Get total focus time for yesterday in minutes"""
+        """get total focus time for yesterday in minutes"""
         try:
             # get yesterday's date
             yesterday = (datetime.now() - timedelta(days=1)).strftime("%d/%m")

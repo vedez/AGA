@@ -145,7 +145,11 @@ class MainController(BoxLayout):
 
         # handle different transitions based on current widget
         if self.current_widget == self.idle_widget:
-            # if clicking on idle animation, show clock
+            # let the idle widget handle its own touch events
+            # it will trigger show_clock() after checking for double taps
+            if self.idle_widget.on_touch_down(touch):
+                return True
+            # fallback if the widget didn't handle the touch
             self.show_clock()
             return True
 

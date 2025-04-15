@@ -6,7 +6,7 @@ from components.focus_time_tracker import FocusTimeTracker
 from kivy.graphics import Color, Line
 
 class DataPageWidget(PageWidget):
-    """Widget that displays the data page with focus time statistics."""
+    """widget that displays the data page with focus time statistics."""
     
     def __init__(self, controller=None, **kwargs):
         super(DataPageWidget, self).__init__(
@@ -20,8 +20,8 @@ class DataPageWidget(PageWidget):
         self._setup_ui()
         
     def _setup_ui(self):
-        """Set up the UI elements for the data page."""
-        # Main container for all elements
+        """set up the UI elements for the data page."""
+        # main container for all elements
         main_layout = BoxLayout(
             orientation='vertical',
             spacing=0,
@@ -29,7 +29,7 @@ class DataPageWidget(PageWidget):
             size_hint=(1, 1)
         )
         
-        # Clock icon (at 1/6 from top)
+        # clock icon (at 1/6 from top)
         clock_container = BoxLayout(
             orientation='vertical',
             size_hint=(1, 1/6),
@@ -44,7 +44,7 @@ class DataPageWidget(PageWidget):
         clock_container.add_widget(time_icon)
         main_layout.add_widget(clock_container)
         
-        # "Focus Stats" title (at 2/6 from top)
+        # "focus stats" title (at 2/6 from top)
         title_container = BoxLayout(
             orientation='vertical',
             size_hint=(1, 1/6)
@@ -156,21 +156,21 @@ class DataPageWidget(PageWidget):
         yesterday_container.add_widget(yesterday_layout)
         main_layout.add_widget(yesterday_container)
         
-        # Add all the remaining space in a single container
+        # add all the remaining space in a single container
         remaining_space = BoxLayout(
             size_hint=(1, 3/12)
         )
         main_layout.add_widget(remaining_space)
         
-        # Add the main layout to the widget
+        # add the main layout to the widget
         self.add_widget(main_layout)
         
-        # Home button icon - add directly to the widget with absolute positioning
+        # home button icon - add directly to the widget with absolute positioning
         home_icon = Image(
             source='assets/icons/home.png',
             size_hint=(None, None),
             size=(40, 40),
-            pos_hint={'x': 0.05, 'y': 0.05},  # Lower position than before, but still higher than original
+            pos_hint={'x': 0.05, 'y': 0.05},  # lower position than before, but still higher than original
             allow_stretch=True,
             keep_ratio=True
         )
@@ -178,12 +178,12 @@ class DataPageWidget(PageWidget):
         self.add_widget(home_icon)
     
     def update_stats(self):
-        """Update the displayed statistics."""
-        # Get focus time data
+        """update the displayed statistics."""
+        # get focus time data
         today_minutes = self.focus_tracker.get_today_focus_time()
         yesterday_minutes = self.focus_tracker.get_yesterday_focus_time()
         
-        # Format display strings
+        # format display strings
         if today_minutes < 60:
             today_text = f"{int(today_minutes)} minutes"
         else:
@@ -198,17 +198,17 @@ class DataPageWidget(PageWidget):
             minutes = int(yesterday_minutes % 60)
             yesterday_text = f"{hours}h {minutes}m"
         
-        # Update labels
+        # update labels
         self.today_time.text = today_text
         self.yesterday_time.text = yesterday_text
     
     def on_enter(self):
-        """Called when the widget is shown."""
+        """called when the widget is shown."""
         self.update_stats()
         
     def on_touch_down(self, touch):
-        """Handle touch events."""
-        # Check if the home button was clicked
+        """handle touch events."""
+        # check if the home button was clicked
         for child in self.children:
             if isinstance(child, Image) and child.source == 'assets/icons/home.png':
                 if child.collide_point(*touch.pos):
