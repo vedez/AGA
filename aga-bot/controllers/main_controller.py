@@ -9,14 +9,16 @@ from widgets.main_menu_widget import MainMenuWidget
 from widgets.focus_page_widget import FocusPageWidget
 from widgets.data_page_widget import DataPageWidget
 from widgets.refocus_animation_widget import RefocusPageWidget
+from components import EXPRESSION_CHANGE_INTERVAL
+
 
 class MainController(BoxLayout):
     """manages application flow and state"""
     
     IDLE_TIMEOUT = 5 # idle timeout in seconds
     CLOCK_TIMEOUT = 5 # clock display timeout in seconds    
-    REFOCUS_EXIT_TIMEOUT = 300  # refocus exit timeout in seconds (5 minutes)
-    REFOCUS_TRIGGER_TIMEOUT = 30  # short timeout for testing
+    REFOCUS_EXIT_TIMEOUT = 5 * 60  # refocus exit timeout in seconds (5 minutes)
+    # REFOCUS_TRIGGER_TIMEOUT = 30  # short timeout for testing - REMOVED AS REQUESTED
 
     def __init__(self, **kwargs):
         super(MainController, self).__init__(**kwargs)
@@ -49,20 +51,32 @@ class MainController(BoxLayout):
         self.refocus_page_widget = RefocusPageWidget(controller=self)
     
     def _switch_to_widget(self, widget, timeout=None, timeout_callback=None):
-        """method to switch to a widget with optional timeout.
-        
-        args:
-            widget: The widget to switch to
-            timeout: Optional timeout in seconds
-            timeout_callback: Function to call when timeout occurs
-        """
         # cancel any pending timers
         self._cancel_temp_display_timer()
+        
+        # call on_exit for current widget if it has that method
+        if self.current_widget and hasattr(self.current_widget, 'on_exit'):
+            self.current_widget.on_exit()
+            
         # switching
         if self.current_widget != widget:
+            # If switching to idle, add extra cleanup
+            if widget == self.idle_widget:
+                # Make sure focus page cleans up properly
+                if hasattr(self.focus_page_widget, "on_exit_focus"):
+                    self.focus_page_widget.on_exit_focus()
+                
+                # Make sure refocus page cancels any timers
+                if hasattr(self.refocus_page_widget, "stop_auto_exit_timer"):
+                    self.refocus_page_widget.stop_auto_exit_timer()
+            
             self.clear_widgets()
             self.add_widget(widget)
             self.current_widget = widget
+            
+            # call on_enter for new widget if it has that method
+            if hasattr(widget, 'on_enter'):
+                widget.on_enter()
             
             # set timeout if specified
             if timeout and timeout_callback:
@@ -98,7 +112,17 @@ class MainController(BoxLayout):
         if reset_timer:
             self.focus_page_widget.on_enter_focus()
         else:
-            self.focus_page_widget.timer.start()  # resume without reset
+            self.focus_page_widget.timer.start()
+           
+            if not self.focus_page_widget.timer_toggle_event:
+                self.focus_page_widget.timer_toggle_event = Clock.schedule_interval(
+                    lambda dt: self.focus_page_widget.ui_manager.toggle_timer_visibility(), 
+                    EXPRESSION_CHANGE_INTERVAL
+                )
+
+            self.focus_page_widget.ui_manager.timer_visible = True
+            self.focus_page_widget.ui_manager.toggle_timer_visibility()
+
 
     
     def show_data_page(self):
@@ -127,6 +151,8 @@ class MainController(BoxLayout):
 
         # if on the refocus page, return to focus page
         if self.current_widget == self.refocus_page_widget:
+            if hasattr(self.focus_page_widget, "reset_focus_state"):
+                self.focus_page_widget.reset_focus_state()
             self.show_focus_page(reset_timer=False)  # don't reset on return
             return True
 
@@ -137,13 +163,6 @@ class MainController(BoxLayout):
         """should return to idle state.."""
         current_time = time.time()
         idle_time = current_time - self.last_activity_time
-
-        # trigger refocus animation if on focus page and enough time has passed since entering
-        if self.current_widget == self.focus_page_widget:
-            if self.focus_entry_time and current_time - self.focus_entry_time > self.REFOCUS_TRIGGER_TIMEOUT:
-                self.show_refocus_page()
-                self.refocus_trigger_count += 1  # log it
-                return  # exit early so idle check below doesn't run
 
         # if currently on refocus page, track time there
         if self.current_widget == self.refocus_page_widget:
