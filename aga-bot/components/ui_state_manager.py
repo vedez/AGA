@@ -168,8 +168,8 @@ class UIStateManager:
             self.parent.current_time_label.opacity = 0
             self.parent.pause_icon.opacity = 0
             self.parent.exit_icon.opacity = 0
-            self.parent.expression_image.source = self.parent.expression_manager.get_random_expression() 
-
+            self.parent._update_animation('neutral')
+            
     def _ensure_break_prompt_visible(self):
         # Ensure the break prompt is visible
         self.parent.break_prompt_overlay.opacity = 1

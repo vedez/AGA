@@ -117,7 +117,7 @@ class IdleAnimationWidget(BaseWidget):
             self.idle_image.anim_loop = 1
             
         elif state_name in self.BONUS_ANIMATIONS:
-            self.idle_image.anim_delay = 0.1
+            self.idle_image.anim_delay = 1
             self.idle_image.anim_loop = 1
 
         else:  # neutral

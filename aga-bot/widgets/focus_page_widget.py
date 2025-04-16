@@ -45,6 +45,8 @@ AUTO_RETURN_FROM_REFOCUS = True  # automatically return from refocus when user l
 class FocusPageWidget(PageWidget):
     # bonus animations
     BONUS_ANIMATIONS = ['bonus_wink', 'bonus_hum', 'bonus_love']
+    # mood types (assets)
+    MOODS = ['happy', 'bored', 'curious', 'annoyed', 'attitude', 'excited', 'giggly']
     
     def __init__(self, controller=None, **kwargs):
         super(FocusPageWidget, self).__init__(
@@ -68,6 +70,13 @@ class FocusPageWidget(PageWidget):
         self._pending_tap_event = None
         self._last_touch_pos = (0, 0)
         
+        # animation state variables
+        self.current_state = 'neutral'  # default
+        self.previous_mood = None
+        self.is_blinking = False
+        self.is_showing_mood = False
+        self.pending_blink = False  # priorities mood over blink
+        
         # create UI elements
         self._setup_ui_elements()
         
@@ -81,7 +90,13 @@ class FocusPageWidget(PageWidget):
         self.timer_toggle_event = None
         self.current_time_update_event = None
         self.focus_time_save_event = None
-        self.expression_image.source = self.expression_manager.get_random_expression()
+        
+        # set initial expression
+        self._update_animation('neutral')
+        
+        # setup animation timers
+        Clock.schedule_interval(self._trigger_blink, 8)   # blink every 8s
+        Clock.schedule_interval(self._trigger_mood, 29)   # mood change every 29s
         
         Clock.schedule_interval(self.monitor_camera, 1.0 / 30.0)
         self.current_time_update_event = Clock.schedule_interval(self.update_current_time, 1)
@@ -92,7 +107,8 @@ class FocusPageWidget(PageWidget):
             size_hint=(1, 1),
             pos_hint={'center_x': 0.5, 'center_y': 0.5},
             allow_stretch=True,
-            anim_delay=1
+            anim_delay=-1,  # Start with static neutral expression
+            anim_loop=0
         )
         self.add_widget(self.expression_image)
         
@@ -389,7 +405,7 @@ class FocusPageWidget(PageWidget):
             else:
                 self.timer.start()
                 self.is_paused = False
-                self.expression_image.source = self.expression_manager.get_random_expression()
+                self._update_animation('neutral')
                 self.pause_icon.source = 'assets/icons/pause.png'
                 self.ui_manager.timer_visible = True
                 self.ui_manager.toggle_timer_visibility()
@@ -431,7 +447,7 @@ class FocusPageWidget(PageWidget):
             else:
                 self.timer.start()
                 self.is_paused = False
-                self.expression_image.source = self.expression_manager.get_random_expression()
+                self._update_animation('neutral')
                 self.pause_icon.source = 'assets/icons/pause.png'
                 self.ui_manager.timer_visible = True
                 self.ui_manager.toggle_timer_visibility()
@@ -490,6 +506,14 @@ class FocusPageWidget(PageWidget):
         
         self.distraction_tracker.reset()
         self.is_paused = False
+        
+        # Reset animation state
+        self.current_state = 'neutral'
+        self.is_blinking = False
+        self.is_showing_mood = False
+        self.pending_blink = False
+        self.playing_bonus_animation = False
+        self._update_animation('neutral')
         
         self.break_manager.reset()
         
@@ -557,6 +581,13 @@ class FocusPageWidget(PageWidget):
         self.break_manager.in_break_mode = False
         self.break_manager.in_break_prompt = False
         
+        # Reset animation state
+        self.current_state = 'neutral'
+        self.is_blinking = False
+        self.is_showing_mood = False
+        self.pending_blink = False
+        self.playing_bonus_animation = False
+        
         # make sure all UI elements are hidden
         self.expression_image.opacity = 0
         self.timer.opacity = 0
@@ -577,47 +608,104 @@ class FocusPageWidget(PageWidget):
     def _get_random_bonus(self):
         return random.choice(self.BONUS_ANIMATIONS)
         
-    # play a bonus animation
+    # random mood picker
+    def _get_random_mood(self):
+        moods = [m for m in self.MOODS if m != self.previous_mood]
+        return random.choice(moods) if moods else random.choice(self.MOODS)
+    
+    def _get_animation_path(self, state_name):
+        return f'assets/expressions/{state_name}.gif'
+        
+    # trigger mood, no overlaps and return neutral after 3 seconds
+    def _trigger_mood(self, dt):
+        if self.is_paused or self.break_manager.in_break_mode or self.break_manager.in_break_prompt:
+            return
+            
+        if self.is_blinking or self.is_showing_mood or self.playing_bonus_animation:
+            return
+
+        new_mood = self._get_random_mood()
+        self.previous_mood = new_mood
+        self.is_showing_mood = True
+        self.current_state = 'mood'
+
+        self._update_animation(new_mood)
+        Clock.schedule_once(self._return_to_neutral, 3) # length of mood display
+
+    def _trigger_blink(self, dt):
+        if self.is_paused or self.break_manager.in_break_mode or self.break_manager.in_break_prompt:
+            return
+            
+        if self.is_showing_mood or self.playing_bonus_animation:
+            self.pending_blink = True  # delay blink until mood is finished
+            return
+        
+        if self.is_blinking:
+            return
+
+        self.is_blinking = True
+        self.current_state = 'blink'
+        self._update_animation('blink')
+        Clock.schedule_once(self._return_to_neutral, 0.5)  # quick blink
+
+    def _return_to_neutral(self, dt):
+        self.current_state = 'neutral'
+        self.is_blinking = False
+        self.is_showing_mood = False
+        self._update_animation('neutral')
+
+        # if blink was queued during mood, trigger it now
+        if self.pending_blink:
+            self.pending_blink = False
+            Clock.schedule_once(self._trigger_blink, 0.1)
+
+    def _update_animation(self, state_name):
+        """Force reload of the animation with delay"""
+        path = self._get_animation_path(state_name)
+
+        if state_name == 'blink':
+            self.expression_image.anim_delay = 0.05
+            self.expression_image.anim_loop = 1
+
+        elif state_name in self.MOODS:
+            self.expression_image.anim_delay = 1
+            self.expression_image.anim_loop = 1
+            
+        elif state_name in self.BONUS_ANIMATIONS:
+            self.expression_image.anim_delay = 1
+            self.expression_image.anim_loop = 1
+
+        else:  # neutral
+            self.expression_image.anim_delay = -1
+            self.expression_image.anim_loop = 0
+
+        # force reload of GIF
+        self.expression_image.source = ''
+        self.expression_image.texture = None
+        self.expression_image.source = path
+            
+    # Replace the existing _play_bonus_animation method
     def _play_bonus_animation(self):
         if self.is_paused or self.break_manager.in_break_mode or self.break_manager.in_break_prompt:
             return
             
-        if self.playing_bonus_animation:
+        if self.is_blinking or self.is_showing_mood or self.playing_bonus_animation:
             return
-            
-        # select random bonus animation
+        
         bonus_animation = self._get_random_bonus()
         self.playing_bonus_animation = True
+        self.current_state = 'bonus'
         
-        # save current state
-        original_source = self.expression_image.source
-        
-        # set the bonus animation
-        bonus_path = f'assets/expressions/{bonus_animation}.gif'
-        self.expression_image.anim_delay = 0.1
-        self.expression_image.source = ''
-        self.expression_image.texture = None
-        self.expression_image.source = bonus_path
-        
-        # make sure the expression is visible
-        self.expression_image.opacity = 1
-        
-        # schedule return to normal expression
-        Clock.schedule_once(
-            lambda dt: self._return_from_bonus_animation(original_source), 
-            5  # display bonus for 5 seconds
-        )
+        self._update_animation(bonus_animation)
+        # give bonus animations longer display time (5 seconds)
+        Clock.schedule_once(self._return_from_bonus_animation, 5)
     
-    def _return_from_bonus_animation(self, original_source):
-        # restore original expression
-        self.expression_image.anim_delay = -1  # static image
-        self.expression_image.source = ''
-        self.expression_image.texture = None
-        self.expression_image.source = original_source
-        
+    # Modify _return_from_bonus_animation to use _return_to_neutral logic
+    def _return_from_bonus_animation(self, dt):
         self.playing_bonus_animation = False
+        self._return_to_neutral(dt)
         
-        # restore timer visibility state
+        # restore timer visibility state based on ui_manager state
         if self.ui_manager.timer_visible:
             self.expression_image.opacity = 0
             self.timer.opacity = 1
