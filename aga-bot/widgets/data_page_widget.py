@@ -209,11 +209,16 @@ class DataPageWidget(PageWidget):
     def on_touch_down(self, touch):
         """handle touch events."""
         # check if the home button was clicked
+        if touch.pos[0] < self.width / 3:
+            if self.controller:
+                self.controller.show_main_menu()
+                return True
+        
         for child in self.children:
             if isinstance(child, Image) and child.source == 'assets/icons/home.png':
                 if child.collide_point(*touch.pos):
                     if self.controller:
                         self.controller.show_main_menu()
                     return True
-        
+ 
         return super(DataPageWidget, self).on_touch_down(touch) 
