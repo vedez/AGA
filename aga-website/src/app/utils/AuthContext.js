@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
 
     async function signup(email, password) {
         if (!auth) {
-            return Promise.reject(new Error("Firebase auth is not initialized"));
+            return Promise.reject(new Error("Firebase auth is not initialised"));
         }
         
         // create the user with email and password
@@ -59,27 +59,27 @@ export function AuthProvider({ children }) {
 
     async function login(email, password) {
         if (!auth) {
-            console.error("Firebase auth is not initialized");
-            return Promise.reject(new Error("Firebase auth is not initialized"));
+            console.error("Firebase auth is not initialised");
+            return Promise.reject(new Error("Firebase auth is not initialised"));
         }
         
-        // Login with Firebase
+        // login with Firebase
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         return userCredential;
     }
 
     async function logout() {
         if (!auth) {
-            console.error("Firebase auth is not initialized");
-            return Promise.reject(new Error("Firebase auth is not initialized"));
+            console.error("Firebase auth is not initialised");
+            return Promise.reject(new Error("Firebase auth is not initialised"));
         }
         return signOut(auth);
     }
 
     async function resetPassword(email) {
         if (!auth) {
-            console.error("Firebase auth is not initialized");
-            return Promise.reject(new Error("Firebase auth is not initialized"));
+            console.error("Firebase auth is not initialised");
+            return Promise.reject(new Error("Firebase auth is not initialised"));
         }
         return sendPasswordResetEmail(auth, email);
     }
@@ -108,7 +108,7 @@ export function AuthProvider({ children }) {
 
     async function updateUserProfile(data, password) {
         if (!auth.currentUser || !auth || !db) {
-            throw new Error("No user is logged in or database not initialized");
+            throw new Error("No user is logged in or database not initialised");
         }
         
         
@@ -149,7 +149,7 @@ export function AuthProvider({ children }) {
 
     async function uploadProfilePhoto(file) {
         if (!auth.currentUser || !storage) {
-            throw new Error("No user is logged in or storage not initialized");
+            throw new Error("No user is logged in or storage not initialised");
         }
         
         // create storage reference
@@ -186,7 +186,7 @@ export function AuthProvider({ children }) {
 
     async function fetchUserProfile() {
         if (!auth.currentUser || !db) {
-            console.error("No user is logged in or database not initialized");
+            console.error("No user is logged in or database not initialised");
             return null;
         }
         
@@ -238,7 +238,7 @@ export function AuthProvider({ children }) {
                 setLoading(false);
             });
         } else {
-            console.error("Firebase auth is not initialized");
+            console.error("Firebase auth is not initialised");
             setLoading(false);
         }
 

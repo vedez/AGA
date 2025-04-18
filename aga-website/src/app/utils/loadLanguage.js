@@ -1,10 +1,10 @@
 export async function loadLanguage(lang = "en") {
     try {
-        // Load main language file
+        // load main language file
         const mainResponse = await fetch(`/locales/${lang}.json`);
         const mainTranslations = await mainResponse.json();
 
-        // Load affirmations file
+        // load affirmations file
         let affirmations = {};
         try {
             const affirmationsResponse = await fetch(`/json/affirmation/${lang}-affirmations.json`);
@@ -15,7 +15,7 @@ export async function loadLanguage(lang = "en") {
             console.error(`Error loading ${lang} affirmations file:`, affError);
         }
 
-        // Combine translations
+        // combine translations
         return {
             ...mainTranslations,
             affirmations: affirmations

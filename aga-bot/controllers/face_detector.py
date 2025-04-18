@@ -95,8 +95,7 @@ class FaceDetector:
             self.eye_frame_count += 1
 
         # check stability for face and head/body
-        if face_features is not None and self.is_stable(face_features, self.last_face_features, 
-                                                        self.stability_tolerance):
+        if face_features is not None and self.is_stable(face_features, self.last_face_features, self.stability_tolerance):
             self.face_stable_frame_count += 1
         else:
             self.face_stable_frame_count = 0 # reset if facelandmarks are not stable/detected

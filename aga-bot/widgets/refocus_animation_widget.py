@@ -47,7 +47,7 @@ class RefocusPageWidget(PageWidget):
         self.add_widget(self.refocus_image)
         self.add_widget(self.message_label)
         
-        # Auto-exit related properties
+        # auto-exit related properties
         self.auto_exit_timeout = 5 * 60  # 5 minutes in seconds
         self.auto_exit_timer = None
         self.enter_time = None
@@ -57,35 +57,35 @@ class RefocusPageWidget(PageWidget):
         self.bg_rect.size = self.size
         
     def on_enter(self):
-        """Called when the refocus page is shown"""
+        """called when the refocus page is shown"""
         self.enter_time = time.time()
         self.start_auto_exit_timer()
         
     def on_exit(self):
-        """Called when leaving the refocus page"""
+        """called when leaving the refocus page"""
         self.stop_auto_exit_timer()
         self.enter_time = None
         
     def start_auto_exit_timer(self):
-        """Start timer to automatically exit after timeout period"""
-        self.stop_auto_exit_timer()  # Clear any existing timer
+        """start timer to automatically exit after timeout period"""
+        self.stop_auto_exit_timer()  # clear any existing timer
         self.auto_exit_timer = Clock.schedule_interval(self.check_auto_exit, 1)
         
     def stop_auto_exit_timer(self):
-        """Stop the auto-exit timer"""
+        """stop the auto-exit timer"""
         if self.auto_exit_timer:
             self.auto_exit_timer.cancel()
             self.auto_exit_timer = None
             
     def check_auto_exit(self, dt=None):
-        """Check if we should automatically exit due to timeout"""
+        """check if we should automatically exit due to timeout"""
         if not self.enter_time:
             return
             
         time_on_refocus = time.time() - self.enter_time
         
         if time_on_refocus >= self.auto_exit_timeout:
-            # Auto exit to main menu after timeout
+            # auto exit to main menu after timeout
             self.stop_auto_exit_timer()
             if self.controller:
                 self.controller.show_main_menu()

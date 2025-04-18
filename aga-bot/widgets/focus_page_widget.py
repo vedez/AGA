@@ -507,7 +507,7 @@ class FocusPageWidget(PageWidget):
         self.distraction_tracker.reset()
         self.is_paused = False
         
-        # Reset animation state
+        # RESET animation state
         self.current_state = 'neutral'
         self.is_blinking = False
         self.is_showing_mood = False
@@ -684,7 +684,7 @@ class FocusPageWidget(PageWidget):
         self.expression_image.texture = None
         self.expression_image.source = path
             
-    # Replace the existing _play_bonus_animation method
+    # replace the existing _play_bonus_animation method
     def _play_bonus_animation(self):
         if self.is_paused or self.break_manager.in_break_mode or self.break_manager.in_break_prompt:
             return
@@ -700,7 +700,7 @@ class FocusPageWidget(PageWidget):
         # give bonus animations longer display time (5 seconds)
         Clock.schedule_once(self._return_from_bonus_animation, 5)
     
-    # Modify _return_from_bonus_animation to use _return_to_neutral logic
+    # modify _return_from_bonus_animation to use _return_to_neutral logic
     def _return_from_bonus_animation(self, dt):
         self.playing_bonus_animation = False
         self._return_to_neutral(dt)

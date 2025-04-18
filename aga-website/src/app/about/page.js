@@ -12,9 +12,6 @@ import { FaTasks } from "react-icons/fa";
 import { BsCalendarDate, BsChatSquareHeartFill } from "react-icons/bs";
 import { MdCamera } from "react-icons/md";
 
-
-
-
 export default function About() {
     const { language, translations } = useTranslation();
     const currentWord = useUnitWordsRotator(language);
