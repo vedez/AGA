@@ -1,4 +1,5 @@
 # AGA
+
 The Advanced Guidance Assistance (AGA) bot is a tool designed specifically to support individuals with ADHD in managing their daily tasks and routines. It acts as a personal assistant that provides structured guidance, reminders, and encouragement to help users stay focused and on track throughout their day. 
 With features like customisable task lists, real-time alerts, and adaptive goal-setting, AGA helps reduce stress, anxiety and improve time management, making it easier to build healthier habits and maintain productivity. Its user-friendly interface and supportive approach aim to empower users to navigate their day more effectively and confidently.
 
