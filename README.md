@@ -4,12 +4,12 @@ The Advanced Guidance Assistance (AGA) bot is a tool designed specifically to su
 With features like customisable task lists, real-time alerts, and adaptive goal-setting, AGA helps reduce stress, anxiety and improve time management, making it easier to build healthier habits and maintain productivity. Its user-friendly interface and supportive approach aim to empower users to navigate their day more effectively and confidently.
 
 
-[More Information](https://github.com/vedez/aga_documentation/tree/100a5277f13ee6c8ea122fa4f8431d32cc849173/Documents/Reports)
+[More Information](https://github.com/vedez/aga_documentation/tree/c2342e662b87cc1a2a36910c76278e377d42e977/Documents/Reports)
 
 ## Project Development
 Please find information about the web application's project plan, code and documentation on GitHub at the following links:
 - [Code and Development](https://github.com/vedez/AGA)
-- [Documentation](https://github.com/vedez/aga_documentation/tree/100a5277f13ee6c8ea122fa4f8431d32cc849173/Documents/Reports)
+- [Documentation](https://github.com/vedez/aga_documentation/tree/c2342e662b87cc1a2a36910c76278e377d42e977/Documents/Reports)
 
 
 ## Demonstration 
